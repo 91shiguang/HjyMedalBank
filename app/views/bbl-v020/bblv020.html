@@ -1,0 +1,46 @@
+<div class="bblv020-main d-flex flex-column w-100 h-100 gap-24 p-3">
+  <div class="d-flex flex-column gap-16">
+    <span class="fw-bold">经办人</span>
+    <div class="d-flex gap-48 px-3">
+      <label class="radio-label" onclick="CommonUtils.clickRadio('savePch', 'savePch_01')">
+        <input type="radio" id="savePch_01" name="savePch" class="radio-btn" value="01">
+        <span class="radio-custom"></span>妈妈
+      </label>
+      <label class="radio-label" onclick="CommonUtils.clickRadio('savePch', 'savePch_02')">
+        <input type="radio" id="savePch_02" name="savePch" class="radio-btn" value="02">
+        <span class="radio-custom"></span>爸爸
+      </label>
+    </div>
+  </div>
+  <div class="d-flex flex-column gap-16">
+    <span class="fw-bold">存储类型</span>
+    <div class="d-flex gap-48 px-3">
+      <label class="radio-label" onclick="CommonUtils.clickRadio('saveType', 'saveType_01')">
+        <input type="radio" id="saveType_01" name="saveType" class="radio-btn" value="01">
+        <span class="radio-custom"></span>活期
+      </label>
+      <label class="radio-label" onclick="CommonUtils.clickRadio('saveType', 'saveType_02')">
+        <input type="radio" id="saveType_02" name="saveType" class="radio-btn" value="02">
+        <span class="radio-custom"></span>定期
+      </label>
+    </div>
+  </div>
+  <div class="d-flex flex-column gap-16">
+    <span class="fw-bold">勋章来源</span>
+    <div class="d-flex gap-48 px-3">
+      <label class="radio-label" onclick="CommonUtils.clickRadio('medalSource', 'medalSource_01')">
+        <input type="radio" id="medalSource_01" name="medalSource" class="radio-btn" value="01">
+        <span class="radio-custom"></span> 新增
+      </label>
+      <label class="radio-label" onclick="CommonUtils.clickRadio('medalSource', 'medalSource_02')">
+        <input type="radio" id="medalSource_02" name="medalSource" class="radio-btn" value="02">
+        <span class="radio-custom"></span> 转存
+      </label>
+    </div>
+  </div>
+  <div class="d-flex flex-column gap-16">
+    <span class="fw-bold">存储时间</span>
+    <div class="px-3 w-100"><input type="date" id="saveTime" class="w-100"></div>
+  </div>
+
+</div>
