@@ -1,9 +1,7 @@
-
-
 /**
  * 切换主画面的tab标签
  */
-function changeMainTab(tabIndex) {
+async function changeMainTab(tabIndex) {
   // tab按钮已经是选中状态时
   if ($('#main_tab_' + tabIndex).hasClass('active')) {
     // 播放点击音效
@@ -18,8 +16,43 @@ function changeMainTab(tabIndex) {
   $('#tab_content_' + tabIndex).addClass('d-block');
   // 播放tab切换的音效
   document.getElementById('tab_change_audio').play();
-  // 加载tab标签画面的HTML
-  loadTabPage(tabIndex);
+  // tab标签画面的innerHTML
+  const innerHTML = document.getElementById('tab_content_' + tabIndex).innerHTML;
+  // 避免重复加载HTML
+  if (!innerHTML) {
+    // 加载tab标签画面的HTML
+    await loadTabPage(tabIndex);
+    // 给tab标签画面内容设置初始内容
+    initTabPageItems(tabIndex);
+  }
+  
+}
+
+/**
+ * 给tab标签画面内容设置初始内容
+ */
+function initTabPageItems(tabIndex) {
+  setTimeout(() => {
+    switch (tabIndex) {
+      // case 0:
+      //   htmlPath = CommonConstant.searchPageHtml;
+      //   break;
+      case 1:
+        bblv020.onInit();
+        break;
+      // case 2:
+      //   htmlPath = CommonConstant.shopPageHtml;
+      //   break;
+      // case 3:
+      //   htmlPath = CommonConstant.borrowPageHtml;
+      //   break;
+      // case 4:
+      //   htmlPath = CommonConstant.settingPageHtml;
+      //   break;
+      default:
+        break;
+    }
+  });
 }
 
 /**
@@ -27,7 +60,7 @@ function changeMainTab(tabIndex) {
  */
 async function loadTabPage(tabIndex) {
   const element = document.getElementById('tab_content_' + tabIndex);
-  if (!element.innerHtml) {
+  if (!element.innerHTML) {
     // 获取对应tab主画面的html
     var htmlPath = CommonConstant.blank;
     switch (tabIndex) {

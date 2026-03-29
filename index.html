@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="app/views/bbl-v050/bblv050.css">
   <link rel="stylesheet" href="app/views/bbl-v060/bblv060.css">
 </head>
+
 <body>
   <div id="main_page" class="d-flex flex-column main-page">
     <div class="d-flex justify-content-between main-header">
@@ -40,7 +41,7 @@
         <img class="tab-img" src="assets/images/setting.png">
         <span>设置</span>
       </button>
-    </div> 
+    </div>
     <div class="main-content">
       <div id="tab_content_0" class="tab-content d-block"></div>
       <div id="tab_content_1" class="tab-content"></div>
@@ -50,7 +51,7 @@
     </div>
   </div>
   <audio id="tab_change_audio" class="d-none" src="assets/audio/tab_change.mp3" preload="auto" controls></audio>
-  <audio id="borrow_success_audio" class="d-none" src="assets/audio/borrow_success.mp3"preload="auto" controls></audio>
+  <audio id="borrow_success_audio" class="d-none" src="assets/audio/borrow_success.mp3" preload="auto" controls></audio>
   <audio id="click_audio" class="d-none" src="assets/audio/click.mp3" preload="auto" controls></audio>
   <audio id="popup_audio" class="d-none" src="assets/audio/popup.mp3" preload="auto" controls></audio>
   <audio id="repayment_audio" class="d-none" src="assets/audio/repayment.mp3" preload="auto" controls></audio>
@@ -63,7 +64,8 @@
   <script src="package/localforage.min.js"></script>
   <script src="app/common/message.js"></script>
   <script src="app/common/constant.js"></script>
-  <script src="app/common/code.js"></script>
+  <script src="app/code/codes.js"></script>
+  <script src="app/code/codeManager.js"></script>
   <script src="app/common/commonUtil.js"></script>
   <script src="app/common/dataBase.js"></script>
   <script src="app/model/billModel.js"></script>
@@ -90,6 +92,11 @@
 
     // 定义画面用js对象
     const bblv010 = new BBLV010View();
+    const bblv020 = new BBLV020View();
+    const bblv030 = new BBLV030View();
+    const bblv040 = new BBLV040View();
+    const bblv050 = new BBLV050View();
+    const bblv060 = new BBLV060View();
   </script>
 </body>
 
