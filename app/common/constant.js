@@ -2,9 +2,6 @@
  * 固定字符串
  */
 class CommonConstant {
-  /** 空字符串 */
-  static blank = '';
-  
   /** 查询主画面的path */
   static searchPageHtml = 'app/views/bbl-v010/bblv010.html';
 
@@ -19,6 +16,16 @@ class CommonConstant {
 
   /** 设置主画面的path */
   static settingPageHtml = 'app/views/bbl-v050/bblv050.html';
+
+  /** 空字符串 */
+  static blank = '';
+
+  /** 有效 */
+  static flg_on = '1';
+
+  /** 无效 */
+  static flg_off = '0';
+
   
 }
 
