@@ -5,11 +5,11 @@ class MedalModel {
   /** 勋章ID */
   medalId;
 
+  /** 勋章状态 */
+  saveStateCd;
+
   /** 存储时间 */
   saveTime;
-
-  /** 存储类型 */
-  saveTypeCd;
 
   /** 定存开始时间 */
   fixedStartTime;
@@ -68,15 +68,18 @@ class MedalModel {
   /** 罚扣的经办人 */
   deductPchCd;
 
+  /** 回退情报 */
+  backInf;
+
   // 构造函数：创建实例时自动执行，用于初始化属性
   constructor(medalInf) {
     if (medalInf) {
       /** 勋章ID */
       this.medalId = medalInf.medalId;
+      /** 勋章状态 */
+      this.saveStateCd = medalInf.saveStateCd;
       /** 存储时间 */
       this.saveTime = medalInf.saveTime;
-      /** 存储类型 */
-      this.saveTypeCd = medalInf.saveTypeCd;
       /** 定存开始时间 */
       this.fixedStartTime = medalInf.fixedStartTime;
       /** 定存结束时间 */
@@ -115,6 +118,8 @@ class MedalModel {
       this.deductContent = medalInf.deductContent;
       /** 罚扣的经办人 */
       this.deductPchCd = medalInf.deductPchCd;
+      /** 回退情报 */
+      this.backInf = medalInf.backInf;
     }
   }
 }

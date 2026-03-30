@@ -135,12 +135,12 @@ class BBLV020View {
       newMedal.medalId = newMedalId + i;
       // 账单关联的勋章ID数组
       newBill.billMedalIdLit.push(newMedal.medalId);
-      // 经办人
+      // 存储的经办人
       newMedal.savePchCd = CommonUtils.getRadioCheckedValue('savePch');
+      // 勋章状态
+      newMedal.saveStateCd = mdlCd.code_01;
       // 存储时间
       newMedal.saveTime = CommonUtils.getInputElementValue('saveTime');
-      // 存储类型
-      newMedal.saveTypeCd = CommonUtils.getRadioCheckedValue('saveType');
       // 勋章来源
       newMedal.medalSrcCd = CommonUtils.getRadioCheckedValue('medalSource');
       // 来源说明

@@ -7,6 +7,10 @@ button {
   font-weight: bold;
 }
 
+img {
+  pointer-events: none;
+}
+
 .v-scroll {
   overflow-y: auto;
 }
