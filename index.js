@@ -1,4 +1,27 @@
 /**
+ * 应用初始化
+ */
+async function initApplication() {
+  // 从数据库中获取设置内容
+  settingInf = await DataBase.getSettingInfFromDB();
+  // 获取不到认证信息的场合
+  if (!settingInf.pswAtn) {
+    // 切换到设置标签
+    $('.main-tab').removeClass('active');
+    $('.tab-content').removeClass('d-block');
+    $('#main_tab_4').addClass('active');
+    $('#tab_content_4').addClass('d-block');
+    // 加载设置画面的HTML
+    loadTabPage(4);
+    // 给tab标签画面内容设置初始内容
+    initTabPageItems(4);
+  } else {
+    // 加载查询画面的HTML
+    loadTabPage(0);
+  }
+}
+
+/**
  * 切换主画面的tab标签
  */
 async function changeMainTab(tabIndex) {
@@ -9,7 +32,7 @@ async function changeMainTab(tabIndex) {
     return;
   }
   // tab按钮由未选中变为选中
-  // 更改tab按钮的状态, 显示该tab对应的主画面
+  // 更改tab按钮的状态, 显示该tab对应的画面
   $('.main-tab').removeClass('active');
   $('.tab-content').removeClass('d-block');
   $('#main_tab_' + tabIndex).addClass('active');

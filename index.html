@@ -65,12 +65,12 @@
   <script src="app/common/message.js"></script>
   <script src="app/common/constant.js"></script>
   <script src="app/code/codes.js"></script>
-  <script src="app/code/codeManager.js"></script>
-  <script src="app/common/commonUtil.js"></script>
-  <script src="app/common/dataBase.js"></script>
   <script src="app/model/billModel.js"></script>
   <script src="app/model/settingModel.js"></script>
   <script src="app/model/medalModel.js"></script>
+  <script src="app/code/codeManager.js"></script>
+  <script src="app/common/dataBase.js"></script>
+  <script src="app/common/commonUtil.js"></script>
   <script src="index.js"></script>
   <script src="app/views/bbl-v010/bblv010.js"></script>
   <script src="app/views/bbl-v020/bblv020.js"></script>
@@ -80,9 +80,6 @@
   <script src="app/views/bbl-v060/bblv060.js"></script>
 
   <script>
-    // 加载查询画面的HTML
-    loadTabPage(0);
-
     // 创建唯一数据库
     const medalDB = localforage.createInstance({
       name: DataBase.DATE_BASE_NAME, // 数据库名（唯一）
@@ -97,6 +94,9 @@
     const bblv040 = new BBLV040View();
     const bblv050 = new BBLV050View();
     const bblv060 = new BBLV060View();
+
+    // app的初始化
+    initApplication();
   </script>
 </body>
 

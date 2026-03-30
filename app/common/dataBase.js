@@ -24,6 +24,9 @@ class DataBase {
     } catch (error) {
       console.error("从DB中获取勋章信息时出错", error);
     }
+    if (!medalInf) {
+      return [];
+    }
     return medalInf;
   }
 
@@ -47,6 +50,9 @@ class DataBase {
       billInf = await medalDB.getItem(DataBase.BILL_INF);
     } catch (error) {
       console.error("从DB中获取账单信息时出错", error);
+    }
+    if (!billInf) {
+      return [];
     }
     return billInf;
   }
@@ -72,7 +78,7 @@ class DataBase {
     } catch (error) {
       console.error("从DB中获取设置信息时出错", error);
     }
-    return settingInf;
+    return settingInf ? settingInf : new SettingModel();
   }
 
   /**
