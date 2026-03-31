@@ -27,5 +27,6 @@ class CommonConstant {
   static flg_off = '0';
 
   
+  
 }
 

@@ -29,7 +29,11 @@ class CommonUtils {
   /**
    * 点击单选框选择
    */
-  static clickRadio(radioNm, radioId) {
+  static clickRadio(radioNm, radioId, event) {
+    if (event) {
+      event.stopPropagation(); // 阻止冒泡
+      event.preventDefault();  // 阻止默认行为
+    }
     if (document.getElementById(radioId).checked) {
       return;
     }
@@ -77,7 +81,7 @@ class CommonUtils {
    */
   static limitMedalCountInput(inputId) {
     const storageInput = document.getElementById(inputId);
-    const maxStorage = 999999; // 可根据需求设置上限
+    const maxStorage = 10000; // 可根据需求设置上限
 
     // 输入时校验
     storageInput.addEventListener('input', function () {
@@ -103,6 +107,88 @@ class CommonUtils {
         this.value = 1;
       }
     });
+  }
+
+  /** 
+   * 获取输入框的内容
+   */
+  static getInputElementValue(elementId) {
+    const value = document.getElementById(elementId).value;
+    if (value) {
+      return document.getElementById(elementId).value;
+    }
+    return '';
+  }
+
+  /**
+   * 获取时间输入框的内容
+   */
+  static getTimeInputElementValue(elementId) {
+    const date = document.getElementById(elementId).value.split('-');
+    return date[0] + '年' + date[1] + '月' + date[2] + '日'
+  }
+
+  /**
+   * 获取账单发生的时间
+   */
+  static getBillTime() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+  }
+
+  /**
+   * 创建新的勋章ID
+   */
+  static createNewMedalId(medalLit) {
+    // 如果数组中没有勋章
+    if (medalLit.length === 0) {
+      return 1;
+    } else {
+      return Math.max(...medalLit.map(item => item.medalId)) + 1;
+    }
+  }
+
+  /**
+   * 创建新的账单ID
+   */
+  static createNewBillId(billLit) {
+    // 如果数组中没有账单
+    if (billLit.length === 0) {
+      return 1;
+    } else {
+      return Math.max(...billLit.map(item => item.billId)) + 1;
+    }
+  }
+
+  /**
+   * 数字为空的判断
+   */
+  static isNumberEmpty(number) {
+    return !number && number !== 0
+  }
+
+  /**
+   * 播放音频
+   */
+  static playAudio(audioId) {
+    document.getElementById(audioId).play();
+  }
+
+  /**
+   * 终止音频
+   */
+  static stopAudio(audioId) {
+    const audio = document.getElementById(audioId);
+    // 停止播放
+    audio.pause();
+    // 重置播放位置到开头（可选，下次从头播）
+    audio.currentTime = 0;
   }
 
 }

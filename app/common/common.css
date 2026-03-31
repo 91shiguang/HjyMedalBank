@@ -7,6 +7,10 @@ button {
   font-weight: bold;
 }
 
+img {
+  pointer-events: none;
+}
+
 .v-scroll {
   overflow-y: auto;
 }
@@ -107,6 +111,7 @@ button {
 }
 
 .radio-custom {
+  pointer-events: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -158,9 +163,18 @@ input {
       0 0 0 3px rgba(255, 153, 51, 0.4);
     transform: translateY(2px);
   }
+
+  &:read-only {
+    &:focus {
+      outline: unset !important;
+      box-shadow: 0 5px 5px rgb(200 120 0 / 30%), inset 0 3px 6px rgba(255, 255, 255, 0.8);
+      transform: unset !important;
+    }
+  }
 }
 
 textarea {
+  resize: none !important;
   padding: 8px 12px;
   border: 2px solid #ff9933;
   border-radius: 12px;
