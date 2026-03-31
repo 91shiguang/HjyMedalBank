@@ -19,26 +19,54 @@ class BBLV020View {
     CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_01');
     // 勋章来源详细说明的字数限制
     CommonUtils.limitDetailTextarea('mdlSrcTipDetail');
+    // 当前非借用的活期勋章
+    this.refreshPage();
+  }
+
+  /**
+   * 画面刷新
+   */
+  async refreshPage(medalLit) {
+    let list = medalLit;
+    // 不存在参数的场合
+    if (!list) {
+      // 从数据库中取得现有所有的勋章
+      list = await DataBase.getMedalInfFromDB();
+    }
+    // 获取完全属于自己的活期勋章
+    const ownCount = list.filter(item =>
+      // 活期勋章
+      item.saveStateCd === mdlCd.code_01
+      // 不是借用的勋章
+      && !item.borrowTime
+    ).length;
+    // 当前非借用的活期勋章
+    document.getElementById('own_count').innerText = '（当前非借用的活期余额：' + ownCount + '枚）';
   }
 
   /**
    * 存储类型选择
    */
-  clickSaveTypeRadio(value) {
+  clickSaveTypeRadio(value, event) {
     if (CommonUtils.getRadioCheckedValue('saveType') === value) {
       return;
     }
-    CommonUtils.clickRadio('saveType', 'saveType_' + value);
+    CommonUtils.clickRadio('saveType', 'saveType_' + value, event);
     this.clickMedalSrcRadio(saveTpCd.code_01);
   }
 
   /** 
    * 点击勋章来源的单选框
    */
-  clickMedalSrcRadio(value) {
-    CommonUtils.clickRadio('medalSource', 'medalSource_' + value);
+  async clickMedalSrcRadio(value, event) {
+    CommonUtils.clickRadio('medalSource', 'medalSource_' + value, event);
     // 存储类型是活期的场合
     if (CommonUtils.getRadioCheckedValue('saveType') === saveTpCd.code_01) {
+      // 隐藏活期转定期选项
+      $('#medalSource_label_02').addClass('d-none');
+      // 显示定期转活期选项
+      $('#medalSource_label_03').removeClass('d-none');
+
       // 新增的场合
       if (value === mdlSrcCd.code_01) {
         $('#save_count').removeClass('d-none');
@@ -46,6 +74,29 @@ class BBLV020View {
 
         // 定期转活期的场合
       } else {
+        // 从数据库中取得现有所有的勋章
+        const medalLit = await DataBase.getMedalInfFromDB();
+        // 获取定期勋章批次一览
+        const fixedLit = Object.values(
+          medalLit.reduce((acc, item) => {
+            // 定期批次ID
+            let key = item.fixedId;
+
+            if (!acc[key]) {
+              acc[key] = [];
+            }
+
+            acc[key].push(item);
+            return acc;
+          }, {})
+        ).filter(items => !CommonUtils.isNumberEmpty(items[0].fixedId));
+        // 不存在定期存款的场合
+        if (fixedLit.length === 0) {
+          CommonUtils.playAudio('popup_audio');
+          alert(Message.BBL0006E.message);
+          this.clickMedalSrcRadio(saveTpCd.code_01);
+          return;
+        }
         $('#save_count').addClass('d-none');
         $('#fixed_to_free_count').removeClass('d-none');
       }
@@ -57,6 +108,7 @@ class BBLV020View {
       $('#medalSource_label_02').removeClass('d-none');
       // 隐藏定期转活期选项
       $('#medalSource_label_03').addClass('d-none');
+      $('#fixed_to_free_count').addClass('d-none');
     }
     // 新增的场合
     if (value === mdlSrcCd.code_01) {
@@ -78,7 +130,7 @@ class BBLV020View {
   async clickSaveButton() {
     // 活期、新增的场合
     if (CommonUtils.getRadioCheckedValue('saveType') === saveTpCd.code_01
-        && CommonUtils.getRadioCheckedValue('medalSource') === mdlSrcCd.code_01) {
+      && CommonUtils.getRadioCheckedValue('medalSource') === mdlSrcCd.code_01) {
       // 保存活期、新增的勋章
       this.addNewFreeMedalToDb();
       return;
@@ -86,30 +138,30 @@ class BBLV020View {
 
     // 活期、定期转活期的场合
     if (CommonUtils.getRadioCheckedValue('saveType') === saveTpCd.code_01
-        && CommonUtils.getRadioCheckedValue('medalSource') === mdlSrcCd.code_02) {
+      && CommonUtils.getRadioCheckedValue('medalSource') === mdlSrcCd.code_02) {
       // 保存活期、定期转活期的勋章
-      
+
       return;
     }
 
     // 定期、新增的场合
     if (CommonUtils.getRadioCheckedValue('saveType') === saveTpCd.code_02
-        && CommonUtils.getRadioCheckedValue('medalSource') === mdlSrcCd.code_01) {
+      && CommonUtils.getRadioCheckedValue('medalSource') === mdlSrcCd.code_01) {
       // 保存定期、新增的勋章
-      
+
       return;
     }
 
     // 定期、活期转定期的场合
     if (CommonUtils.getRadioCheckedValue('saveType') === saveTpCd.code_02
-        && CommonUtils.getRadioCheckedValue('medalSource') === mdlSrcCd.code_03) {
+      && CommonUtils.getRadioCheckedValue('medalSource') === mdlSrcCd.code_03) {
       // 保存定期、活期转定期的勋章
-      
+
       return;
     }
 
-    
-    
+
+
   }
 
   /**
@@ -147,15 +199,17 @@ class BBLV020View {
       newMedal.medalSrcTipCd = CommonUtils.getRadioCheckedValue('mdlSrcTip');
       // 详细说明
       newMedal.medalSrcTipDetail = CommonUtils.getInputElementValue('mdlSrcTipDetail');
+      // 回退情报(不可回退)
+      newMedal.backInf = null;
       medalLit.push(newMedal);
     }
-    
-    // 创建新的勋章ID
+
+    // 创建新的账单ID
     newBill.billId = CommonUtils.createNewBillId(billLit);
     // 账单说明
     newBill.billTipCd = CommonUtils.getRadioCheckedValue('mdlSrcTip');
     // 账单详细说明
-    newBill.billTipDetail = CommonUtils.getRadioCheckedValue('mdlSrcTipDetail');
+    newBill.billTipDetail = CommonUtils.getInputElementValue('mdlSrcTipDetail');
     // 账单时间
     newBill.billTime = CommonUtils.getBillTime();
     // 账单的勋章数量
@@ -164,11 +218,15 @@ class BBLV020View {
     newBill.billPchCd = CommonUtils.getRadioCheckedValue('savePch');
     // 账单事件区分
     newBill.billActionCd = billActionCd.code_01;
+    billLit.push(newBill);
 
     // 更新数据库的勋章
     await DataBase.saveMedalInfToDB(medalLit);
     // 更新数据库的账单
     await DataBase.saveBillInfToDB(billLit);
-    alert('恭喜你！存储成功啦！🎉🎉🎉');
+    // 播放新增存储音效
+    CommonUtils.playAudio('save_success_audio');
+    alert(Message.BBL0004I.message);
+    this.refreshPage(medalLit);
   }
 }

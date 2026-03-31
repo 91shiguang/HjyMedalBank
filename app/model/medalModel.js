@@ -54,19 +54,10 @@ class MedalModel {
   expenseTypeCd;
 
   /** 支出说明 */
-  expenseContent;
+  expenseTipDetail;
 
   /** 支出的经办人 */
   expensePchCd;
-
-  /** 罚扣时间 */
-  deductTime;
-
-  /** 罚扣说明 */
-  deductContent;
-
-  /** 罚扣的经办人 */
-  deductPchCd;
 
   /** 回退情报 */
   backInf;
@@ -109,15 +100,9 @@ class MedalModel {
       /** 支出类型 */
       this.expenseTypeCd = medalInf.expenseTypeCd;
       /** 支出说明 */
-      this.expenseContent = medalInf.expenseContent;
+      this.expenseTipDetail = medalInf.expenseTipDetail;
       /** 支出的经办人 */
       this.expensePchCd = medalInf.expensePchCd;
-      /** 罚扣时间 */
-      this.deductTime = medalInf.deductTime;
-      /** 罚扣说明 */
-      this.deductContent = medalInf.deductContent;
-      /** 罚扣的经办人 */
-      this.deductPchCd = medalInf.deductPchCd;
       /** 回退情报 */
       this.backInf = medalInf.backInf;
     }

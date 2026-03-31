@@ -29,7 +29,11 @@ class CommonUtils {
   /**
    * 点击单选框选择
    */
-  static clickRadio(radioNm, radioId) {
+  static clickRadio(radioNm, radioId, event) {
+    if (event) {
+      event.stopPropagation(); // 阻止冒泡
+      event.preventDefault();  // 阻止默认行为
+    }
     if (document.getElementById(radioId).checked) {
       return;
     }
@@ -160,6 +164,31 @@ class CommonUtils {
     } else {
       return Math.max(...billLit.map(item => item.billId)) + 1;
     }
+  }
+
+  /**
+   * 数字为空的判断
+   */
+  static isNumberEmpty(number) {
+    return !number && number !== 0
+  }
+
+  /**
+   * 播放音频
+   */
+  static playAudio(audioId) {
+    document.getElementById(audioId).play();
+  }
+
+  /**
+   * 终止音频
+   */
+  static stopAudio(audioId) {
+    const audio = document.getElementById(audioId);
+    // 停止播放
+    audio.pause();
+    // 重置播放位置到开头（可选，下次从头播）
+    audio.currentTime = 0;
   }
 
 }

@@ -22,7 +22,7 @@ class DataBase {
     try {
       medalInf = await medalDB.getItem(DataBase.MEDAL_INF);
     } catch (error) {
-      console.error("从DB中获取勋章信息时出错", error);
+      alert(Message.BBL0001E.message);
     }
     if (!medalInf) {
       return [];
@@ -37,7 +37,7 @@ class DataBase {
     try {
       await medalDB.setItem(DataBase.MEDAL_INF, data);
     } catch (error) {
-      console.error("把勋章信息保存到DB中时出错", error);
+      alert(Message.BBL0002E.message);
     }
   }
 
@@ -49,7 +49,7 @@ class DataBase {
     try {
       billInf = await medalDB.getItem(DataBase.BILL_INF);
     } catch (error) {
-      console.error("从DB中获取账单信息时出错", error);
+      alert(Message.BBL0001E.message);
     }
     if (!billInf) {
       return [];
@@ -64,7 +64,7 @@ class DataBase {
     try {
       await medalDB.setItem(DataBase.BILL_INF, data);
     } catch (error) {
-      console.error("把账单信息保存到DB中时出错", error);
+      alert(Message.BBL0002E.message);
     }
   }
 
@@ -76,7 +76,7 @@ class DataBase {
     try {
       settingInf = await medalDB.getItem(DataBase.SETTING_INF);
     } catch (error) {
-      console.error("从DB中获取设置信息时出错", error);
+      alert(Message.BBL0001E.message);
     }
     return settingInf ? settingInf : new SettingModel();
   }
@@ -88,7 +88,7 @@ class DataBase {
     try {
       await medalDB.setItem(DataBase.SETTING_INF, data);
     } catch (error) {
-      console.error("把设置信息保存到DB中时出错", error);
+      alert(Message.BBL0002E.message);
     }
   }
       
@@ -99,7 +99,7 @@ class DataBase {
     try {
       await medalDB.clear();
     } catch (error) {
-      console.error("清空DB时出错", error);
+      alert(Message.BBL0003E.message);
     }
   }
 
@@ -124,7 +124,7 @@ class DataBase {
       }
       dataString = JSON.stringify(data);
     } catch (error) {
-      console.error("从DB中导出数据时出错", error);
+      alert(Message.BBL0001E.message);
     }
     return dataString;
   }
@@ -148,7 +148,7 @@ class DataBase {
         await this.saveSettingInfToDB(data[DataBase.SETTING_INF]);
       }
     } catch (error) {
-      console.error("把数据导入DB时出错", error);
+      alert(Message.BBL0002E.message);
     }
   }
 }

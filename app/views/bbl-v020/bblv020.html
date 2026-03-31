@@ -2,11 +2,11 @@
   <div class="d-flex flex-column gap-16">
     <span class="fw-bold">经办人</span>
     <div class="d-flex gap-48 px-3">
-      <label class="radio-label" onclick="CommonUtils.clickRadio('savePch', 'savePch_01')">
+      <label class="radio-label" onclick="CommonUtils.clickRadio('savePch', 'savePch_01', event)">
         <input type="radio" id="savePch_01" name="savePch" class="radio-btn" value="01">
         <span class="radio-custom"></span>妈妈
       </label>
-      <label class="radio-label" onclick="CommonUtils.clickRadio('savePch', 'savePch_02')">
+      <label class="radio-label" onclick="CommonUtils.clickRadio('savePch', 'savePch_02', event)">
         <input type="radio" id="savePch_02" name="savePch" class="radio-btn" value="02">
         <span class="radio-custom"></span>爸爸
       </label>
@@ -17,13 +17,16 @@
     <div class="px-3 w-100"><input type="date" id="saveTime" class="w-100"></div>
   </div>
   <div class="d-flex flex-column gap-16">
-    <span class="fw-bold">存储类型</span>
+    <div class="d-flex">
+      <span class="fw-bold">存储类型</span>
+      <span class="text-danger" id="own_count"></span>
+    </div>
     <div class="d-flex gap-48 px-3">
-      <label class="radio-label" onclick="bblv020.clickSaveTypeRadio('01')">
+      <label class="radio-label" onclick="bblv020.clickSaveTypeRadio('01', event)">
         <input type="radio" id="saveType_01" name="saveType" class="radio-btn" value="01">
         <span class="radio-custom"></span>活期
       </label>
-      <label class="radio-label" onclick="bblv020.clickSaveTypeRadio('02')">
+      <label class="radio-label" onclick="bblv020.clickSaveTypeRadio('02', event)">
         <input type="radio" id="saveType_02" name="saveType" class="radio-btn" value="02">
         <span class="radio-custom"></span>定期
       </label>
@@ -32,15 +35,15 @@
   <div class="d-flex flex-column gap-16">
     <span class="fw-bold">勋章来源</span>
     <div class="d-flex gap-48 px-3">
-      <label class="radio-label" onclick="bblv020.clickMedalSrcRadio('01')">
+      <label class="radio-label" onclick="bblv020.clickMedalSrcRadio('01', event)">
         <input type="radio" id="medalSource_01" name="medalSource" class="radio-btn" value="01">
         <span class="radio-custom"></span>新增
       </label>
-      <label class="radio-label d-none" id="medalSource_label_02" onclick="bblv020.clickMedalSrcRadio('02')">
+      <label class="radio-label d-none" id="medalSource_label_02" onclick="bblv020.clickMedalSrcRadio('02', event)">
         <input type="radio" id="medalSource_02" name="medalSource" class="radio-btn" value="02">
         <span class="radio-custom"></span>活期转定期
       </label>
-      <label class="radio-label" id="medalSource_label_03" onclick="bblv020.clickMedalSrcRadio('03')">
+      <label class="radio-label" id="medalSource_label_03" onclick="bblv020.clickMedalSrcRadio('03', event)">
         <input type="radio" id="medalSource_03" name="medalSource" class="radio-btn" value="03">
         <span class="radio-custom"></span>定期转活期
       </label>
@@ -59,15 +62,15 @@
   <div class="d-flex flex-column gap-16" id="mdl_src_tip">
     <span class="fw-bold">说明</span>
     <div class="px-3 d-flex flex-column gap-24">
-      <label class="radio-label" onclick="CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_01')">
+      <label class="radio-label" onclick="CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_01', event)">
         <input type="radio" id="mdlSrcTip_01" name="mdlSrcTip" class="radio-btn" value="01">
         <span class="radio-custom"></span>学习奖励
       </label>
-      <label class="radio-label" onclick="CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_02')">
+      <label class="radio-label" onclick="CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_02', event)">
         <input type="radio" id="mdlSrcTip_02" name="mdlSrcTip" class="radio-btn" value="02">
         <span class="radio-custom"></span>日常奖励
       </label>
-      <label class="radio-label" onclick="CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_03')">
+      <label class="radio-label" onclick="CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_03', event)">
         <input type="radio" id="mdlSrcTip_03" name="mdlSrcTip" class="radio-btn" value="03">
         <span class="radio-custom"></span>长辈奖励
       </label>
