@@ -1,3 +1,13 @@
+// 创建唯一数据库
+const medalDB = localforage.createInstance({
+  name: DataBase.DATE_BASE_NAME, // 数据库名（唯一）
+  version: 1.0,
+  description: "勋章管理数据库"
+});
+
+// app的初始化
+initApplication();
+
 /**
  * 应用初始化
  */
@@ -83,7 +93,7 @@ async function loadTabPage(tabIndex) {
     }
   }
   // 把html文件的内容加载到画面元素中
-  await CommonUtils.loadHtmlToElement(htmlPath, element);
+  await PageUtil.loadHtmlToElement(htmlPath, element);
 }
 
 /**

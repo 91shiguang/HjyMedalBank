@@ -3,18 +3,6 @@
  */
 class CommonUtils {
   /**
-   * 把html文件的内容加载到画面元素中
-   */
-  static async loadHtmlToElement(htmlPath, element) {
-    if (!htmlPath || !element) {
-      return;
-    }
-    const res = await fetch(htmlPath);
-    const html = await res.text();
-    element.innerHTML = html;
-  }
-
-  /**
    * 获取单选框选中的值
    */
   static getRadioCheckedValue(radioNm) {

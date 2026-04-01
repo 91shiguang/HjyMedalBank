@@ -11,6 +11,9 @@ class SettingModel {
   /** 借用额度上限 */
   borrowMax;
 
+  /** 借用生成利息计数 */
+  borrowRateMedalCount;
+
   /** 定期利率 */
   fixedRate;
 
@@ -29,6 +32,8 @@ class SettingModel {
       this.borrowRate = settingInf.borrowRate;
       /** 借用额度上限 */
       this.borrowMax = settingInf.borrowMax;
+      /** 借用生成利息计数 */
+      this.borrowRateMedalCount = settingInf.borrowRateMedalCount;
       /** 定期利率 */
       this.fixedRate = settingInf.fixedRate;
       /** 父母账号密码 */

@@ -71,33 +71,14 @@
   <script src="app/code/codeManager.js"></script>
   <script src="app/common/dataBase.js"></script>
   <script src="app/common/commonUtil.js"></script>
-  <script src="index.js"></script>
   <script src="app/views/bbl-v010/bblv010.js"></script>
   <script src="app/views/bbl-v020/bblv020.js"></script>
   <script src="app/views/bbl-v030/bblv030.js"></script>
   <script src="app/views/bbl-v040/bblv040.js"></script>
   <script src="app/views/bbl-v050/bblv050.js"></script>
   <script src="app/views/bbl-v060/bblv060.js"></script>
-
-  <script>
-    // 创建唯一数据库
-    const medalDB = localforage.createInstance({
-      name: DataBase.DATE_BASE_NAME, // 数据库名（唯一）
-      version: 1.0,
-      description: "勋章管理数据库"
-    });
-
-    // 定义画面用js对象
-    const bblv010 = new BBLV010View();
-    const bblv020 = new BBLV020View();
-    const bblv030 = new BBLV030View();
-    const bblv040 = new BBLV040View();
-    const bblv050 = new BBLV050View();
-    const bblv060 = new BBLV060View();
-
-    // app的初始化
-    initApplication();
-  </script>
+  <script src="app/common/pageUtil.js"></script>
+  <script src="index.js"></script>
 </body>
 
 </html>

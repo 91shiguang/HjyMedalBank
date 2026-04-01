@@ -1,6 +1,6 @@
 class BBLV010View {
   /** 
-   * 点击勋章查询/回退按钮
+   * 点击勋章查询
    */
   async clickMedalSearchOrBackBtn() {
     // 从数据库中取得现有所有的勋章
