@@ -1,3 +1,6 @@
+/**
+ * 支出标签主画面
+ */
 class BBLV030View {
   /**
    * 画面元素的初始化
@@ -16,13 +19,13 @@ class BBLV030View {
     // 支出说明的字数限制
     CommonUtils.limitDetailTextarea('expenseTipDetail');
     // 勋章余额提示
-    this.refreshPage();
+    this.refresh();
   }
 
   /**
    * 画面刷新
    */
-  async refreshPage(number) {
+  async refresh(number) {
     let effectiveCount = number;
     // 参数不存在的场合
     if (CommonUtils.isNumberEmpty(number)) {
@@ -134,6 +137,6 @@ class BBLV030View {
       alert(Message.BBL0011I.message);
     }
     // 更新勋章余额提示
-    this.refreshPage(effectiveLit - expenseCount);
+    this.refresh(effectiveLit - expenseCount);
   }
 }

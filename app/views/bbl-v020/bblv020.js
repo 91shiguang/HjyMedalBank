@@ -1,3 +1,6 @@
+/**
+ * 存储标签主画面
+ */
 class BBLV020View {
   /**
    * 画面元素的初始化
@@ -20,13 +23,13 @@ class BBLV020View {
     // 勋章来源详细说明的字数限制
     CommonUtils.limitDetailTextarea('mdlSrcTipDetail');
     // 当前非借用的活期勋章
-    this.refreshPage();
+    this.refresh();
   }
 
   /**
    * 画面刷新
    */
-  async refreshPage(medalLit) {
+  async refresh(medalLit) {
     let list = medalLit;
     // 不存在参数的场合
     if (!list) {
@@ -227,6 +230,6 @@ class BBLV020View {
     // 播放新增存储音效
     CommonUtils.playAudio('save_success_audio');
     alert(Message.BBL0004I.message);
-    this.refreshPage(medalLit);
+    this.refresh(medalLit);
   }
 }
