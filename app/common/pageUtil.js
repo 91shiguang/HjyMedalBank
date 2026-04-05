@@ -10,9 +10,9 @@ const bblv030 = new BBLV030View();
 const bblv040 = new BBLV040View();
 /** 设置标签主画面用js对象 */
 const bblv050 = new BBLV050View();
-/** 勋章查询结果画面用js对象 */
+/** 勋章查询结果对话框画面用js对象 */
 const bblv060 = new BBLV060View();
-/** 勋章查询条件对话框画面用js对象 */
+/** 勋章查询条件画面用js对象 */
 const bblv070 = new BBLV070View();
 /** 勋章详细信息对话框画面用js对象 */
 const bblv080 = new BBLV080View();
@@ -73,9 +73,9 @@ const PageId = {
   bblv040: 'bblv040',
   /** 设置标签主画面 */
   bblv050: 'bblv050',
-  /** 勋章查询结果画面 */
+  /** 勋章查询结果对话框画面 */
   bblv060: 'bblv060',
-  /** 勋章查询条件对话框画面 */
+  /** 勋章查询条件画面 */
   bblv070: 'bblv070',
   /** 勋章详细信息对话框画面 */
   bblv080: 'bblv080',
@@ -139,9 +139,9 @@ const JSObject = {
   bblv040,
   /** 设置标签主画面用js对象 */
   bblv050,
-  /** 勋章查询结果画面用js对象 */
+  /** 勋章查询结果对话框画面用js对象 */
   bblv060,
-  /** 勋章查询条件对话框画面用js对象 */
+  /** 勋章查询条件画面用js对象 */
   bblv070,
   /** 勋章详细信息对话框画面用js对象 */
   bblv080,
@@ -192,6 +192,20 @@ const JSObject = {
 }
 
 /**
+ * 对话框画面返回的按钮区分
+ */
+const BtnType = {
+  /** OK */
+  OK: 'ok',
+  /** 关闭 */
+  CLOSE: 'close',
+  /** 回退 */
+  UNDO: 'undo',
+  /** 确定 */
+  CONFIRM: 'confirm',
+}
+
+/**
  * 画面表示相关的共通方法
  */
 class PageUtil {
@@ -199,7 +213,7 @@ class PageUtil {
   /**
    * 加载目标画面的内容
    */
-  static async loadTargetPage(pageId) {
+  static async loadTargetPage(pageId, inputData) {
     // 获取容器
     const element = document.getElementById(pageId);
     // 画面第一次被加载时
@@ -213,7 +227,7 @@ class PageUtil {
       element.innerHTML = html;
       // 设置目标画面的初始内容
       if (JSObject[pageId].onInit) {
-        JSObject[pageId].onInit();
+        JSObject[pageId].onInit(inputData);
       }
 
       // 目标画面已经存在时
@@ -223,5 +237,66 @@ class PageUtil {
         JSObject[pageId].refresh();
       }
     }
+  }
+
+  /** 
+   * 打开对话框画面
+   */
+  static async openDialogPage(pageId, input) {
+    const recognitionId = pageId + Date.now();
+    // 创建modal元素
+    d3.select('#main_page')
+      .append('div')
+      .attr('class', 'modal fade d-flex align-items-center justify-content-center')
+      .attr('id', pageId + '_modal')
+      .attr('tabindex', '-1')
+      .attr('aria-hidden', 'true')
+      .append('div')
+      .attr('class', 'modal-dialog modal-lg')
+      .append('div')
+      .attr('class', 'modal-content')
+      .attr('id', pageId);
+
+    // 获取 modal 元素
+    const modalEl = document.getElementById(pageId + '_modal');
+    // 添加对话框画面点击事件返回的监听事件
+    const wait = this.waitForEventListener(recognitionId, modalEl);
+
+    // 加载目标画面的内容
+    const params = {recognitionId: recognitionId, input: input}
+    this.loadTargetPage(pageId, params);
+
+    // 打开 modal(打开对话框画面)
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+
+    return await wait;
+  }
+
+  /**
+   * 添加对话框画面点击事件返回的监听事件
+   */
+  static waitForEventListener(recognitionId, modalEl) {
+    return new Promise(resolve => {
+      const handler = (result) => {
+        resolve(result.detail);
+        // 关闭 modal(关闭对话框画面)
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        modal.hide();
+        // 清理modal元素
+        modalEl.addEventListener('hidden.bs.modal', () => {
+          modalEl.remove();
+        });
+        window.removeEventListener(recognitionId, handler);
+      };
+      window.addEventListener(recognitionId, handler);
+    });
+  }
+
+  /**
+   * 对话框画面通过事件返回数据
+   */
+  static emitDialog(recognitionId, data) {
+    window.dispatchEvent(new CustomEvent(recognitionId, {detail: data}));
   }
 }

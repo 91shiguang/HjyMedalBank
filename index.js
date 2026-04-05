@@ -16,12 +16,13 @@ async function initApplication() {
   settingInf = await DataBase.getSettingInfFromDB();
   // 获取不到认证信息的场合
   if (!settingInf.pswAtn) {
-    // 切换到设置标签
-    changeMainTab(PageId.bblv050, true);
-  } else {
-    // 加载查询画面的HTML
-    loadTabPage(PageId.bblv010);
+    // 弹出未注册的提示框
+    await PageUtil.openDialogPage(PageId.bblv260, Message.BBL0013I);
+    // 弹出注册画面对话框
+    await PageUtil.openDialogPage(PageId.bblv240);
   }
+  // 加载查询画面的HTML
+  loadTabPage(PageId.bblv010);
 }
 
 /**
