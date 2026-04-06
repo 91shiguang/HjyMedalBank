@@ -19,10 +19,10 @@ async function initApplication() {
     // 弹出未注册的提示框
     await PageUtil.openDialogPage(PageId.bblv260, Message.BBL0013I);
     // 弹出注册画面对话框
-    await PageUtil.openDialogPage(PageId.bblv240);
+    await PageUtil.openDialogPage(PageId.bblv240, {isNewPswAtn: true});
   }
   // 加载查询画面的HTML
-  loadTabPage(PageId.bblv010);
+  changeMainTab(PageId.bblv010, true);
 }
 
 /**

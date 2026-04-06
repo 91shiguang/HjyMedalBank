@@ -27,5 +27,5 @@ class Message {
   /** 支出时，可支配的勋章数量不足提示内容 */
   static BBL0012I = { messageId: 'BBL0012I', message: '可自由支配的勋章余额不足哦，快去努力赚取吧！O(∩_∩)O' };
   /** 没有注册信息时的提示 */
-  static BBL0013I = { messageId: 'BBL0013I', message: '未检测到勋章银行的账户，请先注册吧。🙏'}
+  static BBL0013I = { messageId: 'BBL0013I', message: '未检测到勋章银行的账户，请先注册吧。'}
 }

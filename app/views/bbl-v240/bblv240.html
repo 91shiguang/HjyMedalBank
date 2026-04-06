@@ -1,3 +1,79 @@
-<div>
-  <button id="okButton" class="p-3" onclick="bblv240.closeDialog()">OK</button>
-</div>
+<div class="dialog bblv240-dialog">
+  <img class="dialog-header-img" width="200" src="assets/images/汤姆弹出画面.png">
+  <div class="modal-header">
+    <img width="60" src="assets/images/土星.png">
+    <span id="bblv240_title" class="modal-title"></span>
+  </div>
+  <div id="register_body" class="modal-body d-flex flex-column gap-24">
+    <div class="d-flex flex-column gap-16">
+      <div class="d-flex gap-16">
+        <span class="fw-bold">账号</span>
+        <span id="register_account_error" class="text-danger"></span>
+      </div>
+      <div class="w-100 px-3">
+        <input type="text" id="register_account" class="w-100" placeholder="请输入身份证后6位" maxlength="6">
+      </div>
+    </div>
+    <div class="d-flex flex-column gap-16">
+      <div class="d-flex gap-16">
+        <span class="fw-bold">密码</span>
+        <span id="register_pwd_error" class="text-danger"></span>
+      </div>
+      <div class="w-100 px-3 position-relative">
+        <input type="password" id="register_pwd" class="w-100" placeholder="请设置6位数字的密码" maxlength="6">
+        <img id="register_pwd_eye" width="30" class="eye-img"
+          onclick="bblv240.togglePwd('register_pwd', 'register_pwd_eye')">
+      </div>
+    </div>
+    <div class="d-flex flex-column gap-16">
+      <div class="d-flex gap-16">
+        <span class="fw-bold">确认密码</span>
+        <span id="register_pwd_confirm_error" class="text-danger"></span>
+      </div>
+      <div class="w-100 px-3 position-relative">
+        <input type="password" id="register_pwd_confirm" class="w-100" placeholder="请输入上述相同的密码" maxlength="6">
+        <img id="register_pwd_eye_cfm" width="30" class="eye-img"
+          onclick="bblv240.togglePwd('register_pwd_confirm', 'register_pwd_eye_cfm')">
+      </div>
+    </div>
+  </div>
+  <div id="edit_body" class="modal-body d-flex flex-column gap-24">
+    <div class="d-flex flex-column gap-16">
+      <div class="d-flex gap-16">
+        <span class="fw-bold">注册时的账号</span>
+        <span id="edit_account_error" class="text-danger"></span>
+      </div>
+      <div class="w-100 px-3">
+        <input type="text" id="edit_account" class="w-100" placeholder="请输入身份证后6位" maxlength="6">
+      </div>
+    </div>
+    <div class="d-flex flex-column gap-16">
+      <div class="d-flex gap-16">
+        <span class="fw-bold">新密码</span>
+        <span id="edit_pwd_error" class="text-danger"></span>
+      </div>
+      <div class="w-100 px-3 position-relative">
+        <input type="password" id="edit_pwd" class="w-100" placeholder="请设置6位数字的密码" maxlength="6">
+        <img id="edit_pwd_eye" width="30" class="eye-img" onclick="bblv240.togglePwd('edit_pwd', 'edit_pwd_eye')">
+      </div>
+    </div>
+    <div class="d-flex flex-column gap-16">
+      <div class="d-flex gap-16">
+        <span class="fw-bold">确认密码</span>
+        <span id="edit_pwd_confirm_error" class="text-danger"></span>
+      </div>
+      <div class="w-100 px-3 position-relative">
+        <input type="password" id="edit_pwd_confirm" class="w-100" placeholder="请输入上述相同的密码" maxlength="6">
+        <img id="edit_pwd_eye_cfm" width="30" class="eye-img"
+          onclick="bblv240.togglePwd('edit_pwd_confirm', 'edit_pwd_eye_cfm')">
+      </div>
+    </div>
+  </div>
+  <div id="bblv240_register_footer" class="modal-footer">
+    <button type="button" class="conform-btn" onclick="bblv240.register()">注册</button>
+  </div>
+  <div id="bblv240_edit_footer" class="modal-footer position-relative">
+    <img width="100" class="close-img" src="assets/images/close.png" onclick="bblv240.close()">
+    <button type="button" class="conform-btn" onclick="bblv240.confirm()">确定</button>
+  </div>
+  <div>

@@ -203,6 +203,8 @@ const BtnType = {
   UNDO: 'undo',
   /** 确定 */
   CONFIRM: 'confirm',
+  /** 注册 */
+  REGISTER: 'register',
 }
 
 /**
@@ -247,14 +249,14 @@ class PageUtil {
     // 创建modal元素
     d3.select('#main_page')
       .append('div')
-      .attr('class', 'modal fade d-flex align-items-center justify-content-center')
+      .attr('class', 'modal fade')
       .attr('id', pageId + '_modal')
       .attr('tabindex', '-1')
       .attr('aria-hidden', 'true')
       .append('div')
-      .attr('class', 'modal-dialog modal-lg')
+      .attr('class', 'modal-dialog modal-dialog-centered')
       .append('div')
-      .attr('class', 'modal-content')
+      .attr('class', 'modal-content ')
       .attr('id', pageId);
 
     // 获取 modal 元素
@@ -300,3 +302,7 @@ class PageUtil {
     window.dispatchEvent(new CustomEvent(recognitionId, {detail: data}));
   }
 }
+
+/**
+ * 
+ */
