@@ -1,0 +1,35 @@
+.bblv240-dialog {
+  .dialog-header-img {
+    top: -88px;
+    left: -39px;
+  }
+
+  .modal-body {
+    padding-bottom: 24px !important;
+  }
+
+  .eye-img {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: unset !important;
+  }
+
+  .close-img {
+    pointer-events: unset !important;
+    position: absolute;
+    left: 16px;
+    transition: 0.3s;
+    transform-origin: 50% 0px; 
+
+    &:active {
+      transform: rotate(10deg);
+    }
+  }
+
+  .conform-btn {
+    position: absolute;
+    right: 16px;
+  }
+}

@@ -1,28 +1,25 @@
+/**
+ * 支出标签主画面
+ */
 class BBLV030View {
   /**
    * 画面元素的初始化
    */
   onInit() {
-    // 支出经办人：妈妈
-    CommonUtils.clickRadio('expensePch', 'expensePch_01');
-    // 支出时间：现在时间
-    document.getElementById('expenseTime').value = CommonUtils.getDateEx(new Date());
-    // 支出类型：日常消费
-    CommonUtils.clickRadio('expenseType', 'expenseType_01');
-    // 支出数量：1
-    document.getElementById('expenseCount').value = 1;
+    // 初始化画面的内容
+    this.initPageItems();
     // 限制输入支出数量的数字类型为0以上的整数
     CommonUtils.limitMedalCountInput('expenseCount');
     // 支出说明的字数限制
     CommonUtils.limitDetailTextarea('expenseTipDetail');
     // 勋章余额提示
-    this.refreshPage();
+    this.refresh();
   }
 
   /**
    * 画面刷新
    */
-  async refreshPage(number) {
+  async refresh(number) {
     let effectiveCount = number;
     // 参数不存在的场合
     if (CommonUtils.isNumberEmpty(number)) {
@@ -39,6 +36,12 @@ class BBLV030View {
    * 点击确认支出按钮
    */
   async clickExpenseButton() {
+    // 弹出验证密码画面
+    const btnType = await PageUtil.openDialogPage(PageId.bblv250);
+    // 点击关闭按钮的场合
+    if (!btnType || btnType === BtnType.CLOSE) {
+      return;
+    }
     // 从数据库中取得现有所有的勋章
     const medalLit = await DataBase.getMedalInfFromDB();
     // 获取可以使用的勋章
@@ -118,22 +121,38 @@ class BBLV030View {
       // 播放日常消费成功音效
       CommonUtils.playAudio('expense_success_audio');
       // 日常消费支出成功的提示内容
-      alert(Message.BBL0009I.message);
+      await PageUtil.openInformationDialog(Message.BBL0009I);
 
       // 提现的场合
     } else if (expenseTypeCd === epsTyCd.code_02) {
       // 播放提现成功音效
       CommonUtils.playAudio('expense_success_audio');
       // 提现成功的提示内容
-      alert(Message.BBL0010I.message);
+      await PageUtil.openInformationDialog(Message.BBL0010I);
 
       // 罚扣的场合
     } else {
       CommonUtils.playAudio('sad_audio');
       // 罚扣成功的提示内容
-      alert(Message.BBL0011I.message);
+      await PageUtil.openInformationDialog(Message.BBL0011I);
     }
+    // 初始化画面的内容
+    this.initPageItems();
     // 更新勋章余额提示
-    this.refreshPage(effectiveLit - expenseCount);
+    this.refresh(effectiveLit - expenseCount);
+  }
+
+  /**
+   * 初始化画面的内容
+   */
+  initPageItems() {
+    // 支出经办人：妈妈
+    CommonUtils.clickRadio('expensePch', 'expensePch_01');
+    // 支出时间：现在时间
+    document.getElementById('expenseTime').value = CommonUtils.getDateEx(new Date());
+    // 支出类型：日常消费
+    CommonUtils.clickRadio('expenseType', 'expenseType_01');
+    // 支出数量：1
+    document.getElementById('expenseCount').value = 1;
   }
 }

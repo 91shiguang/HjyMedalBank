@@ -41,6 +41,9 @@ class MedalModel {
   /** 借用的经办人 */
   borrowPchCd;
 
+  /** 承诺还款时间 */
+  pmsRepayTime;
+
   /** 还款时间 */
   repayTime;
 
@@ -91,6 +94,8 @@ class MedalModel {
       this.borrowContent = medalInf.borrowContent;
       /** 借用的经办人 */
       this.borrowPchCd = medalInf.borrowPchCd;
+      /** 承诺还款时间 */
+      this.pmsRepayTime = medalInf.pmsRepayTime;
       /** 还款时间 */
       this.repayTime = medalInf.repayTime;
       /** 还款的经办人 */
