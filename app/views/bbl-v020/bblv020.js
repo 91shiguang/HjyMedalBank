@@ -6,20 +6,10 @@ class BBLV020View {
    * 画面元素的初始化
    */
   onInit() {
-    // 存储经办人：妈妈
-    CommonUtils.clickRadio('savePch', 'savePch_01');
-    // 存储时间：现在时间
-    document.getElementById('saveTime').value = CommonUtils.getDateEx(new Date());
-    // 存储类型：活期
-    CommonUtils.clickRadio('saveType', 'saveType_01');
-    // 勋章来源：新增
-    CommonUtils.clickRadio('medalSource', 'medalSource_01');
-    // 存储数量：1
-    document.getElementById('saveCount').value = 1;
+    // 初始化画面内容
+    this.initPageItems();
     // 限制输入存储数量的数字类型为0以上的整数
     CommonUtils.limitMedalCountInput('saveCount');
-    // 勋章来源说明：学习奖励
-    CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_01');
     // 勋章来源详细说明的字数限制
     CommonUtils.limitDetailTextarea('mdlSrcTipDetail');
     // 当前非借用的活期勋章
@@ -162,15 +152,18 @@ class BBLV020View {
 
       return;
     }
-
-
-
   }
 
   /**
    * 保存活期、新增的勋章
    */
   async addNewFreeMedalToDb() {
+    // 弹出验证密码画面
+    const btnType = await PageUtil.openDialogPage(PageId.bblv250);
+    // 点击关闭按钮的场合
+    if (!btnType || btnType === BtnType.CLOSE) {
+      return;
+    }
     // 从数据库中取得现有所有的勋章
     const medalLit = await DataBase.getMedalInfFromDB();
     // 从数据库中取得所有的账单
@@ -229,7 +222,28 @@ class BBLV020View {
     await DataBase.saveBillInfToDB(billLit);
     // 播放新增存储音效
     CommonUtils.playAudio('save_success_audio');
-    alert(Message.BBL0004I.message);
+    // 弹出新增存储成功的提示框
+    await PageUtil.openInformationDialog(Message.BBL0004I);
+    // 刷新画面、重置画面内容
     this.refresh(medalLit);
+    this.initPageItems();
+  }
+
+  /**
+   * 初始化画面的内容
+   */
+  initPageItems() {
+    // 存储经办人：妈妈
+    CommonUtils.clickRadio('savePch', 'savePch_01');
+    // 存储时间：现在时间
+    document.getElementById('saveTime').value = CommonUtils.getDateEx(new Date());
+    // 存储类型：活期
+    CommonUtils.clickRadio('saveType', 'saveType_01');
+    // 勋章来源：新增
+    CommonUtils.clickRadio('medalSource', 'medalSource_01');
+    // 存储数量：1
+    document.getElementById('saveCount').value = 1;
+    // 勋章来源说明：学习奖励
+    CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_01');
   }
 }

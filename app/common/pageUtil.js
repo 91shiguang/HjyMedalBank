@@ -49,7 +49,7 @@ const bblv230 = new BBLV230View();
 /** 账号、密码注册/修改密码对话框画面用js对象 */
 const bblv240 = new BBLV240View();
 /** 密码验证对话框画面用js对象 */
-const bblv250 = new BBLV260View();
+const bblv250 = new BBLV250View();
 /** 提示信息对话框画面用js对象 */
 const bblv260 = new BBLV260View();
 /** 警告信息对话框画面用js对象 */
@@ -301,8 +301,12 @@ class PageUtil {
   static emitDialog(recognitionId, data) {
     window.dispatchEvent(new CustomEvent(recognitionId, {detail: data}));
   }
-}
 
-/**
- * 
- */
+  /**
+   * 显示提示画面
+   */
+  static async openInformationDialog(message) {
+    // 弹出未注册的提示框
+    await PageUtil.openDialogPage(PageId.bblv260, message);
+  }
+}

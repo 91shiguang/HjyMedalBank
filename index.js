@@ -17,7 +17,7 @@ async function initApplication() {
   // 获取不到认证信息的场合
   if (!settingInf.pswAtn) {
     // 弹出未注册的提示框
-    await PageUtil.openDialogPage(PageId.bblv260, Message.BBL0013I);
+    await PageUtil.openInformationDialog(Message.BBL0013I);
     // 弹出注册画面对话框
     await PageUtil.openDialogPage(PageId.bblv240, {isNewPswAtn: true});
   }
