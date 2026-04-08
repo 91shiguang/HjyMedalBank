@@ -1,1 +1,87 @@
-<div>bblv140</div>
+<div class="bblv140-main d-flex flex-column w-100 h-100 px-3 pb-4 gap-24 v-scroll">
+  <div class="d-flex flex-column gap-16">
+    <span class="fw-bold">经办人</span>
+    <div class="d-flex gap-48 px-3">
+      <label class="radio-label" onclick="CommonUtils.clickRadio('savePch', 'savePch_01', event)">
+        <input type="radio" id="savePch_01" name="savePch" class="radio-btn" value="01">
+        <span class="radio-custom"></span>妈妈
+      </label>
+      <label class="radio-label" onclick="CommonUtils.clickRadio('savePch', 'savePch_02', event)">
+        <input type="radio" id="savePch_02" name="savePch" class="radio-btn" value="02">
+        <span class="radio-custom"></span>爸爸
+      </label>
+    </div>
+  </div>
+  <div class="d-flex flex-column gap-16">
+    <span class="fw-bold">存储时间</span>
+    <div class="px-3 w-100"><input type="date" id="saveTime" class="w-100"></div>
+  </div>
+  <div class="d-flex flex-column gap-16">
+    <div class="d-flex">
+      <span class="fw-bold">存储类型</span>
+      <span class="text-danger" id="own_count"></span>
+    </div>
+    <div class="d-flex gap-48 px-3">
+      <label class="radio-label" onclick="bblv140.clickSaveTypeRadio('01', event)">
+        <input type="radio" id="saveType_01" name="saveType" class="radio-btn" value="01">
+        <span class="radio-custom"></span>活期
+      </label>
+      <label class="radio-label" onclick="bblv140.clickSaveTypeRadio('02', event)">
+        <input type="radio" id="saveType_02" name="saveType" class="radio-btn" value="02">
+        <span class="radio-custom"></span>定期
+      </label>
+    </div>
+  </div>
+  <div class="d-flex flex-column gap-16">
+    <span class="fw-bold">勋章来源</span>
+    <div class="d-flex gap-48 px-3">
+      <label class="radio-label" onclick="bblv140.clickMedalSrcRadio('01', event)">
+        <input type="radio" id="medalSource_01" name="medalSource" class="radio-btn" value="01">
+        <span class="radio-custom"></span>新增
+      </label>
+      <label class="radio-label d-none" id="medalSource_label_02" onclick="bblv140.clickMedalSrcRadio('02', event)">
+        <input type="radio" id="medalSource_02" name="medalSource" class="radio-btn" value="02">
+        <span class="radio-custom"></span>活期转定期
+      </label>
+      <label class="radio-label" id="medalSource_label_03" onclick="bblv140.clickMedalSrcRadio('03', event)">
+        <input type="radio" id="medalSource_03" name="medalSource" class="radio-btn" value="03">
+        <span class="radio-custom"></span>定期转活期
+      </label>
+    </div>
+  </div>
+  <div class="d-flex flex-column gap-16">
+    <span class="fw-bold">存储数量</span>
+    <div class="w-100 px-3" id="save_count">
+      <input type="number" id="saveCount" class="w-100" min="1" step="1"
+        onkeydown="return event.keyCode !== 69 && event.keyCode !== 190 && event.keyCode !== 189">
+    </div>
+    <div class="w-100 px-3 d-none" id="fixed_to_free_count">
+      <input type="number" id="fixedToFreeCount" class="w-100" min="50" step="50" readonly="true">
+    </div>
+  </div>
+  <div class="d-flex flex-column gap-16" id="mdl_src_tip">
+    <span class="fw-bold">说明</span>
+    <div class="px-3 d-flex flex-column gap-24">
+      <label class="radio-label" onclick="CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_01', event)">
+        <input type="radio" id="mdlSrcTip_01" name="mdlSrcTip" class="radio-btn" value="01">
+        <span class="radio-custom"></span>学习奖励
+      </label>
+      <label class="radio-label" onclick="CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_02', event)">
+        <input type="radio" id="mdlSrcTip_02" name="mdlSrcTip" class="radio-btn" value="02">
+        <span class="radio-custom"></span>日常奖励
+      </label>
+      <label class="radio-label" onclick="CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_03', event)">
+        <input type="radio" id="mdlSrcTip_03" name="mdlSrcTip" class="radio-btn" value="03">
+        <span class="radio-custom"></span>长辈奖励
+      </label>
+      <textarea type="text" id="mdlSrcTipDetail" class="w-100" placeholder="详细说明（30文字以内，非必须输入）"></textarea>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button class="btn-confirm position-relative" onclick="bblv140.clickSaveButton()">
+      <img class="confirm-bg position-absolute" src="assets/images/btn_confirm.png">
+      <img class="confirm-img position-absolute" src="assets/images/confirm_icon.png">
+      <div class="confirm-txt position-absolute">确认存入</div>
+    </button>
+  </div>
+</div>

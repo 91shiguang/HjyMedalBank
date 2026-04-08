@@ -5,7 +5,7 @@ class BBLV010View {
   /** 
    * 点击勋章查询
    */
-  async clickMedalSearch() {
+  async clickMedalSearchBtn() {
     // 从数据库中取得现有所有的勋章
     const medalLit = await DataBase.getMedalInfFromDB();
     // 获取可以使用的勋章
@@ -25,6 +25,5 @@ class BBLV010View {
    * 点击账单查询
    */
   async clickBillSearchOrBackBtn() {
-    const result = await PageUtil.openDialogPage(PageId.bblv240);
   }
 }

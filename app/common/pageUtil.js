@@ -261,6 +261,19 @@ class PageUtil {
 
     // 获取 modal 元素
     const modalEl = document.getElementById(pageId + '_modal');
+    // modal 显示时的监听
+    modalEl.addEventListener('show.bs.modal', () => {
+      setTimeout(() => {
+        // 获取当前可见的 Modal 数量
+        const visibleModalCount = $('.modal:visible').length;
+        // 基础 z-index 为 1055，每多一个 modal 增加 10 层级
+        const newZindex = 1055 + (visibleModalCount * 10);
+        // 设置当前 modal 的 z-index
+        modalEl.style.zIndex = newZindex;
+        // 设置遮罩层的 z-index 为当前 modal - 5，确保在下方
+        $('.modal-backdrop').last().css('z-index', newZindex - 5);
+      });
+    });
     // 添加对话框画面点击事件返回的监听事件
     const wait = this.waitForEventListener(recognitionId, modalEl);
 
