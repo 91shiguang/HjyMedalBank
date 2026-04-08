@@ -17,12 +17,11 @@ body {
     .main-tab {
       width: 20%;
       height: max-content;
-      padding-top: 24px;
-      padding-bottom: 24px;
+      padding-top: 16px;
+      padding-bottom: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
       border: none;
       background-color: transparent;
       background: url(assets/images/star.png) center/contain no-repeat;

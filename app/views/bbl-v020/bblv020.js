@@ -50,6 +50,5 @@ class BBLV020View {
     document.getElementById('bblv160').innerHTML = null;
     // 显示存储标签主画面
     $('#bblv020_main').removeClass('d-none');
-    
   }
 }

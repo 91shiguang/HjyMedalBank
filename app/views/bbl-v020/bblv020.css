@@ -6,8 +6,8 @@
     user-select: none;
     transition: all 0.2s ease;
     height: 100px;
-    background: linear-gradient(145deg, #ffecb3, #ffad32);
-    box-shadow: 0 10px 10px rgb(200 120 0 / 30%), inset 0 3px 6px rgba(255, 255, 255, 0.8);
+    background: linear-gradient(145deg, #6c5df3, #ffaf32);
+        box-shadow: 0 10px 10px rgb(18 45 150 / 30%), inset 0 3px 6px rgba(255, 255, 255, 0.8);
     position: relative;
   }
 
@@ -33,8 +33,8 @@
 
   /* 🔄 上面按钮：左上角为中心逆时针 15° */
   .top-btn {
-    margin-top: 60px;
-    transform: rotate(-3deg);
+    margin-top: 40px;
+    transform: rotate(5deg);
     transform-origin: left top;
 
     &:active {
@@ -48,11 +48,11 @@
 
   /* 🔄 下面按钮：左下角为中心顺时针 15° */
   .bottom-btn {
-    transform: rotate(5deg);
-    transform-origin: left bottom;
+    transform: rotate(-8deg);
+    transform-origin: right top;
 
     &:active {
-      transform: translateY(50px) scale(0.98);
+      transform: translateY(5px) scale(0.98);
     }
 
     .bottom-img {
@@ -61,11 +61,11 @@
   }
 
   .image {
-    bottom: 50px;
+    bottom: 30px;
 
     &.bottom-left-img {
       left: 20px;
-      width: 45%;
+      width: 60%;
     }
 
     &.bottom-right-img {
@@ -76,9 +76,14 @@
 }
 
 #bblv020_sub_page {
-  .back-img {
-    pointer-events: unset !important;
+  .back-div {
+    margin-top: -5px;
+
+    .back-img {
+      pointer-events: unset !important;
+    }
   }
+  
   #bblv140,
   #bblv160 {
     flex: 1;
