@@ -256,10 +256,12 @@ textarea {
       justify-content: center;
       background: #ffd193;
       padding: 0px 16px !important;
+      position: relative;
     }
 
     /* OK按钮：立体气泡+点击效果，完全匹配儿童风 */
-    .conform-btn {
+    .conform-btn,
+    .right-conform-btn {
       background: linear-gradient(180deg, #FFB03D 0%, #FF8C00 100%);
       border: 3px solid #CC6600;
       border-radius: 15px;
@@ -272,17 +274,40 @@ textarea {
       transition: all 0.15s ease;
     }
 
-    .conform-btn:hover {
+    .conform-btn:hover,
+    .right-conform-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 0 #CC6600, 0 10px 15px rgba(255, 140, 0, 0.4), inset 0 3px 3px rgba(255, 255, 255, 0.5);
       color: #fff;
     }
 
-    .conform-btn:active {
+    .conform-btn:active,
+    .right-conform-btn:active {
       transform: translateY(6px);
       box-shadow: 0 2px 0 #CC6600, 0 4px 8px rgba(255, 140, 0, 0.2), inset 0 2px 3px rgba(0, 0, 0, 0.2);
     }
+
+    .close-img {
+      pointer-events: unset !important;
+      position: absolute;
+      left: 16px;
+      transition: 0.3s;
+      transform-origin: 50% 0px; 
+
+      &:active {
+        transform: rotate(10deg);
+      }
+    }
+
+    .right-conform-btn {
+      position: absolute;
+      right: 16px;
+    }
   }
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0) !important;
 }
 
 /* 太空漂浮动画：让图标更灵动 */

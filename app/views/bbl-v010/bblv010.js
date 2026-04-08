@@ -2,29 +2,53 @@
  * 查询标签主画面
  */
 class BBLV010View {
-  /** 
-   * 点击勋章查询
+  /**
+   * 画面元素的初始化
    */
-  async clickMedalSearch() {
-    // 从数据库中取得现有所有的勋章
-    const medalLit = await DataBase.getMedalInfFromDB();
-    // 获取可以使用的勋章
-    const effectiveCount = medalLit.filter(item => item.saveStateCd === mdlCd.code_01).length;
-    if (effectiveCount === 0) {
-      // 播放伤心音效
-      CommonUtils.playAudio('sad_audio');
-      alert('你暂时没有勋章哦, 好好表现，加油赚取吧！(*^_^*)');
-    } else {
-      CommonUtils.playAudio('expense_success_audio');
-      alert('你现在有'+ effectiveCount + '个勋章哦, 继续努力吧！');
-    }
-    
+  onInit() {
+    // 隐藏勋章查询和账单查询画面
+    $('#bblv010_sub_page').addClass('d-none');
+  }
+
+  /** 
+   * 点击勋章查询按钮
+   */
+  async clickMedalSearchBtn() {
+    // 隐藏查询标签主画面
+    $('#bblv010_main').addClass('d-none');
+    // 显示勋章查询画面
+    $('#bblv010_sub_page').removeClass('d-none');
+    $('#bblv070').removeClass('d-none');
+    // 隐藏账单查询画面
+    $('#bblv110').addClass('d-none');
+    // 加载勋章查询画面
+    await PageUtil.loadTargetPage(PageId.bblv070);
   }
 
   /**
-   * 点击账单查询
+   * 点击账单查询按钮
    */
-  async clickBillSearchOrBackBtn() {
-    const result = await PageUtil.openDialogPage(PageId.bblv240);
+  async clickBillSearchBtn() {
+    // 隐藏查询标签主画面
+    $('#bblv010_main').addClass('d-none');
+    // 显示账单查询画面
+    $('#bblv010_sub_page').removeClass('d-none');
+    $('#bblv110').removeClass('d-none');
+    // 隐藏勋章查询画面
+    $('#bblv070').addClass('d-none');
+    // 加载账单查询画面
+    await PageUtil.loadTargetPage(PageId.bblv110);
+  }
+
+  /**
+   * 点击返回按钮
+   */
+  clickBackBtn() {
+    // 隐藏勋章查询和账单查询画面
+    $('#bblv010_sub_page').addClass('d-none');
+    document.getElementById('bblv070').innerHTML = null;
+    document.getElementById('bblv110').innerHTML = null;
+    // 显示查询标签主画面
+    $('#bblv010_main').removeClass('d-none');
   }
 }

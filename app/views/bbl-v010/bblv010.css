@@ -74,3 +74,20 @@
     }
   }
 }
+
+#bblv010_sub_page {
+  .back-div {
+    margin-top: -5px;
+
+    .back-img {
+      pointer-events: unset !important;
+    }
+  }
+  
+  #bblv070,
+  #bblv110 {
+    flex: 1;
+    min-height: 0px;
+    overflow: hidden;
+  }
+}

@@ -15,21 +15,4 @@
     transform: translateY(-50%);
     pointer-events: unset !important;
   }
-
-  .close-img {
-    pointer-events: unset !important;
-    position: absolute;
-    left: 16px;
-    transition: 0.3s;
-    transform-origin: 50% 0px; 
-
-    &:active {
-      transform: rotate(10deg);
-    }
-  }
-
-  .conform-btn {
-    position: absolute;
-    right: 16px;
-  }
 }
