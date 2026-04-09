@@ -70,6 +70,6 @@ class BBLV250View {
     // 打开修改密码画面
     const btnType = await PageUtil.openDialogPage(PageId.bblv240, { isNewPswAtn: false });
     // 关闭对话框
-    PageUtil.emitDialog(this.recognitionId, btnType);
+    // PageUtil.emitDialog(this.recognitionId, btnType);
   }
 }

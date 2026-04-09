@@ -264,14 +264,10 @@ class PageUtil {
     // modal 显示时的监听
     modalEl.addEventListener('show.bs.modal', () => {
       setTimeout(() => {
-        // 获取当前可见的 Modal 数量
-        const visibleModalCount = $('.modal:visible').length;
-        // 基础 z-index 为 1055，每多一个 modal 增加 10 层级
-        const newZindex = 1055 + (visibleModalCount * 10);
-        // 设置当前 modal 的 z-index
-        modalEl.style.zIndex = newZindex;
-        // 设置遮罩层的 z-index 为当前 modal - 5，确保在下方
-        $('.modal-backdrop').last().css('z-index', newZindex - 5);
+        $('.modal').css('display', 'none');
+        $('.modal-backdrop').css('display', 'none');
+        $('.modal').last().css('display', 'block');
+        $('.modal-backdrop').last().css('display', 'block');
       });
     });
     // 添加对话框画面点击事件返回的监听事件
@@ -282,7 +278,10 @@ class PageUtil {
     this.loadTargetPage(pageId, params);
 
     // 打开 modal(打开对话框画面)
-    const modal = new bootstrap.Modal(modalEl);
+    const modal = new bootstrap.Modal(modalEl, {
+      backdrop: 'static', // 禁止点击背景关闭
+      keyboard: false // 禁止 ESC 关闭
+    });
     modal.show();
 
     return await wait;
@@ -301,6 +300,12 @@ class PageUtil {
         // 清理modal元素
         modalEl.addEventListener('hidden.bs.modal', () => {
           modalEl.remove();
+          setTimeout(() => {
+            $('.modal').css('display', 'none');
+            $('.modal-backdrop').css('display', 'none');
+            $('.modal').last().css('display', 'block');
+            $('.modal-backdrop').last().css('display', 'block');
+          });
         });
         window.removeEventListener(recognitionId, handler);
       };

@@ -306,10 +306,6 @@ textarea {
   }
 }
 
-.modal-backdrop {
-  background-color: rgba(0, 0, 0, 0) !important;
-}
-
 /* 太空漂浮动画：让图标更灵动 */
 @keyframes float {
   0% {
