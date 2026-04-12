@@ -29,7 +29,7 @@ class BBLV030View {
       effectiveCount = medalLit.filter(item => item.saveStateCd === mdlCd.code_01).length;
     }
     // 勋章余额提示
-    document.getElementById('effective_count').innerText = '（当前活期余额：' + effectiveCount + '枚）';
+    document.getElementById('effective_count').innerText = '（当前活期余额: ' + effectiveCount + '枚）';
   }
 
   /**
@@ -121,20 +121,20 @@ class BBLV030View {
       // 播放日常消费成功音效
       CommonUtils.playAudio('expense_success_audio');
       // 日常消费支出成功的提示内容
-      await PageUtil.openInformationDialog(Message.BBL0009I);
+      await Message.showInformation(Message.BBL0009I);
 
       // 提现的场合
     } else if (expenseTypeCd === epsTyCd.code_02) {
       // 播放提现成功音效
       CommonUtils.playAudio('expense_success_audio');
       // 提现成功的提示内容
-      await PageUtil.openInformationDialog(Message.BBL0010I);
+      await Message.showInformation(Message.BBL0010I);
 
       // 罚扣的场合
     } else {
       CommonUtils.playAudio('sad_audio');
       // 罚扣成功的提示内容
-      await PageUtil.openInformationDialog(Message.BBL0011I);
+      await Message.showInformation(Message.BBL0011I);
     }
     // 初始化画面的内容
     this.initPageItems();

@@ -1,19 +1,15 @@
 // 页面管理的文件
 
-/** 查询标签主画面用js对象 */
+/** 首页主画面用js对象 */
 const bblv010 = new BBLV010View();
-/** 存储标签主画面用js对象 */
-const bblv020 = new BBLV020View();
 /** 支出标签主画面用js对象 */
 const bblv030 = new BBLV030View();
-/** 借用标签主画面用js对象 */
+/** 借贷标签主画面用js对象 */
 const bblv040 = new BBLV040View();
 /** 设置标签主画面用js对象 */
 const bblv050 = new BBLV050View();
 /** 勋章查询结果对话框画面用js对象 */
 const bblv060 = new BBLV060View();
-/** 勋章查询条件画面用js对象 */
-const bblv070 = new BBLV070View();
 /** 勋章详细信息对话框画面用js对象 */
 const bblv080 = new BBLV080View();
 /** 勋章历史记录对话框画面用js对象 */
@@ -36,7 +32,7 @@ const bblv160 = new BBLV160View();
 const bblv170 = new BBLV170View();
 /** 抽奖选项对话框画面用js对象 */
 const bblv180 = new BBLV180View();
-/** 借用记录详细信息对话框画面用js对象 */
+/** 借贷记录详细信息对话框画面用js对象 */
 const bblv190 = new BBLV190View();
 /** 还款记录详细信息对话框画面用js对象 */
 const bblv200 = new BBLV200View();
@@ -52,31 +48,21 @@ const bblv240 = new BBLV240View();
 const bblv250 = new BBLV250View();
 /** 提示信息对话框画面用js对象 */
 const bblv260 = new BBLV260View();
-/** 警告信息对话框画面用js对象 */
-const bblv270 = new BBLV270View();
-/** 错误信息对话框画面用js对象 */
-const bblv280 = new BBLV280View();
-/** 确认信息对话框画面用js对象 */
-const bblv290 = new BBLV290View();
 /** 定期结束提示对话框画面用js对象 */
 const bblv300 = new BBLV300View();
 
 /** 画面ID管理 */
 const PageId = {
-  /** 查询标签主画面 */
+  /** 首页主画面 */
   bblv010: 'bblv010',
-  /** 存储标签主画面 */
-  bblv020: 'bblv020',
   /** 支出标签主画面*/
   bblv030: 'bblv030',
-  /** 借用标签主画面 */
+  /** 借贷标签主画面 */
   bblv040: 'bblv040',
   /** 设置标签主画面 */
   bblv050: 'bblv050',
   /** 勋章查询结果对话框画面 */
   bblv060: 'bblv060',
-  /** 勋章查询条件画面 */
-  bblv070: 'bblv070',
   /** 勋章详细信息对话框画面 */
   bblv080: 'bblv080',
   /** 勋章历史记录对话框画面 */
@@ -99,7 +85,7 @@ const PageId = {
   bblv170: 'bblv170',
   /** 抽奖选项对话框画面 */
   bblv180: 'bblv180',
-  /** 借用记录详细信息对话框画面 */
+  /** 借贷记录详细信息对话框画面 */
   bblv190: 'bblv190',
   /** 还款记录详细信息对话框画面 */
   bblv200: 'bblv200',
@@ -115,12 +101,6 @@ const PageId = {
   bblv250: 'bblv250',
   /** 提示信息对话框画面 */
   bblv260: 'bblv260',
-  /** 警告信息对话框画面 */
-  bblv270: 'bblv270',
-  /** 错误信息对话框画面 */
-  bblv280: 'bblv280',
-  /** 确认信息对话框画面 */
-  bblv290: 'bblv290',
   /** 定期结束提示对话框画面 */
   bblv300: 'bblv300',
 }
@@ -129,20 +109,16 @@ const PageId = {
  * 画面js对象映射管理
  */
 const JSObject = {
-  /** 查询标签主画面用js对象 */
+  /** 首页标签主画面用js对象 */
   bblv010,
-  /** 存储标签主画面用js对象 */
-  bblv020,
   /** 支出标签主画面用js对象 */
   bblv030,
-  /** 借用标签主画面用js对象 */
+  /** 借贷标签主画面用js对象 */
   bblv040,
   /** 设置标签主画面用js对象 */
   bblv050,
   /** 勋章查询结果对话框画面用js对象 */
   bblv060,
-  /** 勋章查询条件画面用js对象 */
-  bblv070,
   /** 勋章详细信息对话框画面用js对象 */
   bblv080,
   /** 勋章历史记录对话框画面用js对象 */
@@ -165,7 +141,7 @@ const JSObject = {
   bblv170,
   /** 抽奖选项对话框画面用js对象 */
   bblv180,
-  /** 借用记录详细信息对话框画面用js对象 */
+  /** 借贷记录详细信息对话框画面用js对象 */
   bblv190,
   /** 还款记录详细信息对话框画面用js对象 */
   bblv200,
@@ -181,12 +157,6 @@ const JSObject = {
   bblv250,
   /** 提示信息对话框画面用js对象 */
   bblv260,
-  /** 警告信息对话框画面用js对象 */
-  bblv270,
-  /** 错误信息对话框画面用js对象 */
-  bblv280,
-  /** 确认信息对话框画面用js对象 */
-  bblv290,
   /** 定期结束提示对话框画面用js对象 */
   bblv300,
 }
@@ -195,14 +165,12 @@ const JSObject = {
  * 对话框画面返回的按钮区分
  */
 const BtnType = {
-  /** OK */
-  OK: 'ok',
-  /** 关闭 */
+  /** 关闭/取消 */
   CLOSE: 'close',
+  /** 确定/OK */
+  CONFIRM: 'confirm',
   /** 回退 */
   UNDO: 'undo',
-  /** 确定 */
-  CONFIRM: 'confirm',
   /** 注册 */
   REGISTER: 'register',
 }
@@ -321,10 +289,18 @@ class PageUtil {
   }
 
   /**
-   * 显示提示画面
+   * 将主背景设置为粉色
    */
-  static async openInformationDialog(message) {
-    // 弹出未注册的提示框
-    await PageUtil.openDialogPage(PageId.bblv260, message);
+  static async setMainBgPink() {
+    $('#main_page').removeClass('wathet-bg');
+    $('#main_page').addClass('pink-bg');
+  }
+
+  /**
+   * 将主背景设置为浅蓝色
+   */
+  static async setMainBgWathet() {
+    $('#main_page').removeClass('pink-bg');
+    $('#main_page').addClass('wathet-bg');
   }
 }

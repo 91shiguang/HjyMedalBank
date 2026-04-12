@@ -1,25 +1,28 @@
 <div class="dialog bblv250-dialog">
-  <img class="dialog-header-img" width="200" src="assets/images/汤姆和杰瑞.png">
-  <div class="modal-header">
-    <img width="50" class="me-2" src="assets/images/家庭.png">
-    <span class="modal-title">需要家长操作哦</span>
-  </div>
-  <div class="modal-body d-flex flex-column gap-16">
-    <div class="d-flex gap-16">
-      <span class="fw-bold">请输入密码</span>
-      <span id="pwd_error" class="text-danger"></span>
+  <img class="dialog-header-img" width="200" src="assets/images/tom_and_jerry_02.png">
+  <div class="modal-header">需要家长操作哦</div>
+  <div class="modal-body">
+    <div class="content d-flex flex-column gap-3">
+      <div class="d-flex gap-3">
+        <span class="fw-bold">请输入密码</span>
+        <span id="pwd_error" class="text-danger"></span>
+      </div>
+      <div class="w-100 px-3 position-relative">
+        <input autocomplete="off" type="password" id="pwd" class="w-100" placeholder="请输入6位数字的密码" maxlength="6">
+        <img id="pwd_eye" width="30" class="eye-img" src="assets/images/闭眼睛.png"
+          onclick="bblv250.togglePwd('pwd', 'pwd_eye')">
+      </div>
+      <div class="d-flex justify-content-end">
+        <div class="px-3 py-2 forget-pwd" onclick="bblv250.forget()">忘记密码？</div>
+      </div>
     </div>
-    <div class="w-100 px-3 position-relative">
-      <input type="password" id="pwd" class="w-100" placeholder="请输入6位数字的密码" maxlength="6">
-      <img id="pwd_eye" width="30" class="eye-img" src="assets/images/闭眼睛.png"
-        onclick="bblv250.togglePwd('pwd', 'pwd_eye')">
-    </div>
-    <div class="d-flex justify-content-end">
-      <div class="px-3 py-2 forget-pwd" onclick="bblv250.forget()">忘记密码？</div>
+    <div class="footer justify-content-between">
+      <div class="btn-div">
+        <button type="button" onclick="bblv250.close()">取消</button>
+      </div>
+      <div class="btn-div">
+        <button type="button" onclick="bblv250.confirm()">确定</button>
+      </div>
     </div>
   </div>
-  <div class="modal-footer">
-    <img width="100" class="close-img" src="assets/images/close.png" onclick="bblv250.close()">
-    <button type="button" class="right-conform-btn" onclick="bblv250.confirm()">确定</button>
-  </div>
-  <div>
+</div>

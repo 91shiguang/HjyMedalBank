@@ -17,11 +17,11 @@ async function initApplication() {
   // 获取不到认证信息的场合
   if (!settingInf.pswAtn) {
     // 弹出未注册的提示框
-    await PageUtil.openInformationDialog(Message.BBL0013I);
+    await Message.showInformation(Message.BBL0013I);
     // 弹出注册画面对话框
     await PageUtil.openDialogPage(PageId.bblv240, {isNewPswAtn: true});
   }
-  // 加载查询画面的HTML
+  // 加载首页的HTML
   changeMainTab(PageId.bblv010, true);
 }
 
@@ -38,11 +38,20 @@ async function changeMainTab(pageId, noAudio) {
     return;
   }
 
-  // tab按钮由未选中变为选中
+  // tab按钮变为未选中
   $('.main-tab').removeClass('active');
   $('.tab-content').removeClass('d-block');
+  // tab图片变为未选中
+  document.querySelectorAll('.tab-img').forEach(img => {
+    const src = img.getAttribute('src');
+    img.setAttribute('src', src.replace('_active', ''));
+  });
+  // 选中目标tab按钮
   $('#main_tab_' + pageId).addClass('active');
   $('#' + pageId).addClass('d-block');
+  // 选中目标tab图片
+  const src = document.getElementById('tab_img_' + pageId).getAttribute('src');
+  document.getElementById('tab_img_' + pageId).setAttribute('src', src.replace('.png', '_active.png'));
   // 播放tab切换的音效
   if (!noAudio) {
     CommonUtils.playAudio('tab_change_audio');

@@ -5,13 +5,13 @@ class SettingModel {
   /** 音效开关 */
   audioFlg;
 
-  /** 借用利率 */
+  /** 借贷利率 */
   borrowRate;
 
-  /** 借用额度上限 */
+  /** 借贷额度上限 */
   borrowMax;
 
-  /** 借用生成利息计数 */
+  /** 借贷生成利息计数 */
   borrowRateMedalCount;
 
   /** 定期利率 */
@@ -28,11 +28,11 @@ class SettingModel {
     if (settingInf) {
       /** 音效开关 */
       this.audioFlg = settingInf.audioFlg;
-      /** 借用利率 */
+      /** 借贷利率 */
       this.borrowRate = settingInf.borrowRate;
-      /** 借用额度上限 */
+      /** 借贷额度上限 */
       this.borrowMax = settingInf.borrowMax;
-      /** 借用生成利息计数 */
+      /** 借贷生成利息计数 */
       this.borrowRateMedalCount = settingInf.borrowRateMedalCount;
       /** 定期利率 */
       this.fixedRate = settingInf.fixedRate;

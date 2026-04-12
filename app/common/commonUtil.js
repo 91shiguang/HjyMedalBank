@@ -179,4 +179,25 @@ class CommonUtils {
     audio.currentTime = 0;
   }
 
+  /**
+   * 给数值追加逗号，返回字符串
+   */
+  static addComma(value) {
+    if (!value && value !== 0) {
+      return Constant.blank;
+    }
+    return value.toLocaleString('zh-CN');
+  }
+
+  /**
+   * 去除字符串中的逗号，返回数值
+   */
+  static removeComma(value) {
+    if (!value) {
+      return 0;
+    }
+
+    const numValue = Number(value.replace(/,/g, ''));
+    return !numValue && numValue !== 0 ? 0 : numValue;
+  }
 }
