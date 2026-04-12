@@ -32,13 +32,13 @@ class MedalModel {
   /** 存储的经办人 */
   savePchCd;
 
-  /** 借用时间 */
+  /** 借贷时间 */
   borrowTime;
 
-  /** 借用说明 */
+  /** 借贷说明 */
   borrowContent;
 
-  /** 借用的经办人 */
+  /** 借贷的经办人 */
   borrowPchCd;
 
   /** 承诺还款时间 */
@@ -88,11 +88,11 @@ class MedalModel {
       this.medalSrcTipDetail = medalInf.medalSrcTipDetail;
       /** 存储的经办人 */
       this.savePchCd = medalInf.savePchCd;
-      /** 借用时间 */
+      /** 借贷时间 */
       this.borrowTime = medalInf.borrowTime;
-      /** 借用说明 */
+      /** 借贷说明 */
       this.borrowContent = medalInf.borrowContent;
-      /** 借用的经办人 */
+      /** 借贷的经办人 */
       this.borrowPchCd = medalInf.borrowPchCd;
       /** 承诺还款时间 */
       this.pmsRepayTime = medalInf.pmsRepayTime;

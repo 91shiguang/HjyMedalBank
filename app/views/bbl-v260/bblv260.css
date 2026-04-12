@@ -1,0 +1,36 @@
+.information {
+  width: 75%;
+  border-radius: 16px;
+  position: relative;
+
+  .inf-img {
+    position: absolute;
+    width: 120px;
+    top: -63px;
+    right: -5px;
+  }
+
+  .footer-btn {
+    border: none;
+    border-top: 1px solid #bababa;
+    height: 50px;
+    background: white;
+    outline: none;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    font-weight: bold;
+
+    &:active {
+      background: linear-gradient(#ffe2e1, #febad9);
+    }
+
+    &.left-btn {
+      border-right: 1px solid #bababa;
+      border-bottom-right-radius: 0px !important;
+    }
+    
+    &.right-btn {
+      border-bottom-left-radius: 0px !important;
+    }
+  }
+}

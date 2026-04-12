@@ -1,19 +1,68 @@
-<div id="bblv010_main" class="bblv010-main w-100 h-100 d-flex align-items-center flex-column gap-24 px-5">
-  <div class="bubble top-btn w-100 d-flex align-items-center p-3 gap-24" onclick="bblv010.clickMedalSearchBtn()">
-    <img class="top-img" src="assets/images/medal.png" />
-    <span>勋章查询</span>
+<div id="bblv010_main" class="bblv010-main w-100 h-100 d-flex flex-column large-card wathet-bg gap-4">
+  <div class="gary-card w-100 d-flex flex-column align-items-center px-4 py-3">
+    <img width="60" src="assets/images/medal.png">
+    <div class="w-100 mt-3">
+      <div class="medal-title font-bold-16">账户总览</div>
+    </div>
+    <div class="d-flex w-100 justify-content-between mt-3">
+      <div class="d-flex flex-column align-items-center">
+        <div class="color-gary font-14">活期资产</div>
+        <div class="d-flex align-items-center mt-1">
+          <img class="me-1" width="22" src="assets/images/fund.png">
+          <span id="current_assets" class="font-bold-18"></span>
+        </div>
+      </div>
+      <div class="d-flex flex-column align-items-center">
+        <div class="color-gary font-14 mt-1">定期资产</div>
+        <div id="fixed_div" class="d-flex align-items-center pe-1">
+          <img class="me-1" width="22" src="assets/images/fund.png">
+          <span id="fixed_assets" class="font-bold-18"></span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="bubble bottom-btn w-100 d-flex align-items-center p-3 gap-24" onclick="bblv010.clickBillSearchBtn()">
-    <img class="bottom-img" src="assets/images/search.png" />
-    <span>账单查询/取消</span>
+
+  <div class="gary-card card-btm w-100 d-flex flex-column justify-content-between p-4 flex-1">
+    <div class="d-flex justify-content-between w-100 line-group">
+      <div class="d-flex flex-column align-items-center justify-content-center btn-group gap-1"
+        onclick="bblv010.clickSaveBtn()">
+        <img width="60" src="assets/images/勋章存储.png">
+        <span>存储</span>
+      </div>
+      <div class="d-flex flex-column align-items-center justify-content-center btn-group gap-1"
+        onclick="bblv010.clickExpenseBtn()">
+        <img width="60" src="assets/images/shop.png">
+        <span>支出</span>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between w-100 line-group">
+      <div class="d-flex flex-column align-items-center justify-content-center btn-group gap-1"
+        onclick="bblv010.clickLotteryBtn()">
+        <img width="60" src="assets/images/抽奖.png">
+        <span>抽奖</span>
+      </div>
+      <div class="d-flex flex-column align-items-center justify-content-center btn-group gap-1"
+        onclick="bblv010.clickBillBtn()">
+        <img width="60" src="assets/images/账单记录.png">
+        <span>账单</span>
+      </div>
+    </div>
   </div>
-  <img class="image bottom-left-img position-absolute" src="assets/images/v010_left.png">
-  <img class="image bottom-right-img position-absolute" src="assets/images/v010_right.png">
 </div>
 <div id="bblv010_sub_page" class="w-100 h-100 d-flex flex-column">
-  <div class="px-3 d-flex justify-content-center back-div">
-    <img width="40" class="back-img" src="assets/images/返回.png" onclick="bblv010.clickBackBtn()">
+  <div class="font-bold-16 d-flex justify-content-between w-100 px-3 py-2">
+    <img width="30" class="back-img" src="assets/images/返回.png" onclick="bblv010.clickBackBtn()">
+    <div id="bblv010_title"></div>
+    <div class="filter-div">
+      <img id="filter_btn" width="20" class="filter-img" src="assets/images/过滤.png" onclick="bblv010.clickFilterBtn()">
+    </div>
   </div>
-  <div id="bblv070" class="w-100"></div>
-  <div id="bblv110" class="w-100"></div>
+  <!-- 存储画面 -->
+  <div id="bblv140"></div>
+  <!-- 支出画面 -->
+  <div id="bblv030"></div>
+  <!-- 抽奖画面 -->
+  <div id="bblv160"></div>
+  <!-- 账单画面 -->
+  <div id="bblv100"></div>
 </div>

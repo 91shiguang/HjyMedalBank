@@ -1,12 +1,10 @@
-<div class="dialog">
-  <div class="modal-header">
-    <h5 class="modal-title">✨ 小提示 ✨</h5>
-  </div>
-  <div class="modal-body">
-    <div class="space-icon">🚀</div>
-    <p id="bblv260_content" class="tip-text"></p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" id="bblv260_confirm" class="conform-btn">OK</button>
+<div class="information d-flex flex-column bg-white">
+  <img class="inf-img" src="assets/images/tom_and_jerry_01.png">
+  <div class="d-flex justify-content-center fw-bold pt-3">提示</div>
+  <div id="bblv260_content" class="w-100 font-14 px-3 py-4 d-flex justify-content-center"></div>
+  <button id="sign_footer" type="button" class="footer-btn w-100" onclick="bblv260.clickOkBtn()">OK</button>
+  <div id="doubble_footer" class="d-flex w-100">
+    <button type="button" class="footer-btn w-50 left-btn" onclick="bblv260.clickCancelBtn()">取消</button>
+    <button type="button" class="footer-btn w-50 right-btn" onclick="bblv260.clickOkBtn()">确定</button>
   </div>
 </div>

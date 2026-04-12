@@ -12,7 +12,7 @@ class BBLV140View {
     CommonUtils.limitMedalCountInput('saveCount');
     // 勋章来源详细说明的字数限制
     CommonUtils.limitDetailTextarea('mdlSrcTipDetail');
-    // 当前非借用的活期勋章
+    // 当前非借贷的活期勋章
     this.refresh();
   }
 
@@ -30,11 +30,11 @@ class BBLV140View {
     const ownCount = list.filter(item =>
       // 活期勋章
       item.saveStateCd === mdlCd.code_01
-      // 不是借用的勋章
+      // 不是借贷的勋章
       && !item.borrowTime
     ).length;
-    // 当前非借用的活期勋章
-    document.getElementById('own_count').innerText = '（当前非借用的活期余额：' + ownCount + '枚）';
+    // 当前非借贷的活期勋章
+    document.getElementById('own_count').innerText = '当前非借贷的活期余额: ' + CommonUtils.addComma(ownCount) + '枚';
   }
 
   /**
@@ -46,6 +46,12 @@ class BBLV140View {
     }
     CommonUtils.clickRadio('saveType', 'saveType_' + value, event);
     this.clickMedalSrcRadio(saveTpCd.code_01);
+    // 活期的场合
+    if (value === saveTpCd.code_01) {
+      $('#confirm_img').attr('src', 'assets/images/活期存款.png');
+    } else {
+      $('#confirm_img').attr('src', 'assets/images/定期存款.png');
+    }
   }
 
   /** 
@@ -86,7 +92,8 @@ class BBLV140View {
         // 不存在定期存款的场合
         if (fixedLit.length === 0) {
           CommonUtils.playAudio('popup_audio');
-          alert(Message.BBL0006E.message);
+          // 弹出未注册的提示框
+          await Message.showInformation(Message.BBL0006E);
           this.clickMedalSrcRadio(saveTpCd.code_01);
           return;
         }
@@ -121,6 +128,12 @@ class BBLV140View {
    * 点击确认存储按钮
    */
   async clickSaveButton() {
+    // 弹出验证密码画面
+    const btnType = await PageUtil.openDialogPage(PageId.bblv250);
+    // 点击关闭按钮的场合
+    if (!btnType || btnType === BtnType.CLOSE) {
+      return;
+    }
     // 活期、新增的场合
     if (CommonUtils.getRadioCheckedValue('saveType') === saveTpCd.code_01
       && CommonUtils.getRadioCheckedValue('medalSource') === mdlSrcCd.code_01) {
@@ -158,12 +171,6 @@ class BBLV140View {
    * 保存活期、新增的勋章
    */
   async addNewFreeMedalToDb() {
-    // 弹出验证密码画面
-    const btnType = await PageUtil.openDialogPage(PageId.bblv250);
-    // 点击关闭按钮的场合
-    if (!btnType || btnType === BtnType.CLOSE) {
-      return;
-    }
     // 从数据库中取得现有所有的勋章
     const medalLit = await DataBase.getMedalInfFromDB();
     // 从数据库中取得所有的账单
@@ -223,7 +230,7 @@ class BBLV140View {
     // 播放新增存储音效
     CommonUtils.playAudio('save_success_audio');
     // 弹出新增存储成功的提示框
-    await PageUtil.openInformationDialog(Message.BBL0004I);
+    await Message.showInformation(Message.BBL0004I);
     // 刷新画面、重置画面内容
     this.refresh(medalLit);
     this.initPageItems();
@@ -245,5 +252,6 @@ class BBLV140View {
     document.getElementById('saveCount').value = 1;
     // 勋章来源说明：学习奖励
     CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_01');
+    $('#confirm_img').attr('src', 'assets/images/活期存款.png');
   }
 }

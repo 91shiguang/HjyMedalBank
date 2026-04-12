@@ -1,11 +1,9 @@
 .bblv240-dialog {
   .dialog-header-img {
-    top: -88px;
-    left: -39px;
-  }
-
-  .modal-body {
-    padding-bottom: 24px !important;
+    top: -100px;
+    left: -26px;
+    transform: rotate(8deg);
+    transform-origin: left top;
   }
 
   .eye-img {

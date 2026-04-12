@@ -69,7 +69,11 @@ class BBLV250View {
   async forget() {
     // 打开修改密码画面
     const btnType = await PageUtil.openDialogPage(PageId.bblv240, { isNewPswAtn: false });
-    // 关闭对话框
+    // 取消的场合
+    if (!btnType || btnType === BtnType.CLOSE) {
+      return;
+    }
+    // 确定的场合, 关闭对话框
     PageUtil.emitDialog(this.recognitionId, btnType);
   }
 }

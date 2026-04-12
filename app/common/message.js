@@ -13,7 +13,7 @@ class Message {
   /** 活期转定期成功的提示内容 */
   static BBL0005I = {messageId: 'BBL0005I', message: '定期存款已经转存成功啦，一定要坚持到最后再取出来哦。💪'};
   /** 定期转活期时，不存在定期款项的错误内容 */
-  static BBL0006E = {messageId: 'BBL0006E', message: '你当前还没有定期存款哦。╮(╯▽╰)╭'};
+  static BBL0006E = {messageId: 'BBL0006E', message: '目前还没有定期存款哦。'};
   /** 定期转活期确认时的确认内容 */
   static BBL0007C = {messageId: 'BBL0007C', message: '提前结束定期会让你损失利息哦，确定要结束当前的定期款项吗❓'};
   /** 定期转活期成功的提示内容 */
@@ -27,5 +27,40 @@ class Message {
   /** 支出时，可支配的勋章数量不足提示内容 */
   static BBL0012I = { messageId: 'BBL0012I', message: '可自由支配的勋章余额不足哦，快去努力赚取吧！O(∩_∩)O' };
   /** 没有注册信息时的提示 */
-  static BBL0013I = { messageId: 'BBL0013I', message: '未检测到勋章银行的账户，请先注册吧。'}
+  static BBL0013I = { messageId: 'BBL0013I', message: '未检测到勋章银行的账户，请先注册吧。' }
+  
+  /**
+   * 显示提示画面
+   */
+  static async showInformation(message) {
+    // 识别ID
+    const recognitionId = PageId.bblv260 + '_information';
+    // 创建提示框元素
+    d3.select('#information_dialog')
+      .append('div')
+      .attr('id', PageId.bblv260)
+      .attr('class', 'w-100 d-flex justify-content-center');
+    // 获取提示框元素l
+    const bblv260El = document.getElementById(PageId.bblv260);
+    // 添加提示框点击事件返回的监听事件
+    const wait = new Promise(resolve => {
+      const handler = (result) => {
+        resolve(result.detail);
+        // 关闭提示框画面
+        $('#information_dialog').addClass('d-none');
+        bblv260El.remove();
+        window.removeEventListener(recognitionId, handler);
+      };
+      window.addEventListener(recognitionId, handler);
+    });
+
+    // 加载提示画面的内容
+    const params = {recognitionId: recognitionId, input: message}
+    PageUtil.loadTargetPage(PageId.bblv260, params);
+
+    // 打开提示框画面
+    $('#information_dialog').removeClass('d-none');
+
+    return await wait;
+  }
 }
