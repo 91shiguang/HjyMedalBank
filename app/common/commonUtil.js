@@ -105,15 +105,37 @@ class CommonUtils {
     if (value) {
       return document.getElementById(elementId).value;
     }
-    return '';
+    return Constant.blank;
   }
 
   /**
    * 获取时间输入框的内容
    */
   static getTimeInputElementValue(elementId) {
-    const date = document.getElementById(elementId).value.split('-');
-    return date[0] + '年' + date[1] + '月' + date[2] + '日'
+    return CommonUtils.transToDtilDate(document.getElementById(elementId).value);
+  }
+
+  /**
+   * 日期格式转换（yyyy-MM-dd -> yyyy年MM月）
+   */
+  static transToDtilDate(value) {
+    if (!value) {
+      return Constant.blank;
+    }
+    const date = value.split('-');
+    let result = Constant.blank;
+    if (date.length >= 1) {
+      result = result + date[0] + '年';
+    }
+
+    if (date.length >= 2) {
+      result = result + String(date[1]).padStart(2, '0') + '月';
+    }
+
+    if (date.length >= 3) {
+      result = result + String(date[2]).padStart(2, '0') + '日';
+    }
+    return result;
   }
 
   /**

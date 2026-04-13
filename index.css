@@ -49,7 +49,6 @@ body {
   .main-content {
     flex: 1;
     min-height: 0px;
-    overflow: hidden;
 
     .tab-content {
       width: 100%;

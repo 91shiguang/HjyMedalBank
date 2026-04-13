@@ -55,15 +55,9 @@ class BBLV030View {
       return;
     }
     // 从数据库中取得所有的账单
-    const billLit = await DataBase.getMedalInfFromDB();
+    const billLit = await DataBase.getBillInfFromDB();
     // 创建支出的账单
     const newBill = new BillModel();
-    // 支出类型
-    const expenseTypeCd = CommonUtils.getRadioCheckedValue('expenseType');
-    // 支出说明
-    const expenseTipDetail = CommonUtils.getInputElementValue('expenseTipDetail');
-    // 支出的经办人
-    const expensePchCd = CommonUtils.getRadioCheckedValue('expensePch');
 
     // 循环支出的数量
     for (let i = 0; i < expenseCount; i++) {
@@ -77,18 +71,16 @@ class BBLV030View {
       newBill.billMedalIdLit.push(medal.medalId);
       // 把勋章的状态更新为【已支出勋章】
       medal.saveStateCd = mdlCd.code_03;
-      // 支出时间
-      medal.expenseTime = CommonUtils.getInputElementValue('expenseTime');
-      // 支出类型
-      medal.expenseTypeCd = expenseTypeCd;
-      // 支出说明
-      medal.expenseTipDetail = expenseTipDetail;
-      // 支出的经办人
-      medal.expensePchCd = expensePchCd;
       // 回退情报
       medal.backInf = backInf;
     }
-    
+
+    // 支出类型
+    const expenseTypeCd = CommonUtils.getRadioCheckedValue('expenseType');
+    // 支出说明
+    const expenseTipDetail = CommonUtils.getInputElementValue('expenseTipDetail');
+    // 支出的经办人
+    const expensePchCd = CommonUtils.getRadioCheckedValue('expensePch');
     // 创建新的账单ID
     newBill.billId = CommonUtils.createNewBillId(billLit);
     // 账单详细说明
@@ -100,16 +92,9 @@ class BBLV030View {
     // 账单经办人
     newBill.billPchCd = expensePchCd;
     // 账单事件区分
-    if (expenseTypeCd === epsTyCd.code_01) {
-      // 支出类型是日常消费的场合
-      newBill.billActionCd = billActionCd.code_05;
-    } else if (expenseTypeCd === epsTyCd.code_02) {
-      // 提现的场合
-      newBill.billActionCd = billActionCd.code_06;
-    } else {
-      // 罚扣的场合
-      newBill.billActionCd = billActionCd.code_07;
-    }
+    newBill.billActionCd = billActionCd.code_05;
+    // 支出账单说明区分
+    newBill.billTipCd = expenseTypeCd;
     billLit.push(newBill);
 
     // 更新数据库的勋章
@@ -148,11 +133,11 @@ class BBLV030View {
   initPageItems() {
     // 支出经办人：妈妈
     CommonUtils.clickRadio('expensePch', 'expensePch_01');
-    // 支出时间：现在时间
-    document.getElementById('expenseTime').value = CommonUtils.getDateEx(new Date());
     // 支出类型：日常消费
     CommonUtils.clickRadio('expenseType', 'expenseType_01');
     // 支出数量：1
     document.getElementById('expenseCount').value = 1;
+    // 详细说明
+    document.getElementById('expenseTipDetail').value = Constant.blank;
   }
 }

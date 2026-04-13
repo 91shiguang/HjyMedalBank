@@ -174,7 +174,7 @@ class BBLV140View {
     // 从数据库中取得现有所有的勋章
     const medalLit = await DataBase.getMedalInfFromDB();
     // 从数据库中取得所有的账单
-    const billLit = await DataBase.getMedalInfFromDB();
+    const billLit = await DataBase.getBillInfFromDB();
     // 创建新的勋章ID
     const newMedalId = CommonUtils.createNewMedalId(medalLit);
     // 创建活期、新增的账单
@@ -190,18 +190,8 @@ class BBLV140View {
       newMedal.medalId = newMedalId + i;
       // 账单关联的勋章ID数组
       newBill.billMedalIdLit.push(newMedal.medalId);
-      // 存储的经办人
-      newMedal.savePchCd = CommonUtils.getRadioCheckedValue('savePch');
       // 勋章状态
       newMedal.saveStateCd = mdlCd.code_01;
-      // 存储时间
-      newMedal.saveTime = CommonUtils.getInputElementValue('saveTime');
-      // 勋章来源
-      newMedal.medalSrcCd = CommonUtils.getRadioCheckedValue('medalSource');
-      // 来源说明
-      newMedal.medalSrcTipCd = CommonUtils.getRadioCheckedValue('mdlSrcTip');
-      // 详细说明
-      newMedal.medalSrcTipDetail = CommonUtils.getInputElementValue('mdlSrcTipDetail');
       // 回退情报(不可回退)
       newMedal.backInf = null;
       medalLit.push(newMedal);
@@ -209,7 +199,7 @@ class BBLV140View {
 
     // 创建新的账单ID
     newBill.billId = CommonUtils.createNewBillId(billLit);
-    // 账单说明
+    // 收入账单说明区分
     newBill.billTipCd = CommonUtils.getRadioCheckedValue('mdlSrcTip');
     // 账单详细说明
     newBill.billTipDetail = CommonUtils.getInputElementValue('mdlSrcTipDetail');
@@ -242,8 +232,6 @@ class BBLV140View {
   initPageItems() {
     // 存储经办人：妈妈
     CommonUtils.clickRadio('savePch', 'savePch_01');
-    // 存储时间：现在时间
-    document.getElementById('saveTime').value = CommonUtils.getDateEx(new Date());
     // 存储类型：活期
     CommonUtils.clickRadio('saveType', 'saveType_01');
     // 勋章来源：新增
@@ -252,6 +240,30 @@ class BBLV140View {
     document.getElementById('saveCount').value = 1;
     // 勋章来源说明：学习奖励
     CommonUtils.clickRadio('mdlSrcTip', 'mdlSrcTip_01');
+    // 勋章来源详细说明
+    document.getElementById('mdlSrcTipDetail').value = Constant.blank;
     $('#confirm_img').attr('src', 'assets/images/活期存款.png');
   }
+}
+
+/**
+ * 存储类型区分
+ */
+const saveTpCd = {
+  /** 活期勋章 */
+  code_01: '01',
+  /** 定期勋章 */
+  code_02: '02',
+}
+
+/**
+ * 勋章来源区分
+ */
+const mdlSrcCd = {
+  /** 新增 */
+  code_01: '01',
+  /** 活期转定期 */
+  code_02: '02',
+  /** 定期转活期 */
+  code_03: '03',
 }

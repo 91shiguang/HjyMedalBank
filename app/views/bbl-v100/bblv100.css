@@ -1,0 +1,48 @@
+.bblv100-page {
+  .month {
+    margin-bottom: 16px;
+  }
+
+  .bill-header {
+    background-color: #f7f7f8;
+    color: #00103694;
+    padding: 12px 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bill-body-bg {
+    width: 100%;
+    background-color: #f7f7f8;
+    padding: 0px 16px;
+  }
+
+  .bill-body {
+    width: 100%;
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .bill-line {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .bill-divider {
+    height: 1px;
+    background-color: #ddd;
+    margin: 10px 0;
+  }
+
+  .sticky-header {
+    position: sticky;
+    top: -14px;
+    background-color: #f7f7f8;
+    z-index: 10;
+  }
+}
