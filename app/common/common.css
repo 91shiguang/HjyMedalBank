@@ -74,11 +74,10 @@ img {
   flex: 1;
   min-width: 0px;
   min-height: 0px;
-  overflow: hidden;
 }
 
 .error-text {
-  color: rgb(249, 43, 84);
+  color: rgb(249, 43, 84) !important;
 }
 
 .color-gary {
@@ -107,6 +106,23 @@ img {
   box-shadow: -2px -2px 0px rgba(255, 255, 255, 1), 4px 4px 4px #aeaeae70;
   border-right: 1px solid #c0c0c038;
   border-bottom: 1px solid #c0c0c038;
+}
+
+.white-card {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.inset-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: inset 3px 3px 4px 0 rgba(0, 0, 0, 0.2), inset -3px -3px 4px 0 rgba(0, 0, 0, 0.2);
+  background: #F4F6F6;
+  padding: 16px;
+  overflow-y: auto;
 }
 
 .sub-footer {
@@ -249,7 +265,7 @@ textarea {
           .footer {
             width: 100%;
             border: none;
-            padding: 12px 24px;
+            padding: 16px 24px;
             display: flex;
             justify-content: center;
 
@@ -288,7 +304,7 @@ textarea {
 }
 
 .modal-backdrop {
-  background: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 /* 太空漂浮动画：让图标更灵动 */

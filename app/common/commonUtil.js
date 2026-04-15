@@ -105,15 +105,37 @@ class CommonUtils {
     if (value) {
       return document.getElementById(elementId).value;
     }
-    return '';
+    return Constant.blank;
   }
 
   /**
    * 获取时间输入框的内容
    */
   static getTimeInputElementValue(elementId) {
-    const date = document.getElementById(elementId).value.split('-');
-    return date[0] + '年' + date[1] + '月' + date[2] + '日'
+    return CommonUtils.transToDtilDate(document.getElementById(elementId).value);
+  }
+
+  /**
+   * 日期格式转换（yyyy-MM-dd -> yyyy年MM月）
+   */
+  static transToDtilDate(value) {
+    if (!value) {
+      return Constant.blank;
+    }
+    const date = value.split('-');
+    let result = Constant.blank;
+    if (date.length >= 1) {
+      result = result + date[0] + '年';
+    }
+
+    if (date.length >= 2) {
+      result = result + String(date[1]).padStart(2, '0') + '月';
+    }
+
+    if (date.length >= 3) {
+      result = result + String(date[2]).padStart(2, '0') + '日';
+    }
+    return result;
   }
 
   /**
@@ -199,5 +221,98 @@ class CommonUtils {
 
     const numValue = Number(value.replace(/,/g, ''));
     return !numValue && numValue !== 0 ? 0 : numValue;
+  }
+
+  /**
+   * 根据账单事件获取图标的地址
+   */
+  static getBillIcon(actionCd) {
+    switch (actionCd) {
+      // 新增活期存储
+      case billActionCd.code_01:
+        return 'assets/images/活期存款.png';
+      // 新增定期存储
+      case billActionCd.code_02:
+        return 'assets/images/定期存款.png';
+      // 活期转定期
+      case billActionCd.code_03:
+        return 'assets/images/定期存款.png';
+      // 定期转活期
+      case billActionCd.code_04:
+        return 'assets/images/活期存款.png';
+      // 消费支出
+      case billActionCd.code_05:
+        return 'assets/images/支出.png';
+      // 定期自动到期
+      case billActionCd.code_06:
+        return 'assets/images/定期到期.png';
+      // 抽奖
+      case billActionCd.code_07:
+        return 'assets/images/抽奖账单.png';
+      // 借贷
+      case billActionCd.code_08:
+        return 'assets/images/借贷.png';
+      // 还款
+      case billActionCd.code_09:
+        return 'assets/images/还款.png';
+      default:
+        return Constant.blank;
+    }
+  }
+
+  /**
+   * 获取账单的简易说明
+   */
+  static getBillSimpleTip(actionCd, tipCd) {
+    switch (actionCd) {
+      // 新增活期存储、新增定期存储
+      case billActionCd.code_01:
+      case billActionCd.code_02:
+        return CodeManager.mdlSrcTipCd[tipCd];
+      // 活期转定期
+      case billActionCd.code_03:
+        return '勋章理财';
+      // 定期转活期
+      case billActionCd.code_04:
+        return '取消理财';
+      // 消费支出
+      case billActionCd.code_05:
+        return CodeManager.epsTyCd[tipCd];
+      // 定期自动到期
+      case billActionCd.code_06:
+        return '理财进项';
+      // 抽奖
+      case billActionCd.code_07:
+        return '中奖勋章';
+      // 借贷
+      case billActionCd.code_08:
+        return '勋章预支';
+      // 还款
+      case billActionCd.code_09:
+        return CodeManager.repayCd[tipCd];
+      default:
+        return Constant.blank;
+    }
+  }
+
+  /**
+   * 获取支出金额的+或-
+   */
+  static getExpensePro(actionCd) {
+    switch (actionCd) {
+      // 新增活期存储、新增定期存储、定期自动到期、抽奖、借贷
+      case billActionCd.code_01:
+      case billActionCd.code_02:
+      case billActionCd.code_06:
+      case billActionCd.code_07:
+      case billActionCd.code_08:
+        return Constant.add;
+      // 消费支出、还款
+      case billActionCd.code_05:
+      case billActionCd.code_09:
+        return Constant.reduce;
+      default:
+        return Constant.blank;
+    }
   }
 }
