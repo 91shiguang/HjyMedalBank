@@ -34,13 +34,14 @@ body {
       border: none;
       background-color: #F4F6F6;
       font-size: 14px;
+      color: #00103694;
 
       .tab-img {
         width: 24px;
       }
 
       &.active {
-        color: #0072ffdb;
+        color: #001443;
         font-weight: bold;
       }
     }

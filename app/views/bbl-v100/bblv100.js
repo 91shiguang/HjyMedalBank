@@ -27,8 +27,7 @@ class BBLV100View {
    */
   async refresh() {
     // 取得账单数据
-    // await this.getBillData();
-    this.billData = this.generateBillData(100);
+    await this.getBillData();
     // 画面表示/隐藏元素
     this.showOrHiddenEle();
     // 绘制账单一览
@@ -95,79 +94,54 @@ class BBLV100View {
         const billInf = monthInf.data[billIndex];
         // 添加账单条
         const billLine = billBody.append('div')
-          .attr('class', 'bill-line')
+          .attr('class', 'w-100')
           .on('click', () => {
             alert(`点击了账单 ID: ${billInf.billId}`);
           });
+        const lineConstnt = billLine.append('div').attr('class', 'line-content');
         // 添加左侧内容
-        const leftContent = billLine.append('div')
+        const leftContent = lineConstnt.append('div')
           .attr('class', 'd-flex')
         // 添加左侧图标
-        const leftImg = leftContent.append('img').attr('width', '30')
-        // TODO 根据事件设置图标的地址
-        leftImg.attr('src', 'assets/images/支出.png')
+        const leftImg = leftContent.append('img')
+          .attr('width', '30')
+          .attr('height', '30')
+          .attr('class', 'me-3');
+        // 根据事件设置图标的地址
+        leftImg.attr('src', CommonUtils.getBillIcon(billInf.billActionCd));
         // 添加左侧详细
         const leftDetail = leftContent.append('div');
-        // TODO 账单事件
-        leftDetail.append('p').text(`账单类型: ${billInf.billTipDetail}`);
-        leftDetail.append('p').text(`时间: ${billInf.billTime}`);
-        leftDetail.append('p').text(`金额: ¥${billInf.billCount}`);
-        leftDetail.append('p').text(`账单编号: ${billInf.billId}`);
-        // TOTO 添加右侧内容
+        // 账单事件
+        leftDetail.append('div')
+          .text(CodeManager.billActionCd[billInf.billActionCd]);
+        // 账单简易说明
+        leftDetail.append('div').attr('class', 'font-14 color-gary mt-1')
+          .classed('error-text', billInf.billActionCd === billActionCd.code_05 && billInf.billTipCd === epsTyCd.code_03)
+          .text(CommonUtils.getBillSimpleTip(billInf.billActionCd, billInf.billTipCd));
+        // 账单时间
+        leftDetail.append('div').attr('class', 'font-14 color-gary mt-1')
+          .text(billInf.billTime);
+        // 添加右侧内容
+        const rightContent = lineConstnt.append('div');
+        const rightDetail = rightContent.append('div').attr('class', 'd-flex')
+          .classed('error-text', billInf.billActionCd === billActionCd.code_05 && billInf.billTipCd === epsTyCd.code_03);
+        // 活期转定期或者定期转活期的场合
+        if (billInf.billActionCd === billActionCd.code_03 || billInf.billActionCd === billActionCd.code_04) {
+          // 添加循环图标
+          rightDetail.append('img').attr('width', '24').attr('height', '24')
+            .attr('class', 'me-1').attr('src', 'assets/images/循环.png');
+        } else {
+          // 添加+或-
+          rightDetail.append('div').text(CommonUtils.getExpensePro(billInf.billActionCd));
+        }
+        // 添加账单金额
+        rightDetail.append('div').text(billInf.billCount);
         // 添加分隔线
-        billLine.append('br');
-        billLine.append('hr').attr('class', 'line-border');
+        if (billIndex !== monthInf.data.length - 1) {
+          billLine.append('hr').attr('class', 'line-border');
+        }
       }
-      
     }
   }
-
-  // 生成随机账单数据
-  generateBillData(num) {
-        const billTypes = ['01', '02', '03'];
-        const billDetails = ['测试详细内容', '测试详细内容', '测试详细内容', '测试详细内容'];
-        const billActions = ['01', '02', '03', '04', '05', '06', '07', '08', '09'];
-        const medalIds = [1, 2, 3, 4, 5];
-        
-        const billData = [];
-        for (let i = 0; i < num; i++) {
-            const month = `2026年${(Math.floor(Math.random() * 12) + 1).toString().padStart(2, '0')}月`;
-            const billId = i + 1;
-            const billTipCd = billTypes[Math.floor(Math.random() * billTypes.length)];
-            const billTipDetail = billDetails[Math.floor(Math.random() * billDetails.length)];
-            const billTime = new Date(2026, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1, Math.floor(Math.random() * 24), Math.floor(Math.random() * 60), Math.floor(Math.random() * 60)).toISOString().replace('T', ' ').substring(0, 19);
-            const billCount = (Math.random() * 1000).toFixed(2);
-            const billPchCd = '01';
-            const billActionCd = billActions[Math.floor(Math.random() * billActions.length)];
-            const billMedalIdLit = [medalIds[Math.floor(Math.random() * medalIds.length)]];
-
-            const billItem = {
-                billId,
-                billTipCd,
-                billTipDetail,
-                billTime,
-                billCount,
-                billPchCd,
-                billActionCd,
-                billMedalIdLit
-            };
-
-            // Check if the month already exists
-            let monthData = billData.find(item => item.headerTxt === month);
-            if (!monthData) {
-                monthData = {
-                    headerTxt: month,
-                    data: []
-                };
-                billData.push(monthData);
-            }
-            
-            // Add the generated bill to the corresponding month
-            monthData.data.push(billItem);
-        }
-        
-        return billData;
-    }
-
-
+  
 }

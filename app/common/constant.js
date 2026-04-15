@@ -15,6 +15,12 @@ class Constant {
   /** 无效 */
   static flg_off = '0';
 
+  /** + */
+  static add = '+';
+
+  /** - */
+  static reduce = '-';
+
   
   
 }
