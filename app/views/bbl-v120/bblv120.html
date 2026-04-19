@@ -1,1 +1,105 @@
-<div>bblv120</div>
+<div class="dialog bblv120-dialog">
+  <img class="dialog-header-img" width="200" src="assets/images/tom_and_jerry_03.png">
+  <div id="bblv120_title" class="modal-header">账单详情</div>
+  <div class="modal-body">
+    <div class="content d-flex flex-column font-14">
+      <div class="w-100 d-flex flex-column align-items-center gap-2">
+        <img id="bblv120_bill_top_img" width="40" height="40">
+        <span id="bblv120_bill_action"></span>
+        <div class="d-flex font-bold-20 align-items-center">
+          <span id="bblv120_unit" class="d-none"></span>
+          <img id="bblv120_unit_img" class="me-1 mt-1 d-none" width="20" height="20">
+          <span id="bblv120_amount"></span>
+        </div>
+        <span id="bblv120_bill_tip"></span>
+      </div>
+      <hr class="gray-line">
+      <div class="d-flex">
+        <span id="bblv120_sub_amount_title" class="color-gary sub-title"></span>
+        <span id="bblv120_sub_amount_value" class="sub-value"></span>
+      </div>
+      <!-- 定期存款的存期 -->
+      <div id="bblv120_fixed_term" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">存期</span>
+        <span id="bblv120_fixed_term_value" class="sub-value"></span>
+      </div>
+      <!-- 定期存款批次 -->
+      <div id="bblv120_fixed_id" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">定存编号</span>
+        <span id="bblv120_fixed_id_value" class="sub-value"></span>
+      </div>
+      <!-- 借款批次 -->
+      <div id="bblv120_borrow_id" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">借贷编号</span>
+        <span id="bblv120_borrow_id_value" class="sub-value"></span>
+      </div>
+      <!-- 当前状态(在存/中断/自动到期/未还款/已还部分本金/已还全部本金) -->
+      <div id="bblv120_bill_state" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">状态</span>
+        <span id="bblv120_bill_state_value" class="sub-value"></span>
+      </div>
+      <!-- 还款种类(偿还本金、偿还利息) -->
+      <div id="bblv120_replay_type" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">还款种类</span>
+        <span id="bblv120_replay_type_value" class="sub-value"></span>
+      </div>
+      <div class="d-flex mt-3">
+        <span class="color-gary sub-title">经办人</span>
+        <span id="bblv120_pch_value" class="sub-value"></span>
+      </div>
+      <div class="d-flex mt-3">
+        <span class="color-gary sub-title">经办时间</span>
+        <span id="bblv120_time_value" class="sub-value"></span>
+      </div>
+      <!-- 借贷利息 -->
+      <div id="bblv120_borrow_new" class="d-flex mt-3">
+        <span class="color-gary sub-title">产出利息</span>
+        <span id="bblv120_borrow_new_value" class="sub-value"></span>
+      </div>
+      <div class="d-flex mt-3">
+        <span class="color-gary sub-title">详细说明</span>
+        <span id="bblv120_detail_value" class="sub-value"></span>
+      </div>
+      <div class="d-flex mt-3">
+        <span class="color-gary sub-title">账单编号</span>
+        <span id="bblv120_bill_id" class="sub-value"></span>
+      </div>
+      <div id="bblv120_more_button" class="d-flex justify-content-center more-text text-primary p-3 pb-0 d-none">
+        <span id="bblv120_more_button_value"></span>
+      </div>
+      <!-- 定期存款中断详情 -->
+      <div id="bblv120_bill_more_01" class="w-100 d-flex flex-column gap-3 d-none">
+        <hr class="gray-line">
+
+      </div>
+      <!-- 定期存款自动到期详情 -->
+      <div id="bblv120_bill_more_02" class="w-100 d-flex flex-column gap-3 d-none">
+        <hr class="gray-line">
+
+      </div>
+      <!-- 被转定期存款详情 -->
+      <div id="bblv120_bill_more_03" class="w-100 d-flex flex-column gap-3 d-none">
+        <hr class="gray-line">
+
+      </div>
+      <!-- 自动到期定期存款详情 -->
+      <div id="bblv120_bill_more_04" class="w-100 d-flex flex-column gap-3 d-none">
+        <hr class="gray-line">
+
+      </div>
+    </div>
+    <div id="bblv120_single_footer" class="footer">
+      <div class="btn-div">
+        <button type="button" onclick="bblv120.close()">关闭</button>
+      </div>
+    </div>
+    <!-- <div id="bblv120_double_footer" class="footer justify-content-between">
+      <div class="btn-div">
+        <button type="button" onclick="bblv120.close()">关闭</button>
+      </div>
+      <div class="btn-div">
+        <button id="bill_cancel_btn" type="button" onclick="bblv120.billCancel()">取消订单</button>
+      </div>
+    </div> -->
+  </div>
+</div>

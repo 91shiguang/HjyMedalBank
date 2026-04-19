@@ -228,10 +228,10 @@ class CommonUtils {
    */
   static getBillIcon(actionCd) {
     switch (actionCd) {
-      // 新增活期存储
+      // 新增勋章-活期存储
       case billActionCd.code_01:
         return 'assets/images/活期存款.png';
-      // 新增定期存储
+      // 新增勋章-定期存储
       case billActionCd.code_02:
         return 'assets/images/定期存款.png';
       // 活期转定期
@@ -255,6 +255,9 @@ class CommonUtils {
       // 还款
       case billActionCd.code_09:
         return 'assets/images/还款.png';
+      // 取消账单
+      case billActionCd.code_10:
+        return 'assets/images/取消账单.png';
       default:
         return Constant.blank;
     }
@@ -265,7 +268,7 @@ class CommonUtils {
    */
   static getBillSimpleTip(actionCd, tipCd) {
     switch (actionCd) {
-      // 新增活期存储、新增定期存储
+      // 新增勋章-活期存储、新增勋章-定期存储
       case billActionCd.code_01:
       case billActionCd.code_02:
         return CodeManager.mdlSrcTipCd[tipCd];
@@ -274,7 +277,7 @@ class CommonUtils {
         return '勋章理财';
       // 定期转活期
       case billActionCd.code_04:
-        return '取消理财';
+        return '定期中断';
       // 消费支出
       case billActionCd.code_05:
         return CodeManager.epsTyCd[tipCd];
@@ -283,13 +286,16 @@ class CommonUtils {
         return '理财进项';
       // 抽奖
       case billActionCd.code_07:
-        return '中奖勋章';
+        return '获奖勋章';
       // 借贷
       case billActionCd.code_08:
         return '勋章预支';
       // 还款
       case billActionCd.code_09:
         return CodeManager.repayCd[tipCd];
+      // 取消账单
+      case billActionCd.code_09:
+        return '退款成功';
       default:
         return Constant.blank;
     }
@@ -300,7 +306,7 @@ class CommonUtils {
    */
   static getExpensePro(actionCd) {
     switch (actionCd) {
-      // 新增活期存储、新增定期存储、定期自动到期、抽奖、借贷
+      // 新增勋章-活期存储、新增勋章-定期存储、定期自动到期、抽奖、借贷
       case billActionCd.code_01:
       case billActionCd.code_02:
       case billActionCd.code_06:

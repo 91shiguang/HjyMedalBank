@@ -1,0 +1,9 @@
+.bblv120-dialog {
+  .sub-title {
+    width: 100px;
+  }
+  
+  .sub-value {
+    width: calc(100% - 100px);
+  }
+}

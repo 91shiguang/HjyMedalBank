@@ -63,6 +63,8 @@ class BBLV140View {
     if (CommonUtils.getRadioCheckedValue('saveType') === saveTpCd.code_01) {
       // 隐藏活期转定期选项
       $('#medalSource_label_02').addClass('d-none');
+      // 隐藏存期选项
+      $('#fixed_term').addClass('d-none');
       // 显示定期转活期选项
       $('#medalSource_label_03').removeClass('d-none');
 
@@ -106,6 +108,8 @@ class BBLV140View {
       $('#save_count').removeClass('d-none');
       // 显示活期转定期选项
       $('#medalSource_label_02').removeClass('d-none');
+      // 显示存期选项
+      $('#fixed_term').removeClass('d-none');
       // 隐藏定期转活期选项
       $('#medalSource_label_03').addClass('d-none');
       $('#fixed_to_free_count').addClass('d-none');
@@ -192,8 +196,6 @@ class BBLV140View {
       newBill.billMedalIdLit.push(newMedal.medalId);
       // 勋章状态
       newMedal.saveStateCd = mdlCd.code_01;
-      // 回退情报(不可回退)
-      newMedal.backInf = null;
       medalLit.push(newMedal);
     }
 
@@ -234,6 +236,8 @@ class BBLV140View {
     CommonUtils.clickRadio('savePch', 'savePch_01');
     // 存储类型：活期
     CommonUtils.clickRadio('saveType', 'saveType_01');
+    // 隐藏存期选项
+    $('#fixed_term').addClass('d-none');
     // 勋章来源：新增
     CommonUtils.clickRadio('medalSource', 'medalSource_01');
     // 存储数量：1

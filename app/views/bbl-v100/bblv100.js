@@ -32,8 +32,6 @@ class BBLV100View {
     this.showOrHiddenEle();
     // 绘制账单一览
     this.renderBills();
-    
-
   }
 
   /** 
@@ -95,8 +93,14 @@ class BBLV100View {
         // 添加账单条
         const billLine = billBody.append('div')
           .attr('class', 'w-100')
-          .on('click', () => {
-            alert(`点击了账单 ID: ${billInf.billId}`);
+          .on('click', async () => {
+            // 弹出账单详细画面
+            const btnType = await PageUtil.openDialogPage(PageId.bblv120, billInf);
+            // 点击取消账单或者还款按钮的场合
+            if (btnType === BtnType.BILLCANCEL || btnType === BtnType.REPAYMENT) {
+              // 刷新画面
+              this.refresh();
+            }
           });
         const lineConstnt = billLine.append('div').attr('class', 'line-content');
         // 添加左侧内容
@@ -122,7 +126,7 @@ class BBLV100View {
         leftDetail.append('div').attr('class', 'font-14 color-gary mt-1')
           .text(billInf.billTime);
         // 添加右侧内容
-        const rightContent = lineConstnt.append('div');
+        const rightContent = lineConstnt.append('div').attr('class', 'position-relative');
         const rightDetail = rightContent.append('div').attr('class', 'd-flex')
           .classed('error-text', billInf.billActionCd === billActionCd.code_05 && billInf.billTipCd === epsTyCd.code_03);
         // 活期转定期或者定期转活期的场合
@@ -136,6 +140,11 @@ class BBLV100View {
         }
         // 添加账单金额
         rightDetail.append('div').text(billInf.billCount);
+        // 订单被取消的场合
+        if (billInf.isCancel) {
+          // 添加已取消
+          rightContent.append('div').text('已取消').attr('class', 'bill-cancel text-info');
+        }
         // 添加分隔线
         if (billIndex !== monthInf.data.length - 1) {
           billLine.append('hr').attr('class', 'line-border');
@@ -143,5 +152,4 @@ class BBLV100View {
       }
     }
   }
-  
 }

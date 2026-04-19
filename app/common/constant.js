@@ -21,7 +21,17 @@ class Constant {
   /** - */
   static reduce = '-';
 
-  
+  /** 账单编号前缀 */
+  static billPrefix = 'B';
+
+  /** 定期存款编号前缀 */
+  static billPrefix = 'F';
+
+  /** 借贷编号前缀 */
+  static billPrefix = 'L';
+
+  /** 账单更多详情符号 */
+  static billMoreDownArrow = ' ⌵';
   
 }
 

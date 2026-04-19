@@ -51,7 +51,7 @@ class BBLV030View {
     // 可支配的勋章数量不足的场合
     if (effectiveLit.length < expenseCount) {
       CommonUtils.playAudio('popup_audio');
-      alert(Message.BBL0012I.message);
+      await Message.showInformation(Message.BBL0012I);
       return;
     }
     // 从数据库中取得所有的账单
@@ -61,18 +61,8 @@ class BBLV030View {
 
     // 循环支出的数量
     for (let i = 0; i < expenseCount; i++) {
-      // 从保存时间最长的勋章开始，更新勋章的状态
-      const medal = effectiveLit[i];
-      // 回退情报
-      const backInf = structuredClone(medal);
-      // 回退情报中的回退情报设为null，确保只能回退一次的限制
-      backInf.backInf = null;
-      // 账单关联的勋章ID数组
-      newBill.billMedalIdLit.push(medal.medalId);
       // 把勋章的状态更新为【已支出勋章】
-      medal.saveStateCd = mdlCd.code_03;
-      // 回退情报
-      medal.backInf = backInf;
+      effectiveLit[i].saveStateCd = mdlCd.code_03;
     }
 
     // 支出类型

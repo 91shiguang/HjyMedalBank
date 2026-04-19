@@ -92,6 +92,10 @@ img {
   background: linear-gradient(#dbeefc, #9bc6f5);
 }
 
+.gray-line {
+  background: #bababa;
+}
+
 .large-card {
   padding: 24px 16px;
   border-radius: 20px;
