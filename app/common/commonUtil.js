@@ -112,11 +112,11 @@ class CommonUtils {
    * 获取时间输入框的内容
    */
   static getTimeInputElementValue(elementId) {
-    return CommonUtils.transToDtilDate(document.getElementById(elementId).value);
+    return document.getElementById(elementId).value;
   }
 
   /**
-   * 日期格式转换（yyyy-MM-dd -> yyyy年MM月）
+   * 日期格式转换（yyyy-MM-dd -> yyyy年MM月dd日）
    */
   static transToDtilDate(value) {
     if (!value) {
@@ -133,7 +133,13 @@ class CommonUtils {
     }
 
     if (date.length >= 3) {
-      result = result + String(date[2]).padStart(2, '0') + '日';
+      if (date[2].length === 1) {
+        result = result + String(date[2]).padStart(2, '0') + '日';
+      } else if (date[2].length === 2) {
+        result = result + date[2] + '日';
+      } else if (date[2].length > 2) {
+        result = result + date[2].substring(0, 3) + '日';
+      }
     }
     return result;
   }

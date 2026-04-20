@@ -9,7 +9,7 @@
 
   .bill-header {
     background-color: #F4F6F6;
-    color: #00103694;
+    color: #999;
     padding: 8px 0;
     width: 100%;
     text-align: center;
@@ -45,7 +45,7 @@
 
   .sticky-header {
     position: sticky;
-    top: -4px;
+    top: 0px;
     background-color: #F4F6F6;
     z-index: 10;
   }

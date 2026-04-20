@@ -11,7 +11,7 @@ class BBLV120View {
   /**
    * 画面元素的初始化
    */
-  onInit(params) {
+  async onInit(params) {
     // 识别ID
     this.recognitionId = params.recognitionId;
     // 账单信息
@@ -42,11 +42,13 @@ class BBLV120View {
     // 经办时间
     document.getElementById('bblv120_time_value').innerText = this.billInf.billTime;
     // 详细说明
-    document.getElementById('bblv120_detail_value').innerText = this.billInf.billTipDetail ? this.billInf.billTipDetail : '无';
+    if (this.billInf.billTipDetail) {
+      this.showAndSetBillItem('bblv120_bill_detail', this.billInf.billTipDetail);
+    }
     // 账单编号
     document.getElementById('bblv120_bill_id').innerText = Constant.billPrefix + this.billInf.billId;
     // 根据账单事件设置更多详情 
-    this.setMorePageInfByBillActionCd();
+    await this.setMorePageInfByBillActionCd();
   }
 
   /**
@@ -66,7 +68,7 @@ class BBLV120View {
   /**
    * 根据账单事件设置更多详情
    */
-  setMorePageInfByBillActionCd() {
+  async setMorePageInfByBillActionCd() {
     // 关联账单
     const assBills = [];
     // 存在关联账单的场合
@@ -83,7 +85,7 @@ class BBLV120View {
       case billActionCd.code_01:
         // 账单金额标题
         document.getElementById('bblv120_sub_amount_title').innerText = '新增活期';
-  
+        return;
       // 新增勋章-定期存储
       case billActionCd.code_02:
       // 活期转定期
@@ -93,7 +95,7 @@ class BBLV120View {
         // 存期
         this.showAndSetBillItem('bblv120_fixed_term', CodeManager.termCd[this.billInf.termCd]);
         // 定存编号
-        this.showAndSetBillItem('bblv120_fixed_id', Constant.billPrefix + this.billInf.fixedId);
+        this.showAndSetBillItem('bblv120_fixed_id', Constant.fixedPrefix + this.billInf.fixedId);
         // 不存在关联账单的场合
         if (assBills.length === 0) {
           // 定存状态: 在存定期
@@ -119,34 +121,42 @@ class BBLV120View {
 
           }
         }
+        return;
       // 定期转活期
       case billActionCd.code_04:
         // 账单金额标题
         document.getElementById('bblv120_sub_amount_title').innerText = '转存活期';
+        return;
       // 消费支出
       case billActionCd.code_05:
         // 账单金额标题
         document.getElementById('bblv120_sub_amount_title').innerText = '支出金额';
+        return;
       // 定期自动到期
       case billActionCd.code_06:
         // 账单金额标题
         document.getElementById('bblv120_sub_amount_title').innerText = '定期利息';
+        return;
       // 抽奖
       case billActionCd.code_07:
         // 账单金额标题
         document.getElementById('bblv120_sub_amount_title').innerText = '获奖金额';
+        return;
       // 借贷
       case billActionCd.code_08:
         // 账单金额标题
         document.getElementById('bblv120_sub_amount_title').innerText = '借取金额';
+        return;
       // 还款
       case billActionCd.code_09:
         // 账单金额标题
         document.getElementById('bblv120_sub_amount_title').innerText = '还款金额';
+        return;
       // 取消账单
       case billActionCd.code_10:
         // 账单金额标题
         document.getElementById('bblv120_sub_amount_title').innerText = '退款金额';
+        return;
       default:
         return;
     }

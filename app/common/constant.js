@@ -22,13 +22,13 @@ class Constant {
   static reduce = '-';
 
   /** 账单编号前缀 */
-  static billPrefix = 'B';
+  static billPrefix = 'BillNo.';
 
   /** 定期存款编号前缀 */
-  static billPrefix = 'F';
+  static fixedPrefix = 'FixedNo.';
 
   /** 借贷编号前缀 */
-  static billPrefix = 'L';
+  static borrowPrefix = 'LoanNo.';
 
   /** 账单更多详情符号 */
   static billMoreDownArrow = ' ⌵';

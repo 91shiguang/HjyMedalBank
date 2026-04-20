@@ -1,4 +1,11 @@
 .bblv120-dialog {
+
+  .dialog-header-img {
+    top: -9px;
+    z-index: 1;
+    right: 10%;
+  }
+
   .sub-title {
     width: 100px;
   }

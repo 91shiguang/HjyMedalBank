@@ -96,8 +96,8 @@ class BBLV100View {
           .on('click', async () => {
             // 弹出账单详细画面
             const btnType = await PageUtil.openDialogPage(PageId.bblv120, billInf);
-            // 点击取消账单或者还款按钮的场合
-            if (btnType === BtnType.BILLCANCEL || btnType === BtnType.REPAYMENT) {
+            // 点击取消账单的场合
+            if (btnType === BtnType.BILLCANCEL) {
               // 刷新画面
               this.refresh();
             }

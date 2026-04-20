@@ -23,19 +23,20 @@ class BillModel {
   /** 账单事件区分 */
   billActionCd;
 
-  /** 定存办理批次Id */
+  /** 定存办理编号 */
   fixedId;
 
   /** 定存存期 */
   termCd;
 
-  /** 借贷办理批次Id */
+  /** 借贷办理编号 */
   borrowId;
 
   /** 关联账单ID数组 */
   assBillIdLit = [];
 
   /** 取消理由 */
+  cancelReason;
 
   /** 取消订单flg */
   isCancel;
