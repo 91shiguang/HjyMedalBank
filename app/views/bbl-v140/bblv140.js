@@ -105,7 +105,7 @@ class BBLV140View {
           return;
         }
         // 弹出定期转活期、定期批次选择对话框画面
-        const result = await PageUtil.openDialogPage(PageId.bblv150);
+        const result = await PageUtil.openDialogPage(PageId.bblv150, PageId.bblv140);
         // 点击取消的场合
         if (result.btnType === BtnType.CLOSE) {
           return;
@@ -117,7 +117,7 @@ class BBLV140View {
         // 显示定期勋章数量的输入框
         $('#fixed_to_free_count').removeClass('d-none');
         // 自动显示选择的定期勋章的数量
-        document.getElementById('fixed_to_free_count').value = result.billCount;
+        document.getElementById('fixedToFreeCount').value = result.billCount;
       }
 
       // 定期的场合
@@ -328,6 +328,8 @@ class BBLV140View {
     const newFixedlId = this.createNewFixedlId(billLit);
     // 当前时间
     const currentTime = CommonUtils.getBillTime();
+    // 定存计划结束时间
+    const fixedEndTime = this.calculateFixedEndTime(currentTime);
 
     // 存储数量
     const saveCount = CommonUtils.getInputElementValue('saveCount');
@@ -342,7 +344,7 @@ class BBLV140View {
       // 定存开始时间 
       newMedal.fixedStartTime = CommonUtils.transToDtilDate(currentTime);
       // 定存计划结束时间
-      newMedal.fixedEndTime = this.calculateFixedEndTime(currentTime);
+      newMedal.fixedEndTime = fixedEndTime;
       // 定存办理编号
       newMedal.fixedId = newFixedlId;
       medalLit.push(newMedal);
@@ -368,6 +370,8 @@ class BBLV140View {
     newBill.fixedId = newFixedlId;
     // 定存存期
     newBill.termCd = CommonUtils.getRadioCheckedValue('term');
+    // 定存计划结束时间
+    newBill.fixedEndTime = fixedEndTime;
     billLit.push(newBill);
 
     // 更新数据库的勋章
@@ -417,6 +421,8 @@ class BBLV140View {
     const newFixedlId = this.createNewFixedlId(billLit);
     // 当前时间
     const currentTime = CommonUtils.getBillTime();
+    // 定存计划结束时间
+    const fixedEndTime = this.calculateFixedEndTime(currentTime);
 
     // 循环存储的数量
     for (let i = 0; i < saveCount; i++) {
@@ -427,7 +433,7 @@ class BBLV140View {
       // 定存开始时间 
       medal.fixedStartTime = CommonUtils.transToDtilDate(currentTime);
       // 定存计划结束时间
-      medal.fixedEndTime = this.calculateFixedEndTime(currentTime);
+      medal.fixedEndTime = fixedEndTime;
       // 定存办理编号
       medal.fixedId = newFixedlId;
     }
@@ -448,6 +454,8 @@ class BBLV140View {
     newBill.fixedId = newFixedlId;
     // 定存存期
     newBill.termCd = CommonUtils.getRadioCheckedValue('term');
+    // 定存计划结束时间
+    newBill.fixedEndTime = fixedEndTime;
     billLit.push(newBill);
 
     // 更新数据库的勋章

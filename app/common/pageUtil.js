@@ -14,6 +14,8 @@ const bblv100 = new BBLV100View();
 const bblv110 = new BBLV110View();
 /** 账单详细信息对话框画面用js对象 */
 const bblv120 = new BBLV120View();
+/** 定期转活期, 选择的定期详细对话框画面用js对象 */
+const bblv130 = new BBLV130View();
 /** 常规存储画面用js对象 */
 const bblv140 = new BBLV140View();
 /** 定期转活期、定期批次选择对话框画面用js对象 */
@@ -55,6 +57,8 @@ const PageId = {
   bblv110: 'bblv110',
   /** 账单详细信息对话框画面 */
   bblv120: 'bblv120',
+  /** 定期转活期, 选择的定期详细对话框画面 */
+  bblv130: 'bblv130',
   /** 常规存储画面 */
   bblv140: 'bblv140',
   /** 定期转活期、定期批次选择对话框画面 */
@@ -99,6 +103,8 @@ const JSObject = {
   bblv110,
   /** 账单详细信息对话框画面用js对象 */
   bblv120,
+  /** 定期转活期, 选择的定期详细对话框画面 */
+  bblv130,
   /** 常规存储画面用js对象 */
   bblv140,
   /** 定期转活期、定期批次选择对话框画面用js对象 */
@@ -145,7 +151,6 @@ const BtnType = {
  * 画面表示相关的共通方法
  */
 class PageUtil {
-
   /**
    * 加载目标画面的内容
    */

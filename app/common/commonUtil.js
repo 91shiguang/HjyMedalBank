@@ -327,4 +327,30 @@ class CommonUtils {
         return Constant.blank;
     }
   }
+
+  /**
+   * 计算定存剩余天数
+   */
+  static calculateFixedRemainTime(endTime) {
+    // 当前时间
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    // 结束时间
+    const endYear = endTime.substring(0, 4);
+    const endMonth = endTime.substring(5, 7);
+    const endDay = endTime.substring(8, 10);
+    const endDate = new Date(endYear, endMonth - 1, endDay);
+
+    const diff = endDate - today;
+    return Math.ceil(diff / (1000 * 60 * 60 * 24));
+  }
+
+  /**
+   * 计算定期存款的收益
+   */
+  static calculateFixedIncome(billInf, settingInf) {
+    // TODO
+    return Constant.blank;
+  }
 }

@@ -1,1 +1,73 @@
-<div>bblv130</div>
+<div class="dialog bblv130-dialog">
+  <img class="dialog-header-img" width="100" src="assets/images/tom_and_jerry_04.png">
+  <div class="modal-header">账单详情</div>
+  <div class="modal-body">
+    <div class="content d-flex flex-column font-14">
+      <div class="w-100 d-flex flex-column align-items-center gap-2">
+        <img width="40" height="40" src="assets/images/定期存款.png">
+        <span id="bblv130_bill_action"></span>
+        <div class="d-flex font-bold-20 align-items-center">
+          <span id="bblv130_unit" class="d-none">+</span>
+          <img id="bblv130_unit_img" class="me-1 mt-1 d-none" width="20" height="20" src="assets/images/循环.png">
+          <span id="bblv130_amount"></span>
+        </div>
+        <span id="bblv130_bill_tip"></span>
+      </div>
+      <hr class="gray-line">
+      <div class="d-flex">
+        <span class="color-gary sub-title">定期存额</span>
+        <span id="bblv130_sub_amount_value" class="sub-value"></span>
+      </div>
+      <!-- 开始时间 -->
+      <div class="d-flex mt-3">
+        <span class="color-gary sub-title">开始时间</span>
+        <span id="bblv130_fixed_start_value" class="sub-value"></span>
+      </div>
+      <!-- 定期存款的存期 -->
+      <div class="d-flex mt-3">
+        <span class="color-gary sub-title">存期</span>
+        <span id="bblv130_fixed_term_value" class="sub-value"></span>
+      </div>
+      <!-- 剩余时长 -->
+      <div class="d-flex mt-3 align-items-center">
+        <span class="color-gary sub-title">剩余时长</span>
+        <span id="bblv130_fixed_remain_value" class="sub-value"></span>
+      </div>
+      <!-- 预计收益 -->
+      <div class="d-flex mt-3">
+        <span class="color-gary sub-title">预计收益</span>
+        <span id="bblv130_fixed_new_value" class="sub-value"></span>
+      </div>
+      <!-- 当前状态 -->
+      <div class="d-flex mt-3">
+        <span class="color-gary sub-title">状态</span>
+        <span class="sub-value">在存定期</span>
+      </div>
+      <!-- 定期存款批次 -->
+      <div class="d-flex mt-3">
+        <span class="color-gary sub-title">定存编号</span>
+        <span id="bblv130_fixed_id_value" class="sub-value"></span>
+      </div>
+      <div class="d-flex mt-3">
+        <span class="color-gary sub-title">经办人</span>
+        <span id="bblv130_pch_value" class="sub-value"></span>
+      </div>
+      <div class="d-flex mt-3">
+        <span class="color-gary sub-title">经办时间</span>
+        <span id="bblv130_time_value" class="sub-value"></span>
+      </div>
+      <div id="bblv130_bill_detail" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">详细说明</span>
+        <span id="bblv130_bill_detail_value" class="sub-value"></span>
+      </div>
+    </div>
+    <div id="bblv130_double_footer" class="footer justify-content-between">
+      <div class="btn-div">
+        <button type="button" onclick="bblv130.close()">关闭</button>
+      </div>
+      <div class="btn-div">
+        <button type="button" onclick="bblv130.confirm()">确定</button>
+      </div>
+    </div>
+  </div>
+</div>

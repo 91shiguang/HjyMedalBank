@@ -156,4 +156,16 @@ class BBLV010View {
     PageUtil.setMainBgPink();
     await this.refresh();
   }
+
+  /**
+   * 点击定期资产链接
+   */
+  async clickFixedAssetsLink() {
+    // 不存在定期资产的场合
+    if (!$('#fixed_div').hasClass('fixed-link')) {
+      return;
+    }
+    // 显示定期资产一览
+    await PageUtil.openDialogPage(PageId.bblv150, PageId.bblv010);
+  }
 }

@@ -1,0 +1,40 @@
+.bblv150-dialog {
+  .dialog-header-img {
+    top: -9px;
+    z-index: 1;
+    right: 10%;
+  }
+
+  .content {
+    overflow: hidden !important;
+    padding: 5px !important;
+
+    .insert-padding {
+      max-height: calc(95dvh - 126px);
+      padding: 8px 0px !important;
+      overflow-y: hidden !important;
+
+      .fixed-data {
+        max-height: calc(95dvh - 158px);
+        padding: 8px 16px;
+
+        .bill-line {
+          width: 100%;
+          background-color: white;
+          padding: 12px;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+
+          .line-content {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+      }
+    }
+  }
+
+
+
+}

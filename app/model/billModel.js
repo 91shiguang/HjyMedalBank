@@ -29,6 +29,9 @@ class BillModel {
   /** 定存存期 */
   termCd;
 
+  /** 定存计划结束时间 */
+  fixedEndTime;
+
   /** 借贷办理编号 */
   borrowId;
 

@@ -9,16 +9,6 @@ class BBLV100View {
    * 初始化
    */
   onInit() {
-    // 实现虚拟滚动加载更多数据
-    const container = document.getElementById('bblv100_data_have');
-    container.addEventListener('scroll', ()=> {
-      const scrollHeight = container.scrollHeight;
-      const scrollTop = container.scrollTop;
-      const clientHeight = container.clientHeight;
-      if (scrollHeight - scrollTop <= clientHeight + 100) { // 当滚动到接近底部时
-        this.loadData(); // 模拟加载更多数据
-      }
-    });
     this.refresh();
   }
 
