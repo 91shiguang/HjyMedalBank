@@ -14,7 +14,7 @@ class MedalModel {
   /** 定存计划结束时间 */
   fixedEndTime;
 
-  /** 定存办理编号 */
+  /** 存单编号 */
   fixedId;
 
   /** 借贷时间 */

@@ -23,7 +23,7 @@ class BillModel {
   /** 账单事件区分 */
   billActionCd;
 
-  /** 定存办理编号 */
+  /** 存单编号 */
   fixedId;
 
   /** 定存存期 */
@@ -35,12 +35,15 @@ class BillModel {
   /** 借贷办理编号 */
   borrowId;
 
+  /** 借贷利息累计 */
+  borrowInterest = 0;
+
+  /** 前回计算利息时间 */
+  lstIntClcDatTs;
+
   /** 关联账单ID数组 */
   assBillIdLit = [];
 
-  /** 取消理由 */
-  cancelReason;
-
-  /** 取消订单flg */
-  isCancel;
+  /** 消费支出账单绑定的勋章ID数组 */
+  expenseMedalIdLit = [];
 }

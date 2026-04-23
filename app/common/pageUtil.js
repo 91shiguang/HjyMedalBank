@@ -24,6 +24,8 @@ const bblv150 = new BBLV150View();
 const bblv160 = new BBLV160View();
 /** 抽奖设置对话框画面用js对象 */
 const bblv170 = new BBLV170View();
+/** 订单取消理由对话框画面用js对象 */
+const bblv180 = new BBLV180View();
 /** 借贷记录详细信息对话框画面用js对象 */
 const bblv190 = new BBLV190View();
 /** 还款记录详细信息对话框画面用js对象 */
@@ -67,6 +69,8 @@ const PageId = {
   bblv160: 'bblv160',
   /** 抽奖设置对话框画面 */
   bblv170: 'bblv170',
+  /** 订单取消理由对话框画面 */
+  bblv180: 'bblv180',
   /** 借贷记录详细信息对话框画面 */
   bblv190: 'bblv190',
   /** 还款记录详细信息对话框画面 */
@@ -113,6 +117,8 @@ const JSObject = {
   bblv160,
   /** 增加抽奖次数对话框画面用js对象 */
   bblv170,
+  /** 订单取消理由对话框画面用js对象 */
+  bblv180,
   /** 借贷记录详细信息对话框画面用js对象 */
   bblv190,
   /** 还款记录详细信息对话框画面用js对象 */

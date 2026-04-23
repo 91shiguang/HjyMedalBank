@@ -85,7 +85,7 @@ class BBLV100View {
           .attr('class', 'w-100')
           .on('click', async () => {
             // 弹出账单详细画面
-            const btnType = await PageUtil.openDialogPage(PageId.bblv120, billInf);
+            const btnType = await PageUtil.openDialogPage(PageId.bblv120, billInf.billId);
             // 点击取消账单的场合
             if (btnType === BtnType.BILLCANCEL) {
               // 刷新画面
@@ -131,7 +131,7 @@ class BBLV100View {
         // 添加账单金额
         rightDetail.append('div').text(billInf.billCount);
         // 订单被取消的场合
-        if (billInf.isCancel) {
+        if (billInf.billActionCd === billActionCd.code_05 && billInf.assBillIdLit.length > 0) {
           // 添加已取消
           rightContent.append('div').text('已取消').attr('class', 'bill-cancel text-info');
         }

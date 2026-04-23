@@ -47,7 +47,7 @@ class BBLV030View {
     // 获取可以使用的勋章
     const effectiveLit = medalLit.filter(item => item.saveStateCd === mdlCd.code_01);
     // 支出数量
-    const expenseCount = CommonUtils.getInputElementValue('expenseCount');
+    const expenseCount = Number(CommonUtils.getInputElementValue('expenseCount'));
     // 可支配的勋章数量不足的场合
     if (effectiveLit.length < expenseCount) {
       CommonUtils.playAudio('popup_audio');
@@ -63,6 +63,7 @@ class BBLV030View {
     for (let i = 0; i < expenseCount; i++) {
       // 把勋章的状态更新为【已支出勋章】
       effectiveLit[i].saveStateCd = mdlCd.code_03;
+      newBill.expenseMedalIdLit.push(effectiveLit[i].medalId);
     }
 
     // 支出类型

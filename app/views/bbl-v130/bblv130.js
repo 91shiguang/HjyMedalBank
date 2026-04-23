@@ -42,7 +42,7 @@ class BBLV130View {
     document.getElementById('bblv130_fixed_remain_value').innerText = CommonUtils.calculateFixedRemainTime(this.billInf.fixedEndTime) + '天';
     // 预计收益
     document.getElementById('bblv130_fixed_new_value').innerText = CommonUtils.calculateFixedIncome(this.billInf, settingInf);
-    // 定存编号
+    // 存单编号
     document.getElementById('bblv130_fixed_id_value').innerText = Constant.fixedPrefix + this.billInf.fixedId;
     // 经办人
     document.getElementById('bblv130_pch_value').innerText = CodeManager.pchCd[this.billInf.billPchCd];

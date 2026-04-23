@@ -199,7 +199,7 @@ class BBLV140View {
     const newMedalId = CommonUtils.createNewMedalId(medalLit);
 
     // 存储数量
-    const saveCount = CommonUtils.getInputElementValue('saveCount');
+    const saveCount = Number(CommonUtils.getInputElementValue('saveCount'));
     // 循环存储的数量
     for (let i = 0; i < saveCount; i++) {
       // 新建勋章
@@ -271,7 +271,7 @@ class BBLV140View {
       medal.fixedStartTime = undefined;
       // 定存计划结束时间
       medal.fixedEndTime = undefined;
-      // 定存办理编号
+      // 存单编号
       medal.fixedId = undefined;
     });
 
@@ -324,7 +324,7 @@ class BBLV140View {
     const billLit = await DataBase.getBillInfFromDB();
     // 创建新的勋章ID
     const newMedalId = CommonUtils.createNewMedalId(medalLit);
-    // 创建新的定存编号
+    // 创建新的存单编号
     const newFixedlId = this.createNewFixedlId(billLit);
     // 当前时间
     const currentTime = CommonUtils.getBillTime();
@@ -332,7 +332,7 @@ class BBLV140View {
     const fixedEndTime = this.calculateFixedEndTime(currentTime);
 
     // 存储数量
-    const saveCount = CommonUtils.getInputElementValue('saveCount');
+    const saveCount = Number(CommonUtils.getInputElementValue('saveCount'));
     // 循环存储的数量
     for (let i = 0; i < saveCount; i++) {
       // 新建勋章
@@ -345,7 +345,7 @@ class BBLV140View {
       newMedal.fixedStartTime = CommonUtils.transToDtilDate(currentTime);
       // 定存计划结束时间
       newMedal.fixedEndTime = fixedEndTime;
-      // 定存办理编号
+      // 存单编号
       newMedal.fixedId = newFixedlId;
       medalLit.push(newMedal);
     }
@@ -366,7 +366,7 @@ class BBLV140View {
     newBill.billPchCd = CommonUtils.getRadioCheckedValue('savePch');
     // 账单事件区分
     newBill.billActionCd = billActionCd.code_02;
-    // 定存办理编号
+    // 存单编号
     newBill.fixedId = newFixedlId;
     // 定存存期
     newBill.termCd = CommonUtils.getRadioCheckedValue('term');
@@ -395,7 +395,7 @@ class BBLV140View {
     // 从数据库中取得现有所有的勋章
     const medalLit = await DataBase.getMedalInfFromDB();
     // 存储数量
-    const saveCount = CommonUtils.getInputElementValue('saveCount');
+    const saveCount = Number(CommonUtils.getInputElementValue('saveCount'));
     // 获取完全属于自己的活期勋章
     const ownMedals = medalLit.filter(item =>
       // 活期勋章
@@ -417,7 +417,7 @@ class BBLV140View {
     }
     // 从数据库中取得所有的账单
     const billLit = await DataBase.getBillInfFromDB();
-    // 创建新的定存编号
+    // 创建新的存单编号
     const newFixedlId = this.createNewFixedlId(billLit);
     // 当前时间
     const currentTime = CommonUtils.getBillTime();
@@ -434,7 +434,7 @@ class BBLV140View {
       medal.fixedStartTime = CommonUtils.transToDtilDate(currentTime);
       // 定存计划结束时间
       medal.fixedEndTime = fixedEndTime;
-      // 定存办理编号
+      // 存单编号
       medal.fixedId = newFixedlId;
     }
 
@@ -450,7 +450,7 @@ class BBLV140View {
     newBill.billPchCd = CommonUtils.getRadioCheckedValue('savePch');
     // 账单事件区分
     newBill.billActionCd = billActionCd.code_03;
-    // 定存办理编号
+    // 存单编号
     newBill.fixedId = newFixedlId;
     // 定存存期
     newBill.termCd = CommonUtils.getRadioCheckedValue('term');

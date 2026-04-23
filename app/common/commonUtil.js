@@ -289,7 +289,7 @@ class CommonUtils {
         return CodeManager.epsTyCd[tipCd];
       // 定期自动到期
       case billActionCd.code_06:
-        return '理财进项';
+        return '定存收益';
       // 抽奖
       case billActionCd.code_07:
         return '获奖勋章';
@@ -312,12 +312,13 @@ class CommonUtils {
    */
   static getExpensePro(actionCd) {
     switch (actionCd) {
-      // 新增勋章-活期存储、新增勋章-定期存储、定期自动到期、抽奖、借贷
+      // 新增勋章-活期存储、新增勋章-定期存储、定期自动到期、抽奖、借贷、取消账单
       case billActionCd.code_01:
       case billActionCd.code_02:
       case billActionCd.code_06:
       case billActionCd.code_07:
       case billActionCd.code_08:
+      case billActionCd.code_10:
         return Constant.add;
       // 消费支出、还款
       case billActionCd.code_05:
