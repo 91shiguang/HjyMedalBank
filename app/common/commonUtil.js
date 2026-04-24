@@ -112,11 +112,11 @@ class CommonUtils {
    * 获取时间输入框的内容
    */
   static getTimeInputElementValue(elementId) {
-    return CommonUtils.transToDtilDate(document.getElementById(elementId).value);
+    return document.getElementById(elementId).value;
   }
 
   /**
-   * 日期格式转换（yyyy-MM-dd -> yyyy年MM月）
+   * 日期格式转换（yyyy-MM-dd -> yyyy年MM月dd日）
    */
   static transToDtilDate(value) {
     if (!value) {
@@ -133,7 +133,13 @@ class CommonUtils {
     }
 
     if (date.length >= 3) {
-      result = result + String(date[2]).padStart(2, '0') + '日';
+      if (date[2].length === 1) {
+        result = result + String(date[2]).padStart(2, '0') + '日';
+      } else if (date[2].length === 2) {
+        result = result + date[2] + '日';
+      } else if (date[2].length > 2) {
+        result = result + date[2].substring(0, 3) + '日';
+      }
     }
     return result;
   }
@@ -187,6 +193,7 @@ class CommonUtils {
    * 播放音频
    */
   static playAudio(audioId) {
+    CommonUtils.stopAudio(audioId);
     document.getElementById(audioId).play();
   }
 
@@ -228,10 +235,10 @@ class CommonUtils {
    */
   static getBillIcon(actionCd) {
     switch (actionCd) {
-      // 新增活期存储
+      // 新增勋章-活期存储
       case billActionCd.code_01:
         return 'assets/images/活期存款.png';
-      // 新增定期存储
+      // 新增勋章-定期存储
       case billActionCd.code_02:
         return 'assets/images/定期存款.png';
       // 活期转定期
@@ -255,6 +262,9 @@ class CommonUtils {
       // 还款
       case billActionCd.code_09:
         return 'assets/images/还款.png';
+      // 取消账单
+      case billActionCd.code_10:
+        return 'assets/images/取消账单.png';
       default:
         return Constant.blank;
     }
@@ -265,7 +275,7 @@ class CommonUtils {
    */
   static getBillSimpleTip(actionCd, tipCd) {
     switch (actionCd) {
-      // 新增活期存储、新增定期存储
+      // 新增勋章-活期存储、新增勋章-定期存储
       case billActionCd.code_01:
       case billActionCd.code_02:
         return CodeManager.mdlSrcTipCd[tipCd];
@@ -274,22 +284,25 @@ class CommonUtils {
         return '勋章理财';
       // 定期转活期
       case billActionCd.code_04:
-        return '取消理财';
+        return '定期中断';
       // 消费支出
       case billActionCd.code_05:
         return CodeManager.epsTyCd[tipCd];
       // 定期自动到期
       case billActionCd.code_06:
-        return '理财进项';
+        return '定存收益';
       // 抽奖
       case billActionCd.code_07:
-        return '中奖勋章';
+        return '获奖勋章';
       // 借贷
       case billActionCd.code_08:
         return '勋章预支';
       // 还款
       case billActionCd.code_09:
         return CodeManager.repayCd[tipCd];
+      // 取消账单
+      case billActionCd.code_09:
+        return '退款成功';
       default:
         return Constant.blank;
     }
@@ -300,12 +313,13 @@ class CommonUtils {
    */
   static getExpensePro(actionCd) {
     switch (actionCd) {
-      // 新增活期存储、新增定期存储、定期自动到期、抽奖、借贷
+      // 新增勋章-活期存储、新增勋章-定期存储、定期自动到期、抽奖、借贷、取消账单
       case billActionCd.code_01:
       case billActionCd.code_02:
       case billActionCd.code_06:
       case billActionCd.code_07:
       case billActionCd.code_08:
+      case billActionCd.code_10:
         return Constant.add;
       // 消费支出、还款
       case billActionCd.code_05:
@@ -314,5 +328,31 @@ class CommonUtils {
       default:
         return Constant.blank;
     }
+  }
+
+  /**
+   * 计算定存剩余天数
+   */
+  static calculateFixedRemainTime(endTime) {
+    // 当前时间
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    // 结束时间
+    const endYear = endTime.substring(0, 4);
+    const endMonth = endTime.substring(5, 7);
+    const endDay = endTime.substring(8, 10);
+    const endDate = new Date(endYear, endMonth - 1, endDay);
+
+    const diff = endDate - today;
+    return Math.ceil(diff / (1000 * 60 * 60 * 24));
+  }
+
+  /**
+   * 计算定期存款的收益
+   */
+  static calculateFixedIncome(billInf, settingInf) {
+    // TODO
+    return Constant.blank;
   }
 }

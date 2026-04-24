@@ -1,1 +1,37 @@
-<div>bblv180</div>
+<div class="dialog bblv180-dialog">
+  <img class="dialog-header-img" width="200" src="assets/images/tom_and_jerry_02.png">
+  <div class="modal-header">账单取消确认</div>
+  <div class="modal-body">
+    <div class="content d-flex flex-column gap-3">
+      <div class="d-flex gap-3">
+        <span class="fw-bold">取消理由</span>
+        <span id="bblv180_reason_error" class="text-danger"></span>
+      </div>
+      <div class="w-100 px-3">
+        <textarea autocomplete="off" type="text" id="bblv180_cancel_reason" class="w-100" placeholder="请输入30文字以内的取消理由"
+          maxlength="30"></textarea>
+      </div>
+      <div class="d-flex flex-column gap-3">
+        <span class="fw-bold">经办人</span>
+        <div class="d-flex gap-5 px-3">
+          <label class="radio-label" onclick="CommonUtils.clickRadio('bblv180SavePch', 'bblv180_savePch_01', event)">
+            <input type="radio" id="bblv180_savePch_01" name="bblv180SavePch" class="radio-btn" value="01">
+            <span class="radio-custom"></span>妈妈
+          </label>
+          <label class="radio-label" onclick="CommonUtils.clickRadio('bblv180SavePch', 'bblv180_savePch_02', event)">
+            <input type="radio" id="bblv180_savePch_02" name="bblv180SavePch" class="radio-btn" value="02">
+            <span class="radio-custom"></span>爸爸
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="footer justify-content-between">
+      <div class="btn-div">
+        <button type="button" onclick="bblv180.close()">关闭</button>
+      </div>
+      <div class="btn-div">
+        <button type="button" onclick="bblv180.confirm()">确定</button>
+      </div>
+    </div>
+  </div>
+</div>

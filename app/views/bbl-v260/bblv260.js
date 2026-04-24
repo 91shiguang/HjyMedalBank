@@ -27,6 +27,7 @@ class BBLV260View {
    * 点击确定按钮
    */
   clickOkBtn() {
+    CommonUtils.playAudio('click_audio');
     PageUtil.emitDialog(this.recognitionId, BtnType.CONFIRM);
   }
 
@@ -34,6 +35,7 @@ class BBLV260View {
    * 点击取消按钮
    */
   clickCancelBtn() {
+    CommonUtils.playAudio('click_audio');
     PageUtil.emitDialog(this.recognitionId, BtnType.Cancel);
   }
 }

@@ -56,6 +56,23 @@
         <input autocomplete="off" type="number" id="fixedToFreeCount" class="w-100" min="50" step="50" readonly="true">
       </div>
     </div>
+    <div class="d-flex flex-column gap-3" id="fixed_term">
+      <span class="fw-bold">存期</span>
+      <div class="px-3 d-flex flex-column gap-4">
+        <label class="radio-label" onclick="CommonUtils.clickRadio('term', 'term_01', event)">
+          <input type="radio" id="term_01" name="term" class="radio-btn" value="01">
+          <span class="radio-custom"></span>3个月
+        </label>
+        <label class="radio-label" onclick="CommonUtils.clickRadio('term', 'term_02', event)">
+          <input type="radio" id="term_02" name="term" class="radio-btn" value="02">
+          <span class="radio-custom"></span>半年期
+        </label>
+        <label class="radio-label" onclick="CommonUtils.clickRadio('term', 'term_03', event)">
+          <input type="radio" id="term_03" name="term" class="radio-btn" value="03">
+          <span class="radio-custom"></span>1年期
+        </label>
+      </div>
+    </div>
     <div class="d-flex flex-column gap-3" id="mdl_src_tip">
       <span class="fw-bold">说明</span>
       <div class="px-3 d-flex flex-column gap-4">
@@ -72,7 +89,7 @@
           <span class="radio-custom"></span>长辈奖励
         </label>
         <textarea autocomplete="off" type="text" id="mdlSrcTipDetail" class="w-100"
-          placeholder="详细说明（30文字以内，非必须输入）"></textarea>
+          placeholder="详细说明（30文字以内，非必须输入）" maxlength="30"></textarea>
       </div>
     </div>
   </div>

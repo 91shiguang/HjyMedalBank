@@ -1,0 +1,15 @@
+.bblv130-dialog {
+  .dialog-header-img {
+    top: -9px;
+    z-index: 1;
+    right: 10%;
+  }
+
+  .sub-title {
+    width: 100px;
+  }
+  
+  .sub-value {
+    width: calc(100% - 100px);
+  }
+}

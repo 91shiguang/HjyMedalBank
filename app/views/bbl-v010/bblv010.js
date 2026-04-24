@@ -42,6 +42,7 @@ class BBLV010View {
    * 点击存储按钮
    */
   async clickSaveBtn() {
+    CommonUtils.playAudio('click_audio');
     // 隐藏查询标签主画面
     $('#bblv010_main').addClass('d-none');
     // 显示存储画面
@@ -67,6 +68,7 @@ class BBLV010View {
    * 点击支出按钮
    */
   async clickExpenseBtn() {
+    CommonUtils.playAudio('click_audio');
     // 隐藏查询标签主画面
     $('#bblv010_main').addClass('d-none');
     // 显示支出画面
@@ -92,6 +94,7 @@ class BBLV010View {
    * 点击抽奖按钮
    */
   async clickLotteryBtn() {
+    CommonUtils.playAudio('click_audio');
     // 隐藏查询标签主画面
     $('#bblv010_main').addClass('d-none');
     // 显示抽奖画面
@@ -117,6 +120,7 @@ class BBLV010View {
    * 点击账单按钮
    */
   async clickBillBtn() {
+    CommonUtils.playAudio('click_audio');
     // 隐藏查询标签主画面
     $('#bblv010_main').addClass('d-none');
     // 显示账单画面
@@ -142,6 +146,7 @@ class BBLV010View {
    * 点击返回按钮
    */
   async clickBackBtn() {
+    CommonUtils.playAudio('click_audio');
     // 隐藏勋章查询和账单查询画面
     $('#bblv010_sub_page').addClass('d-none');
     document.getElementById('bblv140').innerHTML = null;
@@ -155,5 +160,18 @@ class BBLV010View {
     // 主题背景颜色变为粉色
     PageUtil.setMainBgPink();
     await this.refresh();
+  }
+
+  /**
+   * 点击定期资产链接
+   */
+  async clickFixedAssetsLink() {
+    CommonUtils.playAudio('click_audio');
+    // 不存在定期资产的场合
+    if (!$('#fixed_div').hasClass('fixed-link')) {
+      return;
+    }
+    // 显示定期资产一览
+    await PageUtil.openDialogPage(PageId.bblv150, PageId.bblv010);
   }
 }

@@ -1,0 +1,51 @@
+.bblv120-dialog {
+
+  .dialog-header-img {
+    top: -9px;
+    z-index: 1;
+    right: 10%;
+  }
+
+  .sub-title {
+    width: 100px;
+  }
+
+  .bill-cancel {
+    padding: 4px 12px;
+    width: max-content;
+    position: absolute;
+    top: 185px;
+    right: 70px;
+    border: 4px solid rgba(13, 202, 240);
+    transform: rotate(348deg);
+    transform-origin: center;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .sub-value {
+    width: calc(100% - 100px);
+  }
+
+  .bill-more-area {
+    .gray-line {
+      margin-top: 26px !important;
+      margin-bottom: 0px;
+    }
+
+    .ass-bill-title {
+      position: absolute;
+      top: 16px;
+      left: 0px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      .ass-bill-title-txt {
+        padding: 0px 16px;
+        width: max-content;
+        background-color: #f7f7f8;
+      }
+    }
+  }
+}

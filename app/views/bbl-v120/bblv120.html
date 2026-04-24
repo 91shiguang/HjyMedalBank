@@ -1,1 +1,332 @@
-<div>bblv120</div>
+<div class="dialog bblv120-dialog">
+  <img class="dialog-header-img" width="100" src="assets/images/tom_and_jerry_04.png">
+  <div class="modal-header">账单详情</div>
+  <div class="modal-body">
+    <div class="content d-flex flex-column font-14 position-relative">
+      <div class="w-100 d-flex flex-column align-items-center gap-2">
+        <img id="bblv120_bill_top_img" width="40" height="40">
+        <span id="bblv120_bill_action"></span>
+        <div class="d-flex font-bold-20 align-items-center">
+          <span id="bblv120_unit" class="d-none"></span>
+          <img id="bblv120_unit_img" class="me-1 mt-1 d-none" width="20" height="20">
+          <span id="bblv120_amount"></span>
+        </div>
+        <span id="bblv120_bill_tip"></span>
+      </div>
+      <hr class="gray-line">
+      <div class="d-flex">
+        <span id="bblv120_sub_amount_title" class="color-gary sub-title"></span>
+        <span id="bblv120_sub_amount_value" class="sub-value"></span>
+      </div>
+      <div id="bblv120_bill_cancel_sign" class="bill-cancel text-info d-none">已取消</div>
+      <!-- 定期存款的存期 -->
+      <div id="bblv120_fixed_term" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">存期</span>
+        <span id="bblv120_fixed_term_value" class="sub-value"></span>
+      </div>
+      <!-- 获得收益 -->
+      <div id="bblv120_fixed_new" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">获得收益</span>
+        <span id="bblv120_fixed_new_value" class="sub-value"></span>
+      </div>
+      <!-- 借贷利息 -->
+      <div id="bblv120_borrow_new" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">借贷利息</span>
+        <span id="bblv120_borrow_new_value" class="sub-value"></span>
+      </div>
+      <!-- 存单编号 -->
+      <div id="bblv120_fixed_id" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">存单编号</span>
+        <span id="bblv120_fixed_id_value" class="sub-value"></span>
+      </div>
+      <!-- 借款批次 -->
+      <div id="bblv120_borrow_id" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">借条编号</span>
+        <span id="bblv120_borrow_id_value" class="sub-value"></span>
+      </div>
+      <!-- 当前状态(在存/中断/自动到期/未还款/已还部分本金/已还全部本金) -->
+      <div id="bblv120_bill_state" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">状态</span>
+        <span id="bblv120_bill_state_value" class="sub-value"></span>
+      </div>
+      <div id="bblv120_pch" class="d-flex mt-3">
+        <span class="color-gary sub-title">经办人</span>
+        <span id="bblv120_pch_value" class="sub-value"></span>
+      </div>
+      <div class="d-flex mt-3">
+        <span class="color-gary sub-title">经办时间</span>
+        <span id="bblv120_time_value" class="sub-value"></span>
+      </div>
+      <div id="bblv120_bill_detail" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">详细说明</span>
+        <span id="bblv120_bill_detail_value" class="sub-value"></span>
+      </div>
+      <!-- 账单取消理由 -->
+      <div id="bblv120_cancel_reason" class="d-flex mt-3 d-none">
+        <span class="color-gary sub-title">取消理由</span>
+        <span id="bblv120_cancel_reason_value" class="sub-value"></span>
+      </div>
+      <div class="d-flex mt-3">
+        <span class="color-gary sub-title">账单编号</span>
+        <span id="bblv120_bill_id" class="sub-value"></span>
+      </div>
+      <div id="bblv120_more_button" class="d-flex justify-content-center more-text text-primary p-3 pb-0 d-none"
+        onclick="bblv120.clickShowMoreInf()">
+        <span id="bblv120_more_button_value"></span>
+      </div>
+      <!-- 关联账单详情 -->
+      <div id="bblv120_bill_more_area" class="bill-more-area w-100 position-relative d-none">
+        <hr class="gray-line">
+        <!-- 定期账单(已被中断)，关联的定期转活期的账单详情 -->
+        <div id="bblv120_bill_more_01" class="w-100 d-flex flex-column d-none">
+          <div class="ass-bill-title">
+            <div id="bblv120_bill_more_title_01" class="ass-bill-title-txt"></div>
+          </div>
+          <div class="d-flex mt-4">
+            <span class="color-gary sub-title">转存活期</span>
+            <span id="bblv120_more_amount_01" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办人</span>
+            <span id="bblv120_more_pch_01" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办时间</span>
+            <span id="bblv120_more_time_01" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">账单编号</span>
+            <span id="bblv120_more_id_01" class="sub-value"></span>
+          </div>
+        </div>
+        <!-- 定期账单(已到期)，关联的定期存款自动到期账单详情 -->
+        <div id="bblv120_bill_more_02" class="w-100 d-flex flex-column d-none">
+          <div class="ass-bill-title">
+            <div id="bblv120_bill_more_title_02" class="ass-bill-title-txt"></div>
+          </div>
+          <div class="d-flex mt-4">
+            <span class="color-gary sub-title">定存收益</span>
+            <span id="bblv120_more_amount_02" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办人</span>
+            <span id="bblv120_more_pch_02" class="sub-value">系统自行办理</span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办时间</span>
+            <span id="bblv120_more_time_02" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">账单编号</span>
+            <span id="bblv120_more_id_02" class="sub-value"></span>
+          </div>
+        </div>
+        <!-- 定期转活期的账单，关联的定期存款详情 -->
+        <div id="bblv120_bill_more_03" class="w-100 d-flex flex-column d-none">
+          <div class="ass-bill-title">
+            <div id="bblv120_bill_more_title_03" class="ass-bill-title-txt"></div>
+          </div>
+          <div class="d-flex mt-4">
+            <span class="color-gary sub-title">定期存额</span>
+            <span id="bblv120_more_amount_03" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">存期</span>
+            <span id="bblv120_more_term_03" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">存单编号</span>
+            <span id="bblv120_more_fixed_id_03" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">状态</span>
+            <span id="bblv120_more_state_03" class="sub-value">定期存款已中断</span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">定期来源</span>
+            <span id="bblv120_more_medal_src_03" class="sub-value"></span>
+          </div>
+          <div id="bblv120_more_medal_src_tip_03" class="d-flex mt-3 d-none">
+            <span class="color-gary sub-title">来源说明</span>
+            <span id="bblv120_more_medal_src_tip_03_value" class="sub-value"></span>
+          </div>
+          <div id="bblv120_more_detail_03" class="d-flex mt-3 d-none">
+            <span class="color-gary sub-title">详细说明</span>
+            <span id="bblv120_more_detail_03_value" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办人</span>
+            <span id="bblv120_more_pch_03" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办时间</span>
+            <span id="bblv120_more_time_03" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">账单编号</span>
+            <span id="bblv120_more_id_03" class="sub-value"></span>
+          </div>
+        </div>
+        <!-- 定期自动到期的账单，关联的定期存款详情 -->
+        <div id="bblv120_bill_more_04" class="w-100 d-flex flex-column d-none">
+          <div class="ass-bill-title">
+            <div id="bblv120_bill_more_title_04" class="ass-bill-title-txt"></div>
+          </div>
+          <div class="d-flex mt-4">
+            <span class="color-gary sub-title">定期存额</span>
+            <span id="bblv120_more_amount_04" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">存期</span>
+            <span id="bblv120_more_term_04" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">存单编号</span>
+            <span id="bblv120_more_fixed_id_04" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">状态</span>
+            <span id="bblv120_more_state_04" class="sub-value">定期存款已自动到期</span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">定期来源</span>
+            <span id="bblv120_more_medal_src_04" class="sub-value"></span>
+          </div>
+          <div id="bblv120_more_medal_src_04" class="d-flex mt-3 d-none">
+            <span class="color-gary sub-title">来源说明</span>
+            <span id="bblv120_more_medal_src_04_value" class="sub-value"></span>
+          </div>
+          <div id="bblv120_more_detail_04" class="d-flex mt-3 d-none">
+            <span class="color-gary sub-title">详细说明</span>
+            <span id="bblv120_more_detail_04_value" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办人</span>
+            <span id="bblv120_more_pch_04" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办时间</span>
+            <span id="bblv120_more_time_04" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">账单编号</span>
+            <span id="bblv120_more_id_04" class="sub-value"></span>
+          </div>
+        </div>
+        <!-- 支出账单，取消详情 -->
+        <div id="bblv120_bill_more_05" class="w-100 d-flex flex-column d-none">
+          <div class="ass-bill-title">
+            <div id="bblv120_bill_more_title_05" class="ass-bill-title-txt"></div>
+          </div>
+          <div class="d-flex mt-4">
+            <span class="color-gary sub-title">退款金额</span>
+            <span id="bblv120_more_amount_05" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">取消理由</span>
+            <span id="bblv120_more_reason_05" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办人</span>
+            <span id="bblv120_more_pch_05" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办时间</span>
+            <span id="bblv120_more_time_05" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">账单编号</span>
+            <span id="bblv120_more_id_05" class="sub-value"></span>
+          </div>
+        </div>
+        <!-- 借贷账单，还款详情 -->
+        <div id="bblv120_bill_more_06" class="w-100 d-flex flex-column d-none">
+          <div class="ass-bill-title">
+            <div id="bblv120_bill_more_title_06" class="ass-bill-title-txt"></div>
+          </div>
+        </div>
+        <!-- 还款账单，原借贷账单详情 -->
+        <div id="bblv120_bill_more_07" class="w-100 d-flex flex-column d-none">
+          <div class="ass-bill-title">
+            <div id="bblv120_bill_more_title_07" class="ass-bill-title-txt"></div>
+          </div>
+          <div class="d-flex mt-4">
+            <span class="color-gary sub-title">借取金额</span>
+            <span id="bblv120_more_amount_07" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">借贷说明</span>
+            <span id="bblv120_more_detail_07" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-4">
+            <span class="color-gary sub-title">借贷利息</span>
+            <span id="bblv120_more_borrow_new_07" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-4">
+            <span class="color-gary sub-title">借条编号</span>
+            <span id="bblv120_more_borrow_id_07" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-4">
+            <span class="color-gary sub-title">还款状态</span>
+            <span id="bblv120_more_state_07" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办人</span>
+            <span id="bblv120_more_pch_07" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办时间</span>
+            <span id="bblv120_more_time_07" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">账单编号</span>
+            <span id="bblv120_more_id_07" class="sub-value"></span>
+          </div>
+        </div>
+        <!-- 取消账单，原支出账单详情 -->
+        <div id="bblv120_bill_more_08" class="w-100 d-flex flex-column d-none">
+          <div class="ass-bill-title">
+            <div id="bblv120_bill_more_title_08" class="ass-bill-title-txt"></div>
+          </div>
+          <div class="d-flex mt-4">
+            <span class="color-gary sub-title">支出金额</span>
+            <span id="bblv120_more_amount_08" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">支出类型</span>
+            <span id="bblv120_more_expense_type_08" class="sub-value"></span>
+          </div>
+          <div id="bblv120_more_detail_08" class="d-flex mt-3 d-none">
+            <span class="color-gary sub-title">详细说明</span>
+            <span id="bblv120_more_detail_08_value" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办人</span>
+            <span id="bblv120_more_pch_08" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">经办时间</span>
+            <span id="bblv120_more_time_08" class="sub-value"></span>
+          </div>
+          <div class="d-flex mt-3">
+            <span class="color-gary sub-title">账单编号</span>
+            <span id="bblv120_more_id_08" class="sub-value"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="bblv120_single_footer" class="footer">
+      <div class="btn-div">
+        <button type="button" onclick="bblv120.close()">关闭</button>
+      </div>
+    </div>
+    <div id="bblv120_double_footer" class="footer justify-content-between d-none">
+      <div class="btn-div">
+        <button type="button" onclick="bblv120.close()">关闭</button>
+      </div>
+      <div class="btn-div">
+        <button id="bill_cancel_btn" type="button" onclick="bblv120.billCancel()">取消订单</button>
+      </div>
+    </div>
+  </div>
+</div>

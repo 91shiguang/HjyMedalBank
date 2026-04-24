@@ -8,19 +8,13 @@ const bblv030 = new BBLV030View();
 const bblv040 = new BBLV040View();
 /** 设置标签主画面用js对象 */
 const bblv050 = new BBLV050View();
-/** 勋章查询结果对话框画面用js对象 */
-const bblv060 = new BBLV060View();
-/** 勋章详细信息对话框画面用js对象 */
-const bblv080 = new BBLV080View();
-/** 勋章历史记录对话框画面用js对象 */
-const bblv090 = new BBLV090View();
 /** 账单查询结果画面用js对象 */
 const bblv100 = new BBLV100View();
 /** 账单查询条件对话框画面用js对象 */
 const bblv110 = new BBLV110View();
 /** 账单详细信息对话框画面用js对象 */
 const bblv120 = new BBLV120View();
-/** 显示账单对应勋章对话框画面用js对象 */
+/** 定期转活期, 选择的定期详细对话框画面用js对象 */
 const bblv130 = new BBLV130View();
 /** 常规存储画面用js对象 */
 const bblv140 = new BBLV140View();
@@ -28,9 +22,9 @@ const bblv140 = new BBLV140View();
 const bblv150 = new BBLV150View();
 /** 抽奖画面用js对象 */
 const bblv160 = new BBLV160View();
-/** 增加抽奖次数对话框画面用js对象 */
+/** 抽奖设置对话框画面用js对象 */
 const bblv170 = new BBLV170View();
-/** 抽奖选项对话框画面用js对象 */
+/** 订单取消理由对话框画面用js对象 */
 const bblv180 = new BBLV180View();
 /** 借贷记录详细信息对话框画面用js对象 */
 const bblv190 = new BBLV190View();
@@ -40,8 +34,6 @@ const bblv200 = new BBLV200View();
 const bblv210 = new BBLV210View();
 /** 还款对象一览对话框画面用js对象 */
 const bblv220 = new BBLV220View();
-/** 还款详细对话框画面用js对象 */
-const bblv230 = new BBLV230View();
 /** 账号、密码注册/修改密码对话框画面用js对象 */
 const bblv240 = new BBLV240View();
 /** 密码验证对话框画面用js对象 */
@@ -55,25 +47,19 @@ const bblv300 = new BBLV300View();
 const PageId = {
   /** 首页主画面 */
   bblv010: 'bblv010',
-  /** 支出标签主画面*/
+  /** 支出画面*/
   bblv030: 'bblv030',
   /** 借贷标签主画面 */
   bblv040: 'bblv040',
   /** 设置标签主画面 */
   bblv050: 'bblv050',
-  /** 勋章查询结果对话框画面 */
-  bblv060: 'bblv060',
-  /** 勋章详细信息对话框画面 */
-  bblv080: 'bblv080',
-  /** 勋章历史记录对话框画面 */
-  bblv090: 'bblv090',
   /** 账单查询结果画面 */
   bblv100: 'bblv100',
   /** 账单查询条件对话框画面 */
   bblv110: 'bblv110',
   /** 账单详细信息对话框画面 */
   bblv120: 'bblv120',
-  /** 显示账单对应勋章对话框画面 */
+  /** 定期转活期, 选择的定期详细对话框画面 */
   bblv130: 'bblv130',
   /** 常规存储画面 */
   bblv140: 'bblv140',
@@ -81,9 +67,9 @@ const PageId = {
   bblv150: 'bblv150',
   /** 抽奖画面 */
   bblv160: 'bblv160',
-  /** 增加抽奖次数对话框画面 */
+  /** 抽奖设置对话框画面 */
   bblv170: 'bblv170',
-  /** 抽奖选项对话框画面 */
+  /** 订单取消理由对话框画面 */
   bblv180: 'bblv180',
   /** 借贷记录详细信息对话框画面 */
   bblv190: 'bblv190',
@@ -93,8 +79,6 @@ const PageId = {
   bblv210: 'bblv210',
   /** 还款对象一览对话框画面 */
   bblv220: 'bblv220',
-  /** 还款详细对话框画面 */
-  bblv230: 'bblv230',
   /** 账号、密码注册/修改密码对话框画面 */
   bblv240: 'bblv240',
   /** 密码验证对话框画面 */
@@ -111,25 +95,19 @@ const PageId = {
 const JSObject = {
   /** 首页标签主画面用js对象 */
   bblv010,
-  /** 支出标签主画面用js对象 */
+  /** 支出画面用js对象 */
   bblv030,
   /** 借贷标签主画面用js对象 */
   bblv040,
   /** 设置标签主画面用js对象 */
   bblv050,
-  /** 勋章查询结果对话框画面用js对象 */
-  bblv060,
-  /** 勋章详细信息对话框画面用js对象 */
-  bblv080,
-  /** 勋章历史记录对话框画面用js对象 */
-  bblv090,
   /** 账单查询结果画面用js对象 */
   bblv100,
   /** 账单查询条件对话框画面用js对象 */
   bblv110,
   /** 账单详细信息对话框画面用js对象 */
   bblv120,
-  /** 显示账单对应勋章对话框画面用js对象 */
+  /** 定期转活期, 选择的定期详细对话框画面 */
   bblv130,
   /** 常规存储画面用js对象 */
   bblv140,
@@ -139,7 +117,7 @@ const JSObject = {
   bblv160,
   /** 增加抽奖次数对话框画面用js对象 */
   bblv170,
-  /** 抽奖选项对话框画面用js对象 */
+  /** 订单取消理由对话框画面用js对象 */
   bblv180,
   /** 借贷记录详细信息对话框画面用js对象 */
   bblv190,
@@ -149,8 +127,6 @@ const JSObject = {
   bblv210,
   /** 还款对象一览对话框画面用js对象 */
   bblv220,
-  /** 还款详细对话框画面用js对象 */
-  bblv230,
   /** 账号、密码注册/修改密码对话框画面用js对象 */
   bblv240,
   /** 密码验证对话框画面用js对象 */
@@ -169,17 +145,18 @@ const BtnType = {
   CLOSE: 'close',
   /** 确定/OK */
   CONFIRM: 'confirm',
-  /** 回退 */
-  UNDO: 'undo',
+  /** 取消账单 */
+  BILLCANCEL: 'billCancel',
   /** 注册 */
   REGISTER: 'register',
+  /** 还款 */
+  REPAYMENT: 'repayment',
 }
 
 /**
  * 画面表示相关的共通方法
  */
 class PageUtil {
-
   /**
    * 加载目标画面的内容
    */
@@ -244,6 +221,8 @@ class PageUtil {
     // 加载目标画面的内容
     const params = {recognitionId: recognitionId, input: input}
     this.loadTargetPage(pageId, params);
+
+    CommonUtils.playAudio('popup_audio');
 
     // 打开 modal(打开对话框画面)
     const modal = new bootstrap.Modal(modalEl, {

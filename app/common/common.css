@@ -81,7 +81,7 @@ img {
 }
 
 .color-gary {
-  color: #00103694;
+  color: #999;
 }
 
 .pink-bg {
@@ -90,6 +90,10 @@ img {
 
 .wathet-bg {
   background: linear-gradient(#dbeefc, #9bc6f5);
+}
+
+.gray-line {
+  background: #bababa;
 }
 
 .large-card {
@@ -304,7 +308,7 @@ textarea {
 }
 
 .modal-backdrop {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 /* 太空漂浮动画：让图标更灵动 */

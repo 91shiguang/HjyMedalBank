@@ -11,7 +11,7 @@ class Message {
   /** 新增存储成功的提示内容 */
   static BBL0004I = {messageId: 'BBL0004I', message: '你的付出与汗水已成功转为勋章，让我们再接再厉，努力提高自己吧！🎉🎉🎉'};
   /** 活期转定期成功的提示内容 */
-  static BBL0005I = {messageId: 'BBL0005I', message: '定期存款已经转存成功啦，一定要坚持到最后再取出来哦。💪'};
+  static BBL0005I = {messageId: 'BBL0005I', message: '定期存款已经转存成功啦，一定要坚持到最后哦。💪'};
   /** 定期转活期时，不存在定期款项的错误内容 */
   static BBL0006E = {messageId: 'BBL0006E', message: '目前还没有定期存款哦。'};
   /** 定期转活期确认时的确认内容 */
@@ -27,12 +27,14 @@ class Message {
   /** 支出时，可支配的勋章数量不足提示内容 */
   static BBL0012I = { messageId: 'BBL0012I', message: '可自由支配的勋章余额不足哦，快去努力赚取吧！O(∩_∩)O' };
   /** 没有注册信息时的提示 */
-  static BBL0013I = { messageId: 'BBL0013I', message: '未检测到勋章银行的账户，请先注册吧。' }
+  static BBL0013I = { messageId: 'BBL0013I', message: '未检测到勋章银行的账户，请先注册吧。' };
+  /** 活期转定期时，非借用的勋章数量不足提示内容 */
+  static BBL0014I = { messageId: 'BBL0014I', message: '定期存款必须是非借用的勋章哦，你的余额还不足呢，减少定期存款的金额试试呢！O(∩_∩)O' };
   
   /**
    * 显示提示画面
    */
-  static async showInformation(message) {
+  static async showInformation(message, audioId) {
     // 识别ID
     const recognitionId = PageId.bblv260 + '_information';
     // 创建提示框元素
@@ -57,6 +59,12 @@ class Message {
     // 加载提示画面的内容
     const params = {recognitionId: recognitionId, input: message}
     PageUtil.loadTargetPage(PageId.bblv260, params);
+
+    if (!audioId) {
+      CommonUtils.playAudio('popup_audio');
+    } else {
+      CommonUtils.playAudio(audioId);
+    }
 
     // 打开提示框画面
     $('#information_dialog').removeClass('d-none');

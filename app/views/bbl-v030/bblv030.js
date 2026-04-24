@@ -47,11 +47,10 @@ class BBLV030View {
     // 获取可以使用的勋章
     const effectiveLit = medalLit.filter(item => item.saveStateCd === mdlCd.code_01);
     // 支出数量
-    const expenseCount = CommonUtils.getInputElementValue('expenseCount');
+    const expenseCount = Number(CommonUtils.getInputElementValue('expenseCount'));
     // 可支配的勋章数量不足的场合
     if (effectiveLit.length < expenseCount) {
-      CommonUtils.playAudio('popup_audio');
-      alert(Message.BBL0012I.message);
+      await Message.showInformation(Message.BBL0012I);
       return;
     }
     // 从数据库中取得所有的账单
@@ -61,18 +60,9 @@ class BBLV030View {
 
     // 循环支出的数量
     for (let i = 0; i < expenseCount; i++) {
-      // 从保存时间最长的勋章开始，更新勋章的状态
-      const medal = effectiveLit[i];
-      // 回退情报
-      const backInf = structuredClone(medal);
-      // 回退情报中的回退情报设为null，确保只能回退一次的限制
-      backInf.backInf = null;
-      // 账单关联的勋章ID数组
-      newBill.billMedalIdLit.push(medal.medalId);
       // 把勋章的状态更新为【已支出勋章】
-      medal.saveStateCd = mdlCd.code_03;
-      // 回退情报
-      medal.backInf = backInf;
+      effectiveLit[i].saveStateCd = mdlCd.code_03;
+      newBill.expenseMedalIdLit.push(effectiveLit[i].medalId);
     }
 
     // 支出类型
@@ -103,21 +93,16 @@ class BBLV030View {
     await DataBase.saveBillInfToDB(billLit);
     // 支出类型是日常消费的场合
     if (expenseTypeCd === epsTyCd.code_01) {
-      // 播放日常消费成功音效
-      CommonUtils.playAudio('expense_success_audio');
       // 日常消费支出成功的提示内容
       await Message.showInformation(Message.BBL0009I);
 
       // 提现的场合
     } else if (expenseTypeCd === epsTyCd.code_02) {
-      // 播放提现成功音效
-      CommonUtils.playAudio('expense_success_audio');
       // 提现成功的提示内容
       await Message.showInformation(Message.BBL0010I);
 
       // 罚扣的场合
     } else {
-      CommonUtils.playAudio('sad_audio');
       // 罚扣成功的提示内容
       await Message.showInformation(Message.BBL0011I);
     }

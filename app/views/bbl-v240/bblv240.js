@@ -44,6 +44,7 @@ class BBLV240View {
    * 点击关闭按钮
    */
   close() {
+    CommonUtils.playAudio('click_audio');
     PageUtil.emitDialog(this.recognitionId, BtnType.CLOSE);
   }
 
@@ -66,6 +67,7 @@ class BBLV240View {
    * 点击注册按钮
    */
   async register() {
+    CommonUtils.playAudio('click_audio');
     const accountInput = document.getElementById('register_account');
     const pwdInput = document.getElementById('register_pwd');
     const confirmPwdInput  = document.getElementById('register_pwd_confirm');
@@ -136,6 +138,7 @@ class BBLV240View {
    * 点击确定按钮
    */
   async confirm() {
+    CommonUtils.playAudio('click_audio');
     const accountInput = document.getElementById('edit_account');
     const pwdInput = document.getElementById('edit_pwd');
     const confirmPwdInput  = document.getElementById('edit_pwd_confirm');
