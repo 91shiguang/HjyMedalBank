@@ -193,6 +193,7 @@ class CommonUtils {
    * 播放音频
    */
   static playAudio(audioId) {
+    CommonUtils.stopAudio(audioId);
     document.getElementById(audioId).play();
   }
 

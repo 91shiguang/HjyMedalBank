@@ -117,6 +117,7 @@ class BBLV150View {
    * 关闭/取消
    */
   close() {
+    CommonUtils.playAudio('click_audio');
     PageUtil.emitDialog(this.recognitionId, {btnType: BtnType.CLOSE});
   }
 }

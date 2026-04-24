@@ -23,6 +23,7 @@ class BBLV180View {
    * 点击关闭按钮
    */
   close() {
+    CommonUtils.playAudio('click_audio');
     PageUtil.emitDialog(this.recognitionId, BtnType.CLOSE);
   }
 
@@ -30,6 +31,7 @@ class BBLV180View {
    * 点击确定按钮
    */
   async confirm() {
+    CommonUtils.playAudio('click_audio');
     // 获取取消理由
     const billTipDetail = CommonUtils.getInputElementValue('bblv180_cancel_reason').trim();
     document.getElementById('bblv180_reason_error').innerText = Constant.blank;

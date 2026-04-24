@@ -17,6 +17,7 @@ class BBLV250View {
    * 点击关闭按钮
    */
   close() {
+    CommonUtils.playAudio('click_audio');
     PageUtil.emitDialog(this.recognitionId, BtnType.CLOSE);
   }
 
@@ -39,6 +40,7 @@ class BBLV250View {
    * 点击确定按钮
    */
   async confirm() {
+    CommonUtils.playAudio('click_audio');
     const pwdInput = document.getElementById('pwd');
     // 1. 获取输入内容，去除首尾空格
     const pwd = CommonUtils.getInputElementValue('pwd').trim();

@@ -58,6 +58,7 @@ class BBLV130View {
    * 点击关闭按钮
    */
   close() {
+    CommonUtils.playAudio('click_audio');
     PageUtil.emitDialog(this.recognitionId, BtnType.CLOSE);
   }
 
@@ -65,6 +66,7 @@ class BBLV130View {
    * 点击确定按钮
    */
   confirm() {
+    CommonUtils.playAudio('click_audio');
     PageUtil.emitDialog(this.recognitionId, BtnType.CONFIRM);
   }
 

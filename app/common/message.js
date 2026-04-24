@@ -34,7 +34,7 @@ class Message {
   /**
    * 显示提示画面
    */
-  static async showInformation(message) {
+  static async showInformation(message, audioId) {
     // 识别ID
     const recognitionId = PageId.bblv260 + '_information';
     // 创建提示框元素
@@ -59,6 +59,12 @@ class Message {
     // 加载提示画面的内容
     const params = {recognitionId: recognitionId, input: message}
     PageUtil.loadTargetPage(PageId.bblv260, params);
+
+    if (!audioId) {
+      CommonUtils.playAudio('popup_audio');
+    } else {
+      CommonUtils.playAudio(audioId);
+    }
 
     // 打开提示框画面
     $('#information_dialog').removeClass('d-none');

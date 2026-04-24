@@ -98,7 +98,6 @@ class BBLV140View {
         ).filter(items => !CommonUtils.isNumberEmpty(items[0].fixedId));
         // 不存在定期存款的场合
         if (fixedLit.length === 0) {
-          CommonUtils.playAudio('popup_audio');
           // 弹出不存在定期款项的提示框
           await Message.showInformation(Message.BBL0006E);
           this.clickMedalSrcRadio(saveTpCd.code_01);
@@ -299,7 +298,6 @@ class BBLV140View {
     await DataBase.saveMedalInfToDB(medalLit);
     // 更新数据库的账单
     await DataBase.saveBillInfToDB(billLit);
-    CommonUtils.playAudio('popup_audio');
     // 定期转活期成功的提示内容
     await Message.showInformation(Message.BBL0008I);
     // 刷新画面
@@ -405,7 +403,6 @@ class BBLV140View {
     );
     // 完全属于自己的勋章数量不足的场合
     if (ownMedals.length < saveCount) {
-      CommonUtils.playAudio('popup_audio');
       await Message.showInformation(Message.BBL0014I);
       return;
     }
@@ -462,7 +459,6 @@ class BBLV140View {
     await DataBase.saveMedalInfToDB(medalLit);
     // 更新数据库的账单
     await DataBase.saveBillInfToDB(billLit);
-    CommonUtils.playAudio('popup_audio');
     // 弹出活期转定期成功的提示框
     await Message.showInformation(Message.BBL0005I);
     // 刷新画面

@@ -222,6 +222,8 @@ class PageUtil {
     const params = {recognitionId: recognitionId, input: input}
     this.loadTargetPage(pageId, params);
 
+    CommonUtils.playAudio('popup_audio');
+
     // 打开 modal(打开对话框画面)
     const modal = new bootstrap.Modal(modalEl, {
       backdrop: 'static', // 禁止点击背景关闭

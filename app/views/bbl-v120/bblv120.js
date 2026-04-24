@@ -85,6 +85,7 @@ class BBLV120View {
    * 点击关闭按钮
    */
   close() {
+    CommonUtils.playAudio('click_audio');
     // 返回的参数
     const btnType = this.isBillCancel ? BtnType.BILLCANCEL : BtnType.CLOSE;
     PageUtil.emitDialog(this.recognitionId, btnType);
@@ -252,6 +253,7 @@ class BBLV120View {
         // 账单金额标题
         document.getElementById('bblv120_sub_amount_title').innerText = '退款金额';
         // 账单取消理由
+        $('#bblv120_bill_detail').addClass('d-none');
         this.showAndSetBillItem('bblv120_cancel_reason', this.billInf.billTipDetail);
         // 设置更多详情的名称
         this.showAndSetBillItem('bblv120_more_button', assBillTypeNm[assBillType.code_08] + Constant.billMoreDownArrow);
@@ -266,7 +268,8 @@ class BBLV120View {
   /**
    * 点击链接显示关联账单详情信息
    */
-  clickShowMoreInf() {
+  async clickShowMoreInf() {
+    CommonUtils.playAudio('click_audio');
     $('#bblv120_more_button').addClass('d-none');
     $('#bblv120_bill_more_area').removeClass('d-none');
     $('#bblv120_bill_more_' + this.assBillCode).removeClass('d-none');
